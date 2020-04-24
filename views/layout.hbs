@@ -13,9 +13,16 @@
 
   <nav>
     <a href="/">Home</a>
+    <a href="/users">Users</a>
+    <a href="/recipes">Recipes</a>
+    <a href="/profile">Profile</a>
+    {{#if user}}
+    <a href="/new-recipe">Add recipe</a>
+    <a href="/auth/logout">Logout</a>
+    {{else}}
     <a href="/auth/login">Login</a>
     <a href="/auth/signup">Signup</a>
-    <a href="/auth/logout">Logout</a>
+    {{/if}}
   </nav>
 
   {{{body}}}
