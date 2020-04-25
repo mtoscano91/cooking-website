@@ -1,10 +1,12 @@
+
+
 body {
   font-family: 'Roboto', sans-serif; }
 
 .title {
   font-size: 30px;
   font-weight: 700;
-  color: #42d388; }
+  color: #3b5998; }
 
 nav a, .account {
   color: #000000;
@@ -16,14 +18,14 @@ nav a, .account {
 
 #signUp {
   border-radius: 39px;
-  background: #42d388;
+  background: #3b5998;
   padding: 2vh;
   color: white;
   font-weight: bolder; }
 
 #signUp:hover {
   color: #42d388;
-  border: 1px solid #42d388;
+  border: 1px solid #3b5998;
   background-color: white; }
 
 .fas.fa-search {

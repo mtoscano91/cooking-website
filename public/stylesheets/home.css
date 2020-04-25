@@ -1,0 +1,105 @@
+.jumbotron.jumbotron-fluid{
+  margin-top: 1rem;
+ background-image: url("/images/banner.png");
+ background-repeat: no-repeat;
+ background-position:bottom;
+background-color:#e3e3e5;
+/* background-color: linear-gradient(180deg, rgba(246,246,247,1) 0%, rgba(201,195,199,1) 100%); */
+ height: 50vh;
+ -webkit-box-shadow: 7px 7px 5px 0px rgba(59,89,152,1);
+-moz-box-shadow: 7px 7px 5px 0px rgba(59,89,152,1);
+box-shadow: 7px 7px 5px 0px rgba(59,89,152,1);
+}
+.text h1{
+  color: white;
+  font-size: 70px;
+  
+}
+.text{
+  text-align: end;
+  margin-top: 6rem;
+ 
+}
+.text a{
+  padding: 1rem;
+  border-radius: 25px;
+  background-color: white;
+  border: 1px solid #3b5998;
+  color: #3b5998;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+.text a:hover{
+  background-color: #3b5998;
+  border: 1px solid #3b5998;
+  color: white;
+  text-decoration: none;
+}
+.gallery{
+  border:2px solid #3b5998;
+  -webkit-box-shadow: 1px 5px 0px 5px rgba(59,89,152,1);
+  -moz-box-shadow: 1px 5px 0px 5px rgba(59,89,152,1);
+  box-shadow: 1px 5px 0px 5px rgba(59,89,152,1);
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+}
+.card-title{
+  color: #3b5998;
+  font-family: 'Roboto', sans-serif; 
+  font-weight: bold;
+  font-weight: 800;
+  letter-spacing: 2px;
+
+}
+.card-body p{
+
+  color: #76879b;
+  font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+
+}
+
+.card-link{
+  text-decoration: none;
+  color: #ed4c27;
+  font-weight: 900;
+  font-size: 18px;
+  letter-spacing: 1px;
+  text-align: start;
+
+}
+.recipHeader{
+  color: #3b5998;
+  font-family: 'Roboto', sans-serif;
+  font-size: 35px;
+}
+.recipe img{
+  height: 30vh;
+    width: 27vh;
+}
+span{
+  font-size: 16px;
+}
+.veggie{
+  color: green;
+}
+.dairy{
+  color: #993399;
+}
+.gluten{
+  color: #ed4c27;
+}
+.more{
+  color: #3b5998;
+}
+.fas.fa-heart{
+  color: red;
+}
+@media only screen and (max-device-width: 1030px) {
+.card{
+  margin: 0.5rem;
+}
+.text a{
+  display: none;
+}
+}
