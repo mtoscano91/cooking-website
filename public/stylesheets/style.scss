@@ -32,6 +32,9 @@ nav a, .account {
   .fas.fa-search{
     color: #000000;
   }
+.navbar-toggler-icon{
+    background-color: #42d388;
+  }
 nav{
   background-color: white;
   color: #42d388;
@@ -136,6 +139,14 @@ a.create{
 @media only screen and (max-device-width: 991px){
 ul.navbar-nav{
   margin-left: 0vh;
+}
+.formLogin{
+  height: 100vh;
+}
+#signUp{
+  background-color: white;
+  color: #000000;
+  margin: 0px!important;
 }
 }
 // @media only screen and (max-device-width: 835px){
