@@ -14,7 +14,7 @@ router.get("/login", (req, res, next) => {
 router.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/profile",
     failureRedirect: "/auth/login",
     failureFlash: true,
     passReqToCallback: true,
@@ -25,27 +25,29 @@ router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
 });
 
+/*
 function ValidateEmail(mail) {
   if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
     return true;
   }
   return false;
 }
+*/
 
 router.post("/signup", (req, res, next) => {
-  const email = req.body.email;
+  const username = req.body.username;
   const password = req.body.password;
-  if (email === "" || password === "") {
-    res.render("auth/signup", { message: "Indicate email and password" });
+  if (username === "" || password === "") {
+    res.render("auth/signup", { message: "Indicate username and password" });
     return;
   }
 
-  if (!ValidateEmail(email)) {
+  /*if (!ValidateEmail(email)) {
     res.render("auth/signup", {
       message: "You have entered an invalid email address!",
     });
     return;
-  }
+  }*/
 
   User.findOne({ username }, "username", (err, user) => {
     if (user !== null) {
