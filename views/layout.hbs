@@ -6,23 +6,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{{title}}</title>
+  <script src="https://kit.fontawesome.com/14dd9125ec.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 
 <body>
 
-  <nav>
-    <a href="/">Home</a>
-    <a href="/users">Users</a>
+  <nav class = "shift">
+    <a href="/" class="title"><i class="fas fa-utensils"></i>  Cook</a>
+     <div class= "navbar"> 
+     <a href="/">Home</a>
     <a href="/recipes">Recipes</a>
+    <a href="/users">Users</a>
     <a href="/profile">Profile</a>
+
     {{#if user}}
     <a href="/new-recipe">Add recipe</a>
-    <a href="/auth/logout">Logout</a>
+    <form action="" class="search">
+      <input type="text">
+     <i class="fas fa-search"></i>
+      </form>
+      <a href="/auth/logout">Logout</a>
+     </div>
     {{else}}
-    <a href="/auth/login">Login</a>
-    <a href="/auth/signup">Signup</a>
+    
+     <form action="" class="search">
+      <input type="text">
+     <i class="fas fa-search"></i>
+      </form>
+     </div>
+       
+    <a href="/auth/login">Log In</a>
+    <a href="/auth/signup">Sign Up</a>
     {{/if}}
+   
   </nav>
 
   {{{body}}}

@@ -1,8 +1,60 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+font-family: 'Roboto', sans-serif;
+   }
+.title{
+  font-size : 30px;
+  font-weight: 700; 
+}
+nav a {
+  color: white; 
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: 500; 
+  letter-spacing : 1px;
+  font-weight: 800;
+  text-transform: uppercase;
+  height:100%;
+  
+  }
+nav{
+  background-color: #42d388;
+  color: white;
+  display : flex;
+  justify-content: space-between;
+  padding:2vh;
+  align-items: center;
+}
+.navbar{
+   display : flex;
+  justify-content: space-between;
+  align-items: center;
+  width:100vh;
 }
 
-a {
-  color: #00B7FF;
+nav  a:hover {
+  color: #d2428d;
+  letter-spacing : 3px;
+}
+
+
+
+
+
+.search input{
+    width: 23vh;
+    border-radius: 20px;
+    border: 1px solid #42d388;
+    height: 4vh;
+    background-color : rgba(255,255,255,0.3);
+    color: white;
+}
+@media only screen and (max-device-width: 480px){
+  .navbar{
+    display:none;
+  }
+}
+@media only screen and (max-device-width: 835px){
+  .navbar{
+    display:none;
+  }
 }
