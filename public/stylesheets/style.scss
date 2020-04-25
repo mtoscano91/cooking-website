@@ -2,10 +2,10 @@
 body {
 font-family: 'Roboto', sans-serif;
    }
+ 
 .title{
   font-size : 30px;
   font-weight: 700; 
-  margin-left: 2vh;
   color: #42d388
 }
 nav a, .account {
@@ -108,8 +108,11 @@ color:#3b5998;
     background-color: #e0e0e0;
 }
 .formLogin h1{
-  font-weight: bolder;
   color: #34558b;
+  font-size: 60px;
+  font-family: 'Cookie', cursive;
+
+
 }
 button.svg{
   background-color: white;
@@ -135,8 +138,58 @@ a.create{
     color: #4f1bd4;
     font-weight: bolder;
 }
-
-@media only screen and (max-device-width: 991px){
+//SignUp style
+.layout{
+  margin-top: 3vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.left{
+  text-align: center;
+  color:#34558b;
+}
+.left input{
+  border-radius: 20px;
+  border: 1px solid #e0e0e0;
+  width: 50vh;
+  padding: 1vh;
+  background-color: #e0e0e0;
+}
+.media i{
+  font-size: 40px;
+}
+.right img{
+  height: 80vh;
+  width: 100%;
+}
+i.fas.fa-user{
+  margin-right: 1rem;
+  color: #34558b;
+}
+i.fas.fa-lock{
+  margin-right: 1rem;
+  color: #34558b;
+}
+.butSign{
+  background-color: white;
+    border: 2px solid #34558b;
+    color:#34558b ;
+    width: 30vh;
+    padding: 1vh;
+    font-size: 18px;
+    border-radius: 40px;
+}
+.butSign:hover{
+  background: rgb(15,76,129);
+background: linear-gradient(108deg, rgba(15,76,129,1) 0%, rgba(67,31,158,1) 100%);
+color: white;
+}
+.left h2{
+  font-family: 'Cookie', cursive;
+  font-size: 60px;
+}
+@media only screen and (max-device-width: 1030px){
 ul.navbar-nav{
   margin-left: 0vh;
 }
@@ -147,6 +200,17 @@ ul.navbar-nav{
   background-color: white;
   color: #000000;
   margin: 0px!important;
+  padding: 0px;
+}
+.right{
+display: none;
+}
+
+.left{
+  margin:2rem;
+}
+.left input{
+  width: 30vh;
 }
 }
 // @media only screen and (max-device-width: 835px){
