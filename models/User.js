@@ -19,6 +19,8 @@ const userSchema = new Schema(
         "Fit diet",
       ],
     },
+    followers: Number,
+    following: Number,
   },
   {
     timestamps: {
