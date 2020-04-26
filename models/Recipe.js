@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  owner: {
+  cook: {
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-  title: { type: String, required: true },
-  recipe: { type: String, required: true },
+  title: String,
+  recipe: String,
   ingredients: [
     {
       quantity: Number,
@@ -51,5 +51,5 @@ const userSchema = new Schema({
   ],
 });
 
-const User = mongoose.model("User", userSchema);
-module.exports = User;
+const Recipe = mongoose.model("Recipe", userSchema);
+module.exports = Recipe;
