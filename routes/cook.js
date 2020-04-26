@@ -2,6 +2,7 @@ const express = require("express");
 const passport = require("passport");
 const router = express.Router();
 const User = require("../models/User");
+const Recipe = require("../models/Recipe");
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -40,6 +41,40 @@ router.get("/users", (req, res, next) => {
     })
     .catch((err) => {
       next(err);
+    });
+});
+
+router.post("/recipe/add", (req, res, next) => {
+  console.log(req.user._id);
+  const {
+    title,
+    recipe,
+    recipeImg,
+    duration,
+    quantity,
+    measure,
+    name,
+  } = req.body;
+  const newRecipe = new Recipe({
+    cook: req.user._id,
+    title,
+    recipe,
+    ingredients: {
+      $push: { quantity, measure, name },
+    },
+    // quantity,
+    // measure,
+    // name,
+    recipeImg,
+    duration,
+  });
+  newRecipe
+    .save()
+    .then((recipe) => {
+      res.redirect("/recipes");
+    })
+    .catch((error) => {
+      console.log(error);
     });
 });
 
