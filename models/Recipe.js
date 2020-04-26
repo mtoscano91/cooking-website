@@ -8,7 +8,16 @@ const userSchema = new Schema({
   },
   title: { type: String, required: true },
   recipe: { type: String, required: true },
-  ingredients: [{ quantity: Number, measure: String, name: String }],
+  ingredients: [
+    {
+      quantity: Number,
+      measure: {
+        type: String,
+        enum: ["g", "kg", "ml", "l", "unit", "spoon", "teaspoon"],
+      },
+      name: String,
+    },
+  ],
   recipeImg: String,
   duration: Number,
   difficulty: { type: Number, enum: [0, 1, 2, 3, 4, 5] },
