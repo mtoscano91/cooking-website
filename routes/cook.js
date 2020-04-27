@@ -50,7 +50,6 @@ router.get("/users", (req, res, next) => {
 router.post("/recipe/add", uploader.single("recipeImg"), (req, res, next) => {
   // console.log(req.body);
   const {
-    user,
     title,
     shortDescription,
     steps,
@@ -75,10 +74,11 @@ router.post("/recipe/add", uploader.single("recipeImg"), (req, res, next) => {
   if (typeof name === "string") {
     arrIngridients = [{ quantity, measure, name }];
   }
+  console.log(req);
   console.log(tags);
   console.log(req.body);
   const newRecipe = new Recipe({
-    user: req.user._id,
+    user_id: req.user._id,
     title,
     steps,
     shortDescription,
