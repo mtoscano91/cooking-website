@@ -48,7 +48,7 @@ const recipeSchema = new Schema({
       "Low sugar",
     ],
   },
-  portions: {
+  servings: {
     type: Number,
     required: true,
   },

@@ -38,7 +38,7 @@ const recipes = [
     preparationTime: 40,
     difficulty: 4,
     tags: ["Vegan", "Keto"],
-    portions: 4,
+    servings: 4,
     rating: 4,
     // reviews: [
     //   { user: "bob", comment: "alice, it was amazing" },
@@ -65,7 +65,7 @@ const recipes = [
     preparationTime: 10,
     difficulty: 2,
     tags: ["Vegan", "Keto"],
-    portions: 2,
+    servings: 2,
     rating: 3,
     // reviews: [
     //   { user: "bob", comment: "alice, it was amazing" },
@@ -94,7 +94,7 @@ const recipes = [
     preparationTime: 10,
     difficulty: 3,
     tags: ["Vegan", "Lactose Free", "Vegan", "Low sugar"],
-    portions: 2,
+    servings: 2,
     rating: 2,
     // reviews: [
     //   { user: "bob", comment: "alice, it was amazing" },
@@ -129,7 +129,7 @@ const recipes = [
     preparationTime: 40,
     difficulty: 4,
     tags: ["Vegan", "Keto"],
-    portions: 4,
+    servings: 4,
     rating: 4,
     // reviews: [
     //   { user: "bob", comment: "alice, it was amazing" },
