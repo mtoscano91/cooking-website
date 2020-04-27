@@ -118,13 +118,33 @@ router.get("/edit/profile", (req, res, next) => {
 });
 
 router.get("/recipe/:id", (req, res, next) => {
-  console.log("route worked");
   const recipeId = req.params.id;
   Recipe.findById(recipeId)
     .populate("user_id")
     .then((recipe) => {
       console.log(recipe);
-      res.render("selected-recipe", { recipe: recipe });
+      res.render("selected-recipe", { recipe: recipe, user: req.user });
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+router.get("/user/:id", (req, res, next) => {
+  console.log("route worked");
+  const userId = req.params.id;
+  Recipe.find({ user_id: userId })
+    .populate("user_id")
+    .then((recipes) => {
+      console.log(recipes);
+      if (recipes.length > 0)
+        return res.render("selected-user", {
+          recipes: recipes,
+          user: req.user,
+        });
+      User.findById(userId).then((user) => {
+        res.render("selected-user", { userProfile: user, user: req.user });
+      });
     })
     .catch((err) => {
       next(err);
