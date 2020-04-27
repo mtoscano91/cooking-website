@@ -2,25 +2,38 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  cook: {
+  owner: {
     type: Schema.Types.ObjectId,
     ref: "User",
+    required: true,
   },
-  title: String,
-  recipe: String,
+  title: {
+    type: String,
+    required: true,
+  },
+  shortDescription: {
+    type: String,
+  },
+  steps: {
+    type: String,
+    required: true,
+  },
   ingredients: [
     {
       quantity: Number,
       measure: {
         type: String,
-        enum: ["g", "kg", "ml", "l", "unit", "spoon", "teaspoon"],
+        enum: ["g", "cups", "kg", "ml", "l", "unit", "spoon", "teaspoon"],
       },
       name: String,
     },
   ],
   recipeImg: String,
-  duration: Number,
-  difficulty: { type: Number, enum: [0, 1, 2, 3, 4, 5] },
+  preparationTime: {
+    type: Number,
+    required: true,
+  },
+  difficulty: { type: Number, enum: [1, 2, 3, 4, 5], required: true },
   tags: {
     type: [String],
     enum: [
@@ -30,8 +43,13 @@ const userSchema = new Schema({
       "Lactose Free",
       "Keto",
       "Macrobiotic",
-      "Fit diet",
+      "Healthy",
+      "Low sugar",
     ],
+  },
+  portions: {
+    type: Number,
+    required: true,
   },
   rating: { type: Number, enum: [0, 1, 2, 3, 4, 5] },
   reviews: [
@@ -43,7 +61,7 @@ const userSchema = new Schema({
       comment: String,
     },
   ],
-  userThatLikes: [
+  likes: [
     {
       type: Schema.Types.ObjectId,
       ref: "User",
