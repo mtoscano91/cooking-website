@@ -1,3 +1,4 @@
+
 .jumbotron.jumbotron-fluid{
   margin-top: 1rem;
  background-image: url("/images/banner.png");
@@ -51,6 +52,9 @@ box-shadow: 7px 7px 5px 0px rgba(59,89,152,1);
   letter-spacing: 2px;
 
 }
+.card-body{
+  max-width: 100%;
+}
 .card-body p{
 
   color: #76879b;
@@ -74,9 +78,17 @@ box-shadow: 7px 7px 5px 0px rgba(59,89,152,1);
   font-size: 35px;
 }
 .recipe img{
-  height: 30vh;
-    width: 27vh;
+  height: 34vh;
+    width: 100%;
 }
+.recipes{
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
 span{
   font-size: 16px;
 }

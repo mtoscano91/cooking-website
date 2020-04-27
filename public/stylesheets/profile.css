@@ -87,5 +87,7 @@ width: 70%;
 }
 .recipesPro{
   padding: 0px;
-
+}
+.card-img-top img{
+  height: 18vh;
 }

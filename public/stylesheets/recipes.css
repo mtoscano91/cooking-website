@@ -1,0 +1,13 @@
+html{
+}
+.recipesDisplay img{
+  width: 100%;
+  height: 24vh;
+}
+.recipesDisplay{
+  width: 45%;
+  margin: 1rem;
+}
+.displayAllRecipes{
+  margin: 2rem auto;
+}

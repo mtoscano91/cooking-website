@@ -37,7 +37,7 @@ const recipes = [
     ],
     imgName: "whitefish",
     imgPath:
-      "https://upload.wikimedia.org/wikipedia/commons/4/40/Halibut_and_salmon_fillets.jpg",
+      "https://img.freepik.com/free-photo/roasted-fish-garnished-with-lemon-slices-served-with-vegetables_140725-1413.jpg?size=626&ext=jpg",
     preparationTime: 40,
     difficulty: 4,
     tags: ["Vegan", "Keto"],
