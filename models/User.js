@@ -14,7 +14,7 @@ const userSchema = new Schema({
   imgPath: {
     type: String,
     default:
-      "https://image.shutterstock.com/z/stock-vector-woman-in-kitchen-cook-127186502.jpg",
+      "https://img.freepik.com/free-vector/small-chef-illustration_23-2147517820.jpg?size=338&ext=jpg",
   },
   tags: {
     type: [String],
