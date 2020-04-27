@@ -1,7 +1,7 @@
 <h1>New recipes page</h1>
 
 
-<form action="/recipe/add" method="POST">
+<form action="/recipe/add" method="POST" enctype="multipart/form-data">
 
   <label for="">Title:</label>
   <input type="text" name="title">
@@ -12,7 +12,7 @@
 
 
   <label for="">Image:</label>
-  <input type="text" name="recipeImg">
+  <input type="file" name="recipeImg">
 
   <label for="">Duration:</label>
   <input id="duration" type="number" name="duration">

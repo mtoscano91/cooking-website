@@ -3,6 +3,7 @@ const passport = require("passport");
 const router = express.Router();
 const User = require("../models/User");
 const Recipe = require("../models/Recipe");
+const uploader = require("../config/cloudinary.js")
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -44,28 +45,30 @@ router.get("/users", (req, res, next) => {
     });
 });
 
-router.post("/recipe/add", (req, res, next) => {
+router.post("/recipe/add", uploader.single("recipeImg"),(req, res, next) => {
   console.log(req.user._id);
   const {
     title,
     recipe,
-    recipeImg,
     duration,
     quantity,
     measure,
     name,
   } = req.body;
+  const imgPath = req.file.url;
+  const imgName = req.file.originalname;
   const newRecipe = new Recipe({
-    cook: req.user._id,
+    user: req.user._id,
     title,
     recipe,
-    ingredients: {
-      $push: { quantity, measure, name },
-    },
+    // ingredients: {
+    //   $push: { quantity, measure, name },
+    // },
     // quantity,
     // measure,
     // name,
-    recipeImg,
+    imgPath,
+    imgName,
     duration,
   });
   newRecipe
