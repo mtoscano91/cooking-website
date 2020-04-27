@@ -4,7 +4,11 @@ body {
 .title {
   font-size: 30px;
   font-weight: 700;
+<<<<<<< HEAD
+  color: #0f4c81; }
+=======
   color: #42d388; }
+>>>>>>> 844a758700dfa2d83c9fefe84fc7cd67b42c25b3
 
 nav a, .account {
   color: #000000;
@@ -16,25 +20,38 @@ nav a, .account {
 
 #signUp {
   border-radius: 39px;
+<<<<<<< HEAD
+  background: #0f4c81;
+=======
   background: #42d388;
+>>>>>>> 844a758700dfa2d83c9fefe84fc7cd67b42c25b3
   padding: 2vh;
   color: white;
   font-weight: bolder; }
 
 #signUp:hover {
+<<<<<<< HEAD
+  color: #0f4c81;
+  border: 1px solid #0f4c81;
+=======
   color: #42d388;
   border: 1px solid #42d388;
+>>>>>>> 844a758700dfa2d83c9fefe84fc7cd67b42c25b3
   background-color: white; }
 
 .fas.fa-search {
   color: #000000; }
 
 .navbar-toggler-icon {
+<<<<<<< HEAD
+  background-color: #0f4c81; }
+=======
   background-color: #42d388; }
+>>>>>>> 844a758700dfa2d83c9fefe84fc7cd67b42c25b3
 
 nav {
   background-color: white;
-  color: #42d388;
+  color: #0f4c81;
   padding: 1vh; }
 
 .navbar-toggler {
@@ -42,10 +59,17 @@ nav {
 
 span.navbar-toggler {
   font-size: 12px;
+<<<<<<< HEAD
+  color: #0f4c81; }
+
+nav a:hover, .account:hover {
+  color: #0f4c81;
+=======
   color: #42d388; }
 
 nav a:hover, .account:hover {
   color: #42d388;
+>>>>>>> 844a758700dfa2d83c9fefe84fc7cd67b42c25b3
   text-decoration: none;
   font-weight: bolder; }
 
@@ -54,7 +78,7 @@ nav a:hover, .account:hover {
   font-weight: 400; }
 
 .dropdown-item:hover {
-  color: #42d388; }
+  color: #0f4c81; }
 
 ul.navbar-nav {
   width: 100% !important;
