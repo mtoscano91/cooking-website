@@ -38,6 +38,7 @@ router.get("/users", (req, res, next) => {
   console.log("Display some users");
   User.find()
     .then((usersFromDB) => {
+      console.log(usersFromDB);
       res.render("users", { users: usersFromDB, user: req.user });
     })
     .catch((err) => {
@@ -89,6 +90,12 @@ router.get("/my-shopping-list", (req, res, next) => {
     .catch((err) => {
       next(err);
     });
+});
+
+router.get("/edit/profile", (req, res, next) => {
+  const user = req.user;
+  console.log(req.user);
+  res.render("edit/edit-profile", { user: user });
 });
 
 module.exports = router;
