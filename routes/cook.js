@@ -99,4 +99,18 @@ router.get("/edit/profile", (req, res, next) => {
   res.render("edit/edit-profile", { user: user });
 });
 
+router.get("/recipe/:id", (req, res, next) => {
+  console.log("route worked");
+  const recipeId = req.params.id;
+  Recipe.findById(recipeId)
+    .populate("user_id")
+    .then((recipe) => {
+      console.log(recipe);
+      res.render("selected-recipe", { recipe: recipe });
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
 module.exports = router;

@@ -1,26 +1,27 @@
-
 <div class="displayAllRecipes container">
-<h2 class="text-center title">All the recipes</h2>
-<div class="recipes row">
-{{#each recipes}}
-<div class="card mb-3 recipesDisplay">
-  <div class="row no-gutters">
-    <div class="col-md-4">
-      <img src="{{this.imgPath}}" class="card-img " alt="...">
-    </div>
-    <div class="col-lg-8">
-      <div class="card-body">
-        <h5 class="card-title">{{this.title}}</h5>
-        <p class="card-text">{{this.shortDescription}}</p>
-        <div class="tag">
-          <span class="gluten">#GlutenFree</span>
-          <span class="veggie">#Veggie</span>
-          <span class="dairy">#DairyFree</span>
+  <h2 class="text-center title">All the recipes</h2>
+  <div class="recipes row">
+    {{#each recipes}}
+    <div class="card mb-3 recipesDisplay">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="{{this.imgPath}}" class="card-img " alt="...">
+        </div>
+        <div class="col-lg-8">
+          <div class="card-body">
+            <a href="/recipe/{{this._id}}">
+              <h5 class="card-title">{{this.title}}</h5>
+            </a>
+            <p class="card-text">{{this.shortDescription}}</p>
+            <div class="tag">
+              <span class="gluten">#GlutenFree</span>
+              <span class="veggie">#Veggie</span>
+              <span class="dairy">#DairyFree</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
     {{/each}}
-</div>
+  </div>
 </div>
