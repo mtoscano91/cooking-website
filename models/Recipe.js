@@ -28,7 +28,8 @@ const userSchema = new Schema({
       name: String,
     },
   ],
-  recipeImg: String,
+  imgName: String,
+  imgPath: String,
   preparationTime: {
     type: Number,
     required: true,
