@@ -1,21 +1,41 @@
-Hola desde una sola receta
+<div class="container">
+  <div class="bodyRecipe">
 {{#with recipe}}
-<img src="{{this.imgPath}}" class="card-img " alt="...">
-<h5 class="card-title">{{this.title}}</h5>
+<div class="generalInfo">
+<img src="{{this.imgPath}}" class="imgRecipeId" alt="...">
 <p>By: {{user_id.username}}</p>
-<p class="card-text">{{this.shortDescription}}</p>
-<p>Preparation time: {{this.preparationTime}}</p>
-<p>Difficulty: {{this.difficulty}}</p>
-<p>Servings: {{this.servings}}</p>
+<p class="">{{this.shortDescription}}</p>
+
 <div class="tag">
   {{#each tags}}
   <span class="{{this}}">#{{this}}</span>
   {{/each}}
 </div>
-<p>{{this.steps}}</p>
+</div>
+<div class="stepsInfo">
+  <h5 class="">{{this.title}}</h5>
+  <div class="prepInfo">
+  <div class="eachInfo">
+<p>Time of preparation</p>
+<p> {{this.preparationTime}}</p>
+</div>
+<div class="eachInfo">
+<p>Difficulty</p>
+<p> {{this.difficulty}}</p>
+</div>
+<div class="eachInfo">
+<p>Servings</p>
+<p>{{this.servings}}</p>
+</div>
+</div>
 <ul>
   {{#each ingredients}}
   <li>{{this.quantity}} {{this.measure}} {{this.name}}</li>
   {{/each}}
 </ul>
+
+<p>{{this.steps}}</p>
 {{/with}}
+</div>
+</div>
+</div>
