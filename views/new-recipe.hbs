@@ -1,46 +1,98 @@
-<h1>New recipes page</h1>
+<h2>New recipes page</h2>
 
 
 <form action="/recipe/add" method="POST" enctype="multipart/form-data">
 
   <label for="">Title:</label>
   <input type="text" name="title">
-
-  <label for="">Steps:</label>
-  <input type="text" name="steps">
-
-  <label for="">Short Description:</label>
-  <input type="text" name="shortDescription">
-
-  <label for="">Image:</label>
-  <input type="file" name="recipeImg">
+  <br>
 
   <label for="">Preparation Time:</label>
   <input id="preparationTime" type="number" name="preparationTime">
 
+  {{!-- <label for="">Difficulty:</label>
+  <input type="number" name="difficulty"> --}}
 
-  <label for="">Quantity:</label>
-  <input type="number" name="quantity">
-
-  <label for="">Measure:</label>
-  <select id="measure">
-    <option value="g">g</option>
-    <option value="kg">kg</option>
-    <option value="ml">ml</option>
-    <option value="l">l</option>
-    <option value="unit">unit</option>
-    <option value="spoon">spoon</option>
-    <option value="teaspoon">teaspoon</option>
+  <label for="difficulty">Difficulty:</label>
+  <select name="difficulty" id="difficulty">
+    <option value="0">0</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3" selected>3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
   </select>
 
-  <label for="">Ingredient:</label>
-  <input type="text" name="name">
+  {{!-- <label for="">Servings:</label>
+  <input type="number" name="servings"> --}}
 
-  <label for="">Difficulty:</label>
-  <input type="number" name="difficulty">
+  <label for="servings">Servings</label>
+  <select name="servings" id="servings">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3" selected>3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+  </select>
 
-  <label for="">Portions:</label>
-  <input type="number" name="portions">
+  <br>
+  <label for="">Image:</label>
+  <input type="file" name="recipeImg">
+  <br>
 
+  <label for="">Short Description:</label>
+  <input type="text" name="shortDescription">
+  <br>
+
+  <label for="">Steps:</label>
+  <input type="text" name="steps">
+  <br>
+  <h3>Ingridients</h3>
+  <div id="all-ingridients-form">
+    <div class="ingredients-in-form">
+      <label for="">Quantity:</label>
+      <input type="number" name="quantity">
+
+      <label for="measure">Measure:</label>
+      <select name="measure" id="measure">
+        <option value="g" selected>g</option>
+        <option value="kg">kg</option>
+        <option value="ml">ml</option>
+        <option value="l">l</option>
+        <option value="unit">unit</option>
+        <option value="spoon">spoon</option>
+        <option value="teaspoon">teaspoon</option>
+      </select>
+
+      <label for="">Ingredient:</label>
+      <input type="text" name="name">
+      <button id="delete-recipie-in-form">delete</button>
+    </div>
+  </div>
+  <button id="add-recipie-in-form"> add ingridient</button>
+  <br>
+
+
+  <h3>Tags:</h3>
+  <input type="checkbox" name="tags" value="vegan">Vegan</option>
+  <input type="checkbox" name="tags" value="vegetarian">Vegetarian</option>
+  <input type="checkbox" name="tags" value="gluten-free">Gluten Free</option>
+  <input type="checkbox" name="tags" value="dairy-free">Dairy Free</option>
+  <input type="checkbox" name="tags" value="keto">Keto</option>
+  <input type="checkbox" name="tags" value="macrobiotic">Macrobiotic</option>
+  <input type="checkbox" name="tags" value="healthy">Healthy</option>
+  <input type="checkbox" name="tags" value="low-sugar">Low sugar</option>
+
+  <br>
+  <br>
   <button type="submit">ADD</button>
 </form>
+
+
+
+<script src="javascripts/addNewIngridient.js"> </script>

@@ -34,7 +34,7 @@ const recipeSchema = new Schema({
     type: Number,
     required: true,
   },
-  difficulty: { type: Number, enum: [1, 2, 3, 4, 5], required: true },
+  difficulty: { type: Number, enum: [0, 1, 2, 3, 4, 5], required: true },
   tags: {
     type: [String],
     enum: [
@@ -50,6 +50,7 @@ const recipeSchema = new Schema({
   },
   servings: {
     type: Number,
+    enum: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     required: true,
   },
   rating: { type: Number, enum: [0, 1, 2, 3, 4, 5] },

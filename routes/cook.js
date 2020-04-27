@@ -27,7 +27,7 @@ router.get("/recipes", (req, res, next) => {
   console.log("Display some recipes");
   Recipe.find()
     .then((recipesFromDB) => {
-      console.log(recipesFromDB);
+      // console.log(recipesFromDB);
       res.render("recipes", { recipes: recipesFromDB, user: req.user });
     })
     .catch((err) => {
@@ -39,7 +39,7 @@ router.get("/users", (req, res, next) => {
   console.log("Display some users");
   User.find()
     .then((usersFromDB) => {
-      console.log(usersFromDB);
+      // console.log(usersFromDB);
       res.render("users", { users: usersFromDB, user: req.user });
     })
     .catch((err) => {
@@ -48,34 +48,52 @@ router.get("/users", (req, res, next) => {
 });
 
 router.post("/recipe/add", uploader.single("recipeImg"), (req, res, next) => {
-  console.log(req.user._id);
+  // console.log(req.body);
   const {
-    user,
     title,
     shortDescription,
     steps,
     preparationTime,
     difficulty,
-    portions,
+    servings,
+    quantity,
+    measure,
+    name,
+    tags,
   } = req.body;
+  let arrIngridients = [];
+  for (let i = 0; i < name.length; i++) {
+    arrIngridients.push({
+      quantity: quantity[i],
+      measure: measure[i],
+      name: name[i],
+    });
+  }
   const imgPath = req.file.url;
   const imgName = req.file.originalname;
+  if (typeof name === "string") {
+    arrIngridients = [{ quantity, measure, name }];
+  }
+  console.log(req);
+  console.log(tags);
+  console.log(req.body);
   const newRecipe = new Recipe({
-    user: req.user._id,
+    user_id: req.user._id,
     title,
     steps,
+    shortDescription,
     preparationTime,
     difficulty,
-    portions,
-    // ingredients: {
-    //   $push: { quantity, measure, name },
-    // },
+    servings,
     imgPath,
     imgName,
+    ingredients: arrIngridients,
+    tags,
   });
   newRecipe
     .save()
     .then((recipe) => {
+      // console.log(recipe.ingredients);
       res.redirect("/recipes");
     })
     .catch((error) => {
@@ -100,13 +118,33 @@ router.get("/edit/profile", (req, res, next) => {
 });
 
 router.get("/recipe/:id", (req, res, next) => {
-  console.log("route worked");
   const recipeId = req.params.id;
   Recipe.findById(recipeId)
     .populate("user_id")
     .then((recipe) => {
       console.log(recipe);
-      res.render("selected-recipe", { recipe: recipe });
+      res.render("selected-recipe", { recipe: recipe, user: req.user });
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+router.get("/user/:id", (req, res, next) => {
+  console.log("route worked");
+  const userId = req.params.id;
+  Recipe.find({ user_id: userId })
+    .populate("user_id")
+    .then((recipes) => {
+      console.log(recipes);
+      if (recipes.length > 0)
+        return res.render("selected-user", {
+          recipes: recipes,
+          user: req.user,
+        });
+      User.findById(userId).then((user) => {
+        res.render("selected-user", { userProfile: user, user: req.user });
+      });
     })
     .catch((err) => {
       next(err);

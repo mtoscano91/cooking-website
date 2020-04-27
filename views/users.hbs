@@ -1,5 +1,7 @@
 {{#each users}}
-<h2>Cook: {{this.username}}</h2>
+<a href="/user/{{this._id}}">
+  <h2>Cook: {{this.username}}</h2>
+</a>
 <img src="{{imgPath}}" alt="User Image">
 <h3>Followers: {{this.followers}}</h3>
 <h3>Following: {{this.following}}</h3>
