@@ -3,7 +3,7 @@ const passport = require("passport");
 const router = express.Router();
 const User = require("../models/User");
 const Recipe = require("../models/Recipe");
-const uploader = require("../config/cloudinary.js")
+const uploader = require("../config/cloudinary.js");
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -25,9 +25,10 @@ router.get(
 
 router.get("/recipes", (req, res, next) => {
   console.log("Display some recipes");
-  User.find()
-    .then((usersFromDB) => {
-      res.render("recipes", { users: usersFromDB, user: req.user });
+  Recipe.find()
+    .then((recipesFromDB) => {
+      console.log(recipesFromDB);
+      res.render("recipes", { recipes: recipesFromDB, user: req.user });
     })
     .catch((err) => {
       next(err);
@@ -46,31 +47,31 @@ router.get("/users", (req, res, next) => {
     });
 });
 
-router.post("/recipe/add", uploader.single("recipeImg"),(req, res, next) => {
+router.post("/recipe/add", uploader.single("recipeImg"), (req, res, next) => {
   console.log(req.user._id);
   const {
+    user,
     title,
-    recipe,
-    duration,
-    quantity,
-    measure,
-    name,
+    shortDescription,
+    steps,
+    preparationTime,
+    difficulty,
+    portions,
   } = req.body;
   const imgPath = req.file.url;
   const imgName = req.file.originalname;
   const newRecipe = new Recipe({
     user: req.user._id,
     title,
-    recipe,
+    steps,
+    preparationTime,
+    difficulty,
+    portions,
     // ingredients: {
     //   $push: { quantity, measure, name },
     // },
-    // quantity,
-    // measure,
-    // name,
     imgPath,
     imgName,
-    duration,
   });
   newRecipe
     .save()
