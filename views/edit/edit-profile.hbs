@@ -1,0 +1,11 @@
+<form action="/profile" action="POST">
+  <label for="username">Username:</label>
+  <input type="text" value="{{user.username}}" name="username">
+  <img src="{{user.imgPath}}" alt="{{user.username}} Image">
+  <label for="image">Upload image</label>
+  <select name="tags" id="" multiple>
+    {{#each user.tags}}
+    <option value="{{_id}}">{{name}}</option>
+    {{/each}}
+  </select>
+</form>
