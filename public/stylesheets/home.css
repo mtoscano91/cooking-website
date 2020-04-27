@@ -92,29 +92,33 @@ box-shadow: 7px 7px 5px 0px rgba(59,89,152,1);
 span{
   font-size: 16px;
 }
+.tag span {
+  font-weight: bold;
+  margin: 0.25rem;
+}
 .vegan{
   color: green;
 }
 .vegetarian{
-  color: #993399;
+  color: #50E83F;
 }
 .dairy-free{
-  color: hsl(172, 50%, 40%);
+  color: #923FE8;
 }
 .gluten-free{
   color: #ed4c27;
 }
 .keto{
-  color: #273bed;
+  color: #3F89E8;
 }
 .macrobiotic{
-  color: greenyellow;
+  color: #3FE870;
 }
 .healthy{
   color: darkorange;
 }
 .low-sugar{
-  color: lightseagreen;
+  color: #FF17E7;
 }
 .more{
   color: #3b5998;
