@@ -14,9 +14,9 @@
             </a>
             <p class="card-text">{{this.shortDescription}}</p>
             <div class="tag">
-              <span class="gluten">#GlutenFree</span>
-              <span class="veggie">#Veggie</span>
-              <span class="dairy">#DairyFree</span>
+              {{#each tags}}
+              <span class="{{this}}">#{{this}}</span>
+              {{/each}}
             </div>
           </div>
         </div>
