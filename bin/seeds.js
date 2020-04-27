@@ -1,6 +1,27 @@
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
+const User = require("../models/User");
+const Recipe = require("../models/Recipe");
+
+const bcryptSalt = 10;
+
+// const users = [
+//   {
+//     username: "alice",
+//     password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt)),
+//   },
+//   {
+//     username: "bob",
+//     password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
+//   },
+// ];
+
 const recipes = [
   {
-    user: "alice",
+    user: {
+      username: "alice",
+      password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt)),
+    },
     title: "Savoury White Fish With Simmered Tomatoes",
     shortDescription:
       "Best white fish is cooked with a lot of butter and love from agustina",
@@ -14,7 +35,7 @@ const recipes = [
       { quantity: 1, measure: "unit", name: "corn" },
       { quantity: 100, measure: "kg", name: "salami" },
     ],
-    imgName: whitefish,
+    imgName: "whitefish",
     imgPath:
       "https://upload.wikimedia.org/wikipedia/commons/4/40/Halibut_and_salmon_fillets.jpg",
     preparationTime: 40,
@@ -22,15 +43,16 @@ const recipes = [
     tags: ["Vegan", "Keto"],
     portions: 4,
     rating: 4,
-    reviews: [
-      { user: "bob", comment: "alice, it was amazing" },
-      { user: "dioni", comment: "complatly a materpiece" },
-    ],
-    likes: ["bob", "samantha", "manu", "jan", "robert"],
+    // reviews: [
+    //   { user: "bob", comment: "alice, it was amazing" },
+    //   { user: "dioni", comment: "complatly a materpiece" },
+    // ],
   },
-
   {
-    user: "Agustina designer",
+    user: {
+      username: "bob",
+      password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
+    },
     title: "Burger with cheese",
     shortDescription: "Chessburge with ketchup and mustard lovelly",
     steps:
@@ -43,23 +65,26 @@ const recipes = [
       { quantity: 1, measure: "unit", name: "corn" },
       { quantity: 100, measure: "kg", name: "salami" },
     ],
-    imgName: burger,
+    imgName: "burger",
     imgPath:
       "https://barbecuebible.com/wp-content/uploads/2013/05/featured-great-american-hamburger-1024x640.jpg",
     preparationTime: 10,
     difficulty: 2,
     tags: ["Vegan", "Keto"],
     portions: 2,
-    rating: 3.8,
-    reviews: [
-      { user: "bob", comment: "alice, it was amazing" },
-      { user: "dioni", comment: "complatly a materpiece" },
-    ],
-    likes: ["bob", "samantha", "manu", "jan", "robert"],
+    rating: 3,
+    // reviews: [
+    //   { user: "bob", comment: "alice, it was amazing" },
+    //   { user: "dioni", comment: "complatly a materpiece" },
+    // ],
+    //likes: ["bob", "samantha", "manu", "jan", "robert"],
   },
 
   {
-    user: "Manuel toscano",
+    user: {
+      username: "bob",
+      password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
+    },
     title: "Cesar salad",
     shortDescription: "Best cesar salad in berlin by an Argentinian",
     steps:
@@ -72,23 +97,26 @@ const recipes = [
       { quantity: 1, measure: "unit", name: "corn" },
       { quantity: 100, measure: "kg", name: "salami" },
     ],
-    imgName: cesarSalad,
+    imgName: "cesar salad",
     imgPath:
       "https://www.fifteenspatulas.com/wp-content/uploads/2011/10/Caesar-Salad-Fifteen-Spatulas-2-640x427.jpg",
     preparationTime: 10,
     difficulty: 3,
     tags: ["Vegan", "Lactose Free", "Vegan", "Low sugar"],
     portions: 2,
-    rating: 1.5,
-    reviews: [
-      { user: "bob", comment: "alice, it was amazing" },
-      { user: "dioni", comment: "complatly a materpiece" },
-    ],
-    likes: ["manu", "jan", "robert"],
+    rating: 2,
+    // reviews: [
+    //   { user: "bob", comment: "alice, it was amazing" },
+    //   { user: "dioni", comment: "complatly a materpiece" },
+    // ],
+    //likes: ["manu", "jan", "robert"],
   },
 
   {
-    user: "Dioni Ugalde",
+    user: {
+      username: "bob",
+      password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
+    },
     title: "Lovely cheese cake like in NY",
     shortDescription:
       "Best cheesecake is cooked with a lot of butter and love from Spain",
@@ -107,7 +135,7 @@ const recipes = [
       { quantity: 1, measure: "unit", name: "corn" },
       { quantity: 100, measure: "kg", name: "salami" },
     ],
-    imgName: cheeseCake,
+    imgName: "cheese cake",
     imgPath:
       "https://laurenslatest.com/wp-content/uploads/2020/02/cheesecake-recipe-5.jpg",
     preparationTime: 40,
@@ -115,38 +143,38 @@ const recipes = [
     tags: ["Vegan", "Keto"],
     portions: 4,
     rating: 4,
-    reviews: [
-      { user: "bob", comment: "alice, it was amazing" },
-      { user: "dioni", comment: "complatly a materpiece" },
-      { user: "bob", comment: "alice, it was amazing" },
-      { user: "dioni", comment: "complatly a materpiece" },
-      { user: "bob", comment: "alice, it was amazing" },
-      { user: "dioni", comment: "complatly a materpiece" },
-      { user: "bob", comment: "alice, it was amazing" },
-      { user: "dioni", comment: "complatly a materpiece" },
-    ],
-    likes: [
-      "bob",
-      "samantha",
-      "manu",
-      "jan",
-      "robert",
-      "bob",
-      "samantha",
-      "manu",
-      "jan",
-      "robert",
-      "bob",
-      "samantha",
-      "manu",
-      "jan",
-      "robert",
-      "bob",
-      "samantha",
-      "manu",
-      "jan",
-      "robert",
-    ],
+    // reviews: [
+    //   { user: "bob", comment: "alice, it was amazing" },
+    //   { user: "dioni", comment: "complatly a materpiece" },
+    //   { user: "bob", comment: "alice, it was amazing" },
+    //   { user: "dioni", comment: "complatly a materpiece" },
+    //   { user: "bob", comment: "alice, it was amazing" },
+    //   { user: "dioni", comment: "complatly a materpiece" },
+    //   { user: "bob", comment: "alice, it was amazing" },
+    //   { user: "dioni", comment: "complatly a materpiece" },
+    // ],
+    // likes: [
+    //   "bob",
+    //   "samantha",
+    //   "manu",
+    //   "jan",
+    //   "robert",
+    //   "bob",
+    //   "samantha",
+    //   "manu",
+    //   "jan",
+    //   "robert",
+    //   "bob",
+    //   "samantha",
+    //   "manu",
+    //   "jan",
+    //   "robert",
+    //   "bob",
+    //   "samantha",
+    //   "manu",
+    //   "jan",
+    //   "robert",
+    // ],
   },
 ];
 
@@ -154,12 +182,6 @@ const recipes = [
 
 // To execute this seed, run from the root of the project
 // $ node bin/seeds.js
-
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
-const User = require("../models/User");
-
-const bcryptSalt = 10;
 
 mongoose
   .connect("mongodb://localhost/new-project", { useNewUrlParser: true })
@@ -172,30 +194,45 @@ mongoose
     console.error("Error connecting to mongo", err);
   });
 
-let users = [
-  {
-    username: "alice",
-    password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt)),
-  },
-  {
-    username: "bob",
-    password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
-  },
-];
+// User.deleteMany()
+//   .then(() => {
+//     return User.create(users);
+//   })
+//   .then((usersCreated) => {
+//     console.log(`${usersCreated.length} users created with the following id:`);
+//     console.log(usersCreated.map((u) => u._id));
+//   })
+//   .then(() => {
+//     // Close properly the connection to Mongoose
+//     Recipe.deleteMany()
+//       .then(() => {
+//         return Recipe.create(recipes);
+//       })
+//       .then((recipesCreated) => {
+//         console.log(
+//           `${recipesCreated.length} recipes created with the following id:`
+//         );
+//         console.log(recipesCreated.map((u) => u._id));
+//       })
+//       .then(() => {
+//         // Close properly the connection to Mongoose
+//         mongoose.disconnect();
+//       })
+//       .catch((err) => {
+//         mongoose.disconnect();
+//         throw err;
+//       });
+//   })
+//   .catch((err) => {
+//     mongoose.disconnect();
+//     throw err;
+//   });
 
-User.deleteMany()
-  .then(() => {
-    return User.create(users);
-  })
-  .then((usersCreated) => {
-    console.log(`${usersCreated.length} users created with the following id:`);
-    console.log(usersCreated.map((u) => u._id));
-  })
-  .then(() => {
-    // Close properly the connection to Mongoose
-    mongoose.disconnect();
-  })
-  .catch((err) => {
-    mongoose.disconnect();
-    throw err;
+recipes.forEach((recipe) => {
+  // first we create the author
+  User.create(recipe.user).then((dbUser) => {
+    // take the id from the author that was just created in the database
+    recipe.user = dbUser._id;
+    Recipe.create(recipe);
   });
+});
