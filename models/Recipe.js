@@ -38,14 +38,14 @@ const recipeSchema = new Schema({
   tags: {
     type: [String],
     enum: [
-      "Vegan",
-      "Vegetarian",
-      "Gluten Free",
-      "Lactose Free",
-      "Keto",
-      "Macrobiotic",
-      "Healthy",
-      "Low sugar",
+      "vegan",
+      "vegetarian",
+      "gluten-free",
+      "dairy-free",
+      "keto",
+      "macrobiotic",
+      "healthy",
+      "low-sugar",
     ],
   },
   servings: {

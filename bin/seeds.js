@@ -37,7 +37,7 @@ const recipes = [
       "https://img.freepik.com/free-photo/roasted-fish-garnished-with-lemon-slices-served-with-vegetables_140725-1413.jpg?size=626&ext=jpg",
     preparationTime: 40,
     difficulty: 4,
-    tags: ["Vegan", "Keto"],
+    tags: ["vegan", "keto"],
     servings: 4,
     rating: 4,
     // reviews: [
@@ -64,7 +64,7 @@ const recipes = [
       "https://barbecuebible.com/wp-content/uploads/2013/05/featured-great-american-hamburger-1024x640.jpg",
     preparationTime: 10,
     difficulty: 2,
-    tags: ["Vegan", "Keto"],
+    tags: ["vegan", "keto"],
     servings: 2,
     rating: 3,
     // reviews: [
@@ -93,7 +93,7 @@ const recipes = [
       "https://www.fifteenspatulas.com/wp-content/uploads/2011/10/Caesar-Salad-Fifteen-Spatulas-2-640x427.jpg",
     preparationTime: 10,
     difficulty: 3,
-    tags: ["Vegan", "Lactose Free", "Vegan", "Low sugar"],
+    tags: ["vegan", "dairy-free", "low-sugar"],
     servings: 2,
     rating: 2,
     // reviews: [
@@ -128,7 +128,7 @@ const recipes = [
       "https://laurenslatest.com/wp-content/uploads/2020/02/cheesecake-recipe-5.jpg",
     preparationTime: 40,
     difficulty: 4,
-    tags: ["Vegan", "Keto"],
+    tags: ["vegan", "keto"],
     servings: 4,
     rating: 4,
     // reviews: [
