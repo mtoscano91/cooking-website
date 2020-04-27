@@ -1,41 +1,54 @@
 <div class="container">
-  <div class="bodyRecipe">
 {{#with recipe}}
-<div class="generalInfo">
-<img src="{{this.imgPath}}" class="imgRecipeId" alt="...">
-<p>By: {{user_id.username}}</p>
-<p class="">{{this.shortDescription}}</p>
 
-<div class="tag">
+  <div class="bodyRecipe">
+<div class="stepsInfo">
+<div class="displayTitle">
+
+<h5 class="title">{{this.title}}</h5>
+  <p class="desc mt-3"> {{this.shortDescription}}</p>
+ <div class="tag here mt-3">
   {{#each tags}}
   <span class="{{this}}">#{{this}}</span>
   {{/each}}
 </div>
 </div>
-<div class="stepsInfo">
-  <h5 class="">{{this.title}}</h5>
-  <div class="prepInfo">
-  <div class="eachInfo">
-<p>Time of preparation</p>
-<p> {{this.preparationTime}}</p>
-</div>
-<div class="eachInfo">
-<p>Difficulty</p>
-<p> {{this.difficulty}}</p>
-</div>
-<div class="eachInfo">
-<p>Servings</p>
-<p>{{this.servings}}</p>
-</div>
-</div>
-<ul>
+ 
+<h4 class="subTitle mt-2">Ingredients</h4>
+<ul class="list">
   {{#each ingredients}}
-  <li>{{this.quantity}} {{this.measure}} {{this.name}}</li>
+  <li class=""><i class="far fa-check-square"></i>{{this.quantity}} {{this.measure}} {{this.name}}</li>
   {{/each}}
 </ul>
+<h4 class="subTitle mt-3">How to do it?</h4>
+  <div>
+  <p>{{this.steps}}</p>
+  </div>
 
-<p>{{this.steps}}</p>
-{{/with}}
 </div>
+
+<div class="generalInfo">
+
+ 
+<div class="prepInfo">
+  <div class="eachInfo pink">
+<i class="fas fa-clock"></i>
+<p class="number"> {{this.preparationTime}}</p>
+</div>
+<div class="eachInfo">
+<i class="fas fa-chart-pie"></i>
+<p class="number">{{this.servings}}</p>
+</div>
+</div>
+<img src="{{this.imgPath}}" class="imgRecipeId img-thumbnail" alt="...">
+<p class="text-center">By <span class="userName">{{user_id.username}}</span></p>
+<div class="buttonsRecipes">
+<button><i class="fas fa-code-branch"></i></button>
+<button> <i class="fas fa-shopping-cart"></i></button>
+</div>
+
+
+</div>
+{{/with}}
 </div>
 </div>

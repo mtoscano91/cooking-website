@@ -17,23 +17,141 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 60%;
-  margin-top: 3rem;
+  width: 50%;
+  text-align: center;
+}
+
+.eachInfo{
+  color:#E82A69;
+  font-size: 30px;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.number p{
+  font-size: 30px;
+  color:#E82A69;
+
+}
+.prepInfo p{
+  font-weight: bold;
+  font-size: 40px;
 }
 
 .imgRecipeId{
-  width: 50vh;
-  height: 50vh;
-  margin-top: 4rem;
+  width: 40vh;
+  margin-top: 1rem;
+  height: 40vh;
+  padding: 0.25rem;
+
 }
 .bodyRecipe{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 100%;
+  font-family: "Open Sans", sans-serif;
+}
+.generalInfo{
+  margin: 5rem auto;
+}
+.stepsInfo ul{
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.displayTitle h5{
+  font-size: 30px;
+}
+.subTitle{
+  font-weight: bold;
+  font-size: 17px;
+  color: #3b5998;
+}
+.stepsInfo ul li{
+  list-style: none;
+  width: 50%;
+  font-weight: 700;
+  text-transform: inherit;
+  letter-spacing: 1px;
+
+}
+.generalInfo p{
+  margin-top: 1rem;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: capitalize;
+  width: 70%;
+  
+}
+.buttonsRecipes{
+  display: flex;
+  flex-direction: row;
+  width: 30%;
+  justify-content: space-between;
+  align-items: center;
+}
+.desc{
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0px;
+  padding: 0px;
+}
+.displayTitle{
+  width: 70%;
+}
+.buttonsRecipes button{
+  margin: 1rem;
+  width: 115%;
+  padding: 1.5rem;
+  background-color: #3b5998;
+  border: 1px solid #3b5998;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 51%;
+  text-align: center;
+}
+.buttonsRecipes i{
+  margin: 0.5rem;
+}
+.buttonsRecipes button:hover{
+  background-color: white;
+  color: #3b5998;
+}
+.userName{
+  color: #FF5C45;
+  text-transform: uppercase;
+}
+.stepsInfo i{
+  margin-right: 0.25rem;
+  color: #3b5998;
+  margin: 1rem;
 }
 .stepsInfo p{
-  width: 100%;
+  font-weight: 400;
+  line-height: inherit;
+  letter-spacing: 1px;
+  width: 80%;
+  color: black;
+  text-transform: inherit;
+}
+.here span{
+  font-size: 18px;
 }
 .stepsInfo{
+  margin-top: 2rem;
   width: 60%;
 }
+
+@media only screen and (max-device-width: 1030px) {
+  .stepsInfo ul{
+    width: 100%;
+    display: block;
+    
+  }
+  .stepsInfo ul li{
+    width: 100%;  
+  }
+  }
