@@ -10,7 +10,8 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  userImg: {
+  imgName: String,
+  imgPath: {
     type: String,
     default:
       "https://image.shutterstock.com/z/stock-vector-woman-in-kitchen-cook-127186502.jpg",
