@@ -5,23 +5,20 @@ const Recipe = require("../models/Recipe");
 
 const bcryptSalt = 10;
 
-// const users = [
-//   {
-//     username: "alice",
-//     password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt)),
-//   },
-//   {
-//     username: "bob",
-//     password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
-//   },
-// ];
+const users = [
+  {
+    username: "alice",
+    password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt)),
+  },
+  {
+    username: "bob",
+    password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
+  },
+];
 
 const recipes = [
   {
-    user: {
-      username: "alice",
-      password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt)),
-    },
+    user: "alice",
     title: "Savoury White Fish With Simmered Tomatoes",
     shortDescription:
       "Best white fish is cooked with a lot of butter and love from agustina",
@@ -49,10 +46,7 @@ const recipes = [
     // ],
   },
   {
-    user: {
-      username: "bob",
-      password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
-    },
+    user: "bob",
     title: "Burger with cheese",
     shortDescription: "Chessburge with ketchup and mustard lovelly",
     steps:
@@ -81,10 +75,7 @@ const recipes = [
   },
 
   {
-    user: {
-      username: "bob",
-      password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
-    },
+    user: "bob",
     title: "Cesar salad",
     shortDescription: "Best cesar salad in berlin by an Argentinian",
     steps:
@@ -113,10 +104,7 @@ const recipes = [
   },
 
   {
-    user: {
-      username: "bob",
-      password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
-    },
+    user: "bob",
     title: "Lovely cheese cake like in NY",
     shortDescription:
       "Best cheesecake is cooked with a lot of butter and love from Spain",
@@ -228,11 +216,27 @@ mongoose
 //     throw err;
 //   });
 
-recipes.forEach((recipe) => {
-  // first we create the author
-  User.create(recipe.user).then((dbUser) => {
-    // take the id from the author that was just created in the database
-    recipe.user = dbUser._id;
-    Recipe.create(recipe);
+async function uploadSeeds() {
+  const promises = [];
+  const deleteUsers = await User.deleteMany();
+  const deleteRecipes = await Recipe.deleteMany();
+  for (let user of users) {
+    const userCreated = await User.create(user);
+
+    for (let recipe of recipes) {
+      if (user.username === recipe.user) {
+        recipe.user_id = userCreated._id;
+        const recipeCreated = await Recipe.create(recipe);
+        promises.push(recipeCreated);
+      }
+    }
+  }
+
+  Promise.all(promises).then((response) => {
+    User.find().then((response) => {
+      mongoose.disconnect();
+    });
   });
-});
+}
+
+uploadSeeds();
