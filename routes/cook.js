@@ -78,4 +78,14 @@ router.post("/recipe/add", (req, res, next) => {
     });
 });
 
+router.get("/my-shopping-list", (req, res, next) => {
+  User.find()
+    .then((usersFromDB) => {
+      res.render("shopping-list", { users: usersFromDB, user: req.user });
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
 module.exports = router;
