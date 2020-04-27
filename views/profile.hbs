@@ -1,16 +1,135 @@
-<a href="">Edit profile</a><br>
-<img src="images/imagedefault.jpg" alt="image{{this.user.username}}">
-<input type="image" src="" alt="add image" onclick="">
-<h1>{{this.user.username}}</h1>
-<p>The rating is the average of all recipies rating</p>
-<p>Followes: {{this.user.followers}}</p>
-<p>Following: {{this.user.following}}</p>
-<p>Tags</p>
-<a href="">Follow</a><br>
-<a href="">Own recipes (number of recipes)</a><br>
-<a href="">Liked recipes (number of recipes)</a><br>
 
+<div class="profile">
+  <div class="personalData">
+  <img src="https://img.freepik.com/free-vector/small-chef-illustration_23-2147517820.jpg?size=338&ext=jpg" alt="image{{this.user.username}}">
+  {{!-- <input type="image" src="" alt="add image" onclick=""> --}}
+ <div class="name mt-5">
+ <h1>{{this.user.username}}</h1>
+  <a href=""></a><i class="fas fa-edit"></i>
+ </div>
+  <br>
+  <div class="">
+      {{!-- <span>{rating}</span> --}}
+    </div>
+      {{!-- thins links to tags go to the recipes of the tag --}}
+     <div class="tagPro mt-4">
+          <span class="gluten">#GlutenFree</span>
+          <span class="veggie">#Veggie</span>
+          <br>
+          <span class="dairy">#DairyFree</span>
+        </div>
+  <div class="numbers mt-4">
+    <div class="follow">
+      {{!-- <span>{{this.user.followers}}</span> --}}
+      <span>123</span>
+      <h6>Followers</h6>
+    </div>
+    <div class="follow">
+      {{!-- <span>{{this.user.following}}</span> --}}
+      <span>256</span>
+      <h6>Following</h6>
+    </div>
+  </div>
 
-
-
-<p>Here we will display recipes</p>
+  </div>
+  <div class="dashboard">
+<div class="tabs">
+  <input type="radio" name="tabs" id="tabone" checked="checked">
+  <label for="tabone">My recipes</label>
+  <div class="tab">
+    <div class="recipesPro">
+<div class="card-group">
+  <div class="card">
+    <img src="https://img.freepik.com/free-photo/caprese-salad-healthy-meal-with-cherry-tomatoes-mozzarella-balls-basil-home-made-tasty-food-concept-tasty-healthy-vegetarian-meal_2829-7127.jpg?size=626&ext=jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Capresse salad</h5>
+      <div class="tagPro">
+          <span class="gluten">#GlutenFree</span>
+          <span class="veggie">#Veggie</span>
+          <span class="dairy">#DairyFree</span>
+        </div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://img.freepik.com/free-photo/high-view-healthy-green-salad-wooden-background_23-2148440326.jpg?size=626&ext=jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Zucchini noodles</h5>
+        <div class="tagPro">
+          <span class="gluten">#GlutenFree</span>
+          <span class="veggie">#Veggie</span>
+          <span class="dairy">#DairyFree</span>
+        </div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://img.freepik.com/free-photo/apple-pie-with-caramel-sauce-wooden-background_2829-5570.jpg?size=626&ext=jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Upside down apple cake</h5>
+      <div class="tagPro">
+          <span class="gluten">#GlutenFree</span>
+          <span class="veggie">#Veggie</span>
+          <span class="dairy">#DairyFree</span>
+        </div>
+    </div>
+  </div>
+  <a href="/recipes"></a><i class="fas fa-plus-circle"></i>
+</div>
+  </div>
+  </div>
+  
+  <input type="radio" name="tabs" id="tabtwo">
+  <label for="tabtwo">My forked recipes</label>
+  <div class="tab">
+    
+   <div class="recipesPro">
+     <div class="myLikedRecipes">
+<div class="card-group">
+  <div class="card">
+    <img src="https://img.freepik.com/free-photo/apple-pie-with-caramel-sauce-wooden-background_2829-5570.jpg?size=626&ext=jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Capresse salad</h5>
+      <div class="tagPro">
+          <span class="gluten">#GlutenFree</span>
+          <span class="veggie">#Veggie</span>
+          <span class="dairy">#DairyFree</span>
+        </div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://img.freepik.com/free-photo/high-view-healthy-green-salad-wooden-background_23-2148440326.jpg?size=626&ext=jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Zucchini noodles</h5>
+        <div class="tagPro">
+          <span class="gluten">#GlutenFree</span>
+          <span class="veggie">#Veggie</span>
+          <span class="dairy">#DairyFree</span>
+        </div>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://img.freepik.com/free-photo/caprese-salad-healthy-meal-with-cherry-tomatoes-mozzarella-balls-basil-home-made-tasty-food-concept-tasty-healthy-vegetarian-meal_2829-7127.jpg?size=626&ext=jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Upside down apple cake</h5>
+      <div class="tagPro">
+          <span class="gluten">#GlutenFree</span>
+          <span class="veggie">#Veggie</span>
+          <span class="dairy">#DairyFree</span>
+        </div>
+    </div>
+  </div>
+  <a href="/recipes"></a><i class="fas fa-plus-circle"></i>
+</div>
+  </div>
+  </div>
+  </div>
+  
+  <input type="radio" name="tabs" id="tabthree">
+  <label for="tabthree">Shopping List</label>
+  <div class="tab">
+    <h1>My shopping list</h1>
+    <p>COMING SOON</p>
+  </div>
+</div>
+  
+  </div>
+  </div>
