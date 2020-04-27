@@ -27,7 +27,7 @@ router.get("/recipes", (req, res, next) => {
   console.log("Display some recipes");
   Recipe.find()
     .then((recipesFromDB) => {
-      console.log(recipesFromDB);
+      // console.log(recipesFromDB);
       res.render("recipes", { recipes: recipesFromDB, user: req.user });
     })
     .catch((err) => {
@@ -39,7 +39,7 @@ router.get("/users", (req, res, next) => {
   console.log("Display some users");
   User.find()
     .then((usersFromDB) => {
-      console.log(usersFromDB);
+      // console.log(usersFromDB);
       res.render("users", { users: usersFromDB, user: req.user });
     })
     .catch((err) => {
@@ -48,7 +48,7 @@ router.get("/users", (req, res, next) => {
 });
 
 router.post("/recipe/add", uploader.single("recipeImg"), (req, res, next) => {
-  console.log(req.user._id);
+  // console.log(req.body);
   const {
     user,
     title,
@@ -56,26 +56,44 @@ router.post("/recipe/add", uploader.single("recipeImg"), (req, res, next) => {
     steps,
     preparationTime,
     difficulty,
-    portions,
+    servings,
+    quantity,
+    measure,
+    name,
+    tags,
   } = req.body;
+  let arrIngridients = [];
+  for (let i = 0; i < name.length; i++) {
+    arrIngridients.push({
+      quantity: quantity[i],
+      measure: measure[i],
+      name: name[i],
+    });
+  }
   const imgPath = req.file.url;
   const imgName = req.file.originalname;
+  if (typeof name === "string") {
+    arrIngridients = [{ quantity, measure, name }];
+  }
+  console.log(tags);
+  console.log(req.body);
   const newRecipe = new Recipe({
     user: req.user._id,
     title,
     steps,
+    shortDescription,
     preparationTime,
     difficulty,
-    portions,
-    // ingredients: {
-    //   $push: { quantity, measure, name },
-    // },
+    servings,
     imgPath,
     imgName,
+    ingredients: arrIngridients,
+    tags,
   });
   newRecipe
     .save()
     .then((recipe) => {
+      // console.log(recipe.ingredients);
       res.redirect("/recipes");
     })
     .catch((error) => {
