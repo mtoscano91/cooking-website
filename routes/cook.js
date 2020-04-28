@@ -52,6 +52,7 @@ router.get("/users", (req, res, next) => {
 });
 
 router.post("/recipe/add", uploader.single("recipeImg"), (req, res, next) => {
+  console.log(req.body);
   const {
     title,
     shortDescription,
@@ -65,6 +66,7 @@ router.post("/recipe/add", uploader.single("recipeImg"), (req, res, next) => {
     tags,
   } = req.body;
   let arrIngredients = [];
+  // console.log("name", name);
   for (let i = 0; i < name.length; i++) {
     arrIngredients.push({
       quantity: quantity[i],
@@ -150,7 +152,7 @@ router.get("/user/:id", (req, res, next) => {
 
 router.get("/recipe/edit/:recipeId", (req, res) => {
   Recipe.findById(req.params.recipeId).then((recipe) => {
-    console.log("dioni", recipe);
+    // console.log("dioni", recipe);
     res.render("recipeEdit", {
       recipe,
       recipeSting: JSON.stringify(recipe),
@@ -159,53 +161,69 @@ router.get("/recipe/edit/:recipeId", (req, res) => {
   });
 });
 
-router.post("/recipe/edit/:recipeId", (req, res) => {
-  const {
-    title,
-    shortDescription,
-    steps,
-    preparationTime,
-    difficulty,
-    servings,
-    quantity,
-    measure,
-    name,
-    tags,
-  } = req.body;
-  let arrIngredients = [];
-  for (let i = 0; i < name.length; i++) {
-    arrIngredients.push({
-      quantity: quantity[i],
-      measure: measure[i],
-      name: name[i],
-    });
-  }
-  const imgPath = req.file.url;
-  const imgName = req.file.originalname;
-  if (typeof name === "string") {
-    arrIngredients = [{ quantity, measure, name }];
-  }
-
-  Recipe.findByIdAndUpdate(req.params.recipeId, {
-    user_id: req.user._id,
-    title,
-    steps,
-    shortDescription,
-    preparationTime,
-    difficulty,
-    servings,
-    imgPath,
-    imgName,
-    ingredients: arrIngredients,
-    tags,
-  })
-    .then((recipe) => {
-      res.redirect(`/recipes/${recipe._id}`);
+router.get("/recipe/delete/:recipeId", (req, res) => {
+  Recipe.deleteOne({ _id: req.params.recipeId })
+    .then(() => {
+      res.redirect("/recipes");
     })
     .catch((err) => {
       next(err);
     });
 });
+
+router.post(
+  "/recipe/edit/:recipeId",
+  uploader.single("recipeImg"),
+  (req, res) => {
+    console.log("req.body=", req.body);
+    const {
+      title,
+      shortDescription,
+      steps,
+      preparationTime,
+      difficulty,
+      servings,
+      quantity,
+      measure,
+      name,
+      tags,
+    } = req.body;
+    let arrIngredients = [];
+    // console.log("name", recipe.ingredients);
+    for (let i = 0; i < name.length || 0; i++) {
+      arrIngredients.push({
+        quantity: quantity[i],
+        measure: measure[i],
+        name: name[i],
+      });
+    }
+    const imgPath = req.file.url;
+    const imgName = req.file.originalname;
+    if (typeof name === "string") {
+      arrIngredients = [{ quantity, measure, name }];
+    }
+
+    Recipe.findByIdAndUpdate(req.params.recipeId, {
+      user_id: req.user._id,
+      title,
+      steps,
+      shortDescription,
+      preparationTime,
+      difficulty,
+      servings,
+      imgPath,
+      imgName,
+      ingredients: arrIngredients,
+      tags,
+    })
+      .then((recipe) => {
+        res.redirect("/recipes");
+      })
+      .catch((err) => {
+        next(err);
+      });
+  }
+);
 
 router.post("/recipes", (req, res, next) => {
   let filteredTags = [];
