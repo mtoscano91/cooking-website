@@ -14,7 +14,7 @@ document.querySelector("#add-recipie-in-form").onclick = function (event) {
 deleteElement(document.querySelector(".ingredients-in-form"));
 
 function deleteElement(element) {
-  element.querySelector("#delete-recipie-in-form").onclick = function (event) {
+  element.querySelector(".delete-recipie-in-form").onclick = function (event) {
     event.preventDefault();
     document.querySelector("#all-ingridients-form").removeChild(element);
   };

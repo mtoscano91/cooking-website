@@ -50,3 +50,14 @@ function fixmeasure() {
   });
 }
 fixmeasure();
+
+document.querySelectorAll(".ingredients-in-form").forEach((element) => {
+  console.log("markus", element);
+  element.querySelector(".delete-recipie-in-form").onclick = function (event) {
+    event.preventDefault();
+    document.querySelector("#all-ingridients-form").removeChild(element);
+  };
+});
+console.log("merkusss", copyOfTheingridientDiv);
+copyOfTheingridientDiv.querySelector(".quantity").value = "";
+copyOfTheingridientDiv.querySelector(".name").value = "";
