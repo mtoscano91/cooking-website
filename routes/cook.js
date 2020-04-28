@@ -12,7 +12,13 @@ const bcryptSalt = 10;
 const ensureLogin = require("connect-ensure-login");
 
 router.get("/profile", ensureLogin.ensureLoggedIn("auth/login"), (req, res) => {
-  res.render("profile", { user: req.user });
+  const userId = req.user._id;
+  Recipe.find({ user_id: userId })
+    .populate("user_id")
+    .then((myRecipes) => {
+      console.log(myRecipes);
+      res.render("profile", { user: req.user, recipes: myRecipes });
+    });
 });
 
 router.get(
@@ -24,7 +30,6 @@ router.get(
 );
 
 router.get("/recipes", (req, res, next) => {
-  console.log("Display some recipes");
   Recipe.find()
     .then((recipesFromDB) => {
       // console.log(recipesFromDB);
@@ -36,7 +41,6 @@ router.get("/recipes", (req, res, next) => {
 });
 
 router.get("/users", (req, res, next) => {
-  console.log("Display some users");
   User.find()
     .then((usersFromDB) => {
       // console.log(usersFromDB);
@@ -48,7 +52,6 @@ router.get("/users", (req, res, next) => {
 });
 
 router.post("/recipe/add", uploader.single("recipeImg"), (req, res, next) => {
-  console.log(req.body);
   const {
     title,
     shortDescription,
@@ -74,9 +77,6 @@ router.post("/recipe/add", uploader.single("recipeImg"), (req, res, next) => {
   if (typeof name === "string") {
     arrIngredients = [{ quantity, measure, name }];
   }
-  console.log(req);
-  console.log(tags);
-  console.log(req.body);
   const newRecipe = new Recipe({
     user_id: req.user._id,
     title,
@@ -122,7 +122,6 @@ router.get("/recipe/:id", (req, res, next) => {
   Recipe.findById(recipeId)
     .populate("user_id")
     .then((recipe) => {
-      console.log(recipe);
       res.render("selected-recipe", { recipe: recipe, user: req.user });
     })
     .catch((err) => {
@@ -131,12 +130,10 @@ router.get("/recipe/:id", (req, res, next) => {
 });
 
 router.get("/user/:id", (req, res, next) => {
-  console.log("route worked");
   const userId = req.params.id;
   Recipe.find({ user_id: userId })
     .populate("user_id")
     .then((recipes) => {
-      console.log(recipes);
       if (recipes.length > 0)
         return res.render("selected-user", {
           recipes: recipes,
@@ -163,7 +160,6 @@ router.get("/recipe/edit/:recipeId", (req, res) => {
 });
 
 router.post("/recipes", (req, res, next) => {
-  // it reaches here with req.body.tags, for
   let filteredTags = [];
   for (let i = 0; i < req.body.tags.length; i++) {
     filteredTags.push(req.body.tags[i]);
@@ -177,10 +173,25 @@ router.post("/recipes", (req, res, next) => {
     queries.push({ tags: query });
   });
 
-  Recipe.find({ $or: queries }).then((filteredRecipes) => {
-    console.log(filteredRecipes);
-    res.render("recipes", { recipes: filteredRecipes });
-  });
+  Recipe.find({ $or: queries })
+    .then((filteredRecipes) => {
+      console.log(filteredRecipes);
+      if (filteredRecipes == "") {
+        ////This is not working
+        Recipe.find().then((recipes) => {
+          res.json({
+            message: "Oops! No recipes were found",
+            recipes: recipes,
+          });
+          res.redirect("/recipes");
+          return;
+        });
+      }
+      res.render("recipes", { recipes: filteredRecipes });
+    })
+    .catch((err) => {
+      next(err);
+    });
 });
 
 router.post("/users", (req, res, next) => {
@@ -202,6 +213,16 @@ router.post("/users", (req, res, next) => {
     console.log(filteredUsers);
     res.render("users", { users: filteredUsers });
   });
+});
+
+router.get("/my-liked-recipes", (req, res, next) => {
+  const userId = req.user._id;
+  Recipe.find({ user_id: userId })
+    .populate("user_id")
+    .then((myRecipes) => {
+      console.log(myRecipes);
+      res.render("my-liked-recipes", { user: req.user, recipes: myRecipes });
+    });
 });
 
 module.exports = router;
