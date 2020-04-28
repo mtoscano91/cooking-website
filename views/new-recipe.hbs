@@ -81,25 +81,74 @@
 
         {{!-- <label for="">Servings:</label>
   <input type="number" name="servings"> --}}
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <label class="input-group-text" for="servings"><i class="fas fa-chart-pie"></i></label>
-          </div>
-          <select class="custom-select" name="servings" id="servings">
-            <option selected>Choose...</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-            <option value="4">Four</option>
-            <option value="5">Five</option>
-            <option value="6">Six</option>
-            <option value="7">Seven</option>
-            <option value="8">Eight</option>
-            <option value="9">Nine</option>
-            <option value="10">Ten</option>
-          </select>
-        </div>
+  <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="servings"><i class="fas fa-chart-pie"></i></label>
+  </div>
+  <select class="custom-select" name="servings" id="servings">
+    <option selected>Choose...</option>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+    <option value="4">Four</option>
+    <option value="5">Five</option>
+    <option value="6">Six</option>
+    <option value="7">Seven</option>
+    <option value="8">Eight</option>
+    <option value="9">Nine</option>
+    <option value="10">Ten</option>
+  </select>
+</div>
+  <div class="input-group mb-3">
+  <div class="input-group-prepend">
+  <label class="input-group-text" for="difficulty">Difficulty</label>
+  </div>
+  <select name="difficulty" id="difficulty">
+    <option value="0">0</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3" selected>3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select>
+</div>
+  </div>
+</div>
+  
+ 
+ <h3 class="ingName mt-5">Ingredients</h3>
+  <div class="ingredientsAdd">
+  <div id="all-ingridients-form">
+  <div class="ingredients-in-form">
+  <div class="input-group mb-3">
+  <div class="input-group-prepend">
+  <label class="input-group-text" for="quantity">Quantity</label>
+  </div>
+      <input type="number" name="quantity" placeholder="20">
+  </div>
+  <div class="input-group mb-3">
+  <div class="input-group-prepend">
+  <label class="input-group-text" for="measure">Measure</label>
+  </div>
+  <div class="measureSize">
+      <select class="custom-select" name="measure" id="measure">
+        <option value="g" selected>g</option>
+        <option value="kg">kg</option>
+        <option value="ml">ml</option>
+        <option value="l">l</option>
+        <option value="unit">unit</option>
+        <option value="spoon">spoon</option>
+        <option value="teaspoon">teaspoon</option>
+      </select>
       </div>
+  </div>
+  <div class="input-group mb-3">
+  <div class="input-group-prepend">
+  <label class="input-group-text" for="ingredient">Name</label>
+  </div>
+      <input type="text" name="name" placeholder="Carrots">
+      <button class="butIngred" id="delete-recipie-in-form"><i class="far fa-trash-alt"></i></button>
+  </div>
     </div>
 
 
@@ -140,35 +189,27 @@
         </div>
       </div>
     </div>
-    <br>
-    <div class="steps">
-      <div>
-        <label class="ingName" for="steps">How to do it?</label>
-        <br>
-        <textarea rows="4" cols="50" name="steps" placeholder="Enter your full recipe, step by step...">
+      <button class="butIngred" id="add-recipie-in-form"><i class="fas fa-plus"></i></button>
+  </div>
+  <br>
+  <div class="steps">
+    <div>
+  <label class="ingName" for="steps">How to do it?</label>
+  <br>
+   <textarea rows="4" cols="50" name="steps" placeholder="Enter your full recipe, step by step...">
 </textarea>
-      </div>
-      <br>
-      <label for="difficulty">Difficulty:</label>
-      <select name="difficulty" id="difficulty">
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3" selected>3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </select>
-      <div class="custom-file">
-        <input type="file" name="recipeImg" class="custom-file-input" id="customFile">
-        <label class="custom-file-label" for="customFile">Choose image</label>
-      </div>
-    </div>
+</div>
+<br>
 
+<div class="custom-file">
+  <input type="file" name="recipeImg" class="custom-file-input" id="customFile">
+  <label class="custom-file-label" for="customFile">Choose image</label>
+</div>
+</div>
 
-    <button class="submitRecipe" type="submit">Add recipe!</button>
-
-  </form>
-
+  
+  <button class="submitRecipe" type="submit">Add recipe!</button>
+</form>
 </div>
 
 <script src="javascripts/addNewIngridient.js"> </script>
