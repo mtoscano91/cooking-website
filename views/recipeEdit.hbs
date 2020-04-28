@@ -14,27 +14,27 @@
 
   <label for="difficulty">Difficulty:</label>
   <select name="difficulty" id="difficulty">
-    <option value="0">0</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3" selected>3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
+    <option value="0" class="tag-input-difficulty">0</option>
+    <option value="1" class="tag-input-difficulty">1</option>
+    <option value="2" class="tag-input-difficulty">2</option>
+    <option value="3" class="tag-input-difficulty">3</option>
+    <option value="4" class="tag-input-difficulty">4</option>
+    <option value="5" class="tag-input-difficulty">5</option>
   </select>
 
 
   <label for="servings">Servings</label>
   <select name="servings" id="servings">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-    <option value="6">6</option>
-    <option value="7">7</option>
-    <option value="8">8</option>
-    <option value="9">9</option>
-    <option value="10">10</option>
+    <option value="1" class="tag-input-servings">1</option>
+    <option value="2" class="tag-input-servings">2</option>
+    <option value="3" class="tag-input-servings">3</option>
+    <option value="4" class="tag-input-servings">4</option>
+    <option value="5" class="tag-input-servings">5</option>
+    <option value="6" class="tag-input-servings">6</option>
+    <option value="7" class="tag-input-servings">7</option>
+    <option value="8" class="tag-input-servings">8</option>
+    <option value="9" class="tag-input-servings">9</option>
+    <option value="10" class="tag-input-servings">10</option>
   </select>
 
   <br>
@@ -60,17 +60,17 @@
     {{#each ingredients}}
     <div class="ingredients-in-form">
       <label for="">Quantity:</label>
-      <input type="number" name="quantity" placeholder="20">
+      <input type="number" name="quantity" placeholder="20" value="{{quantity}}">
 
       <label for="measure">Measure:</label>
       <select name="measure" id="measure">
-        <option value="g" selected>g</option>
-        <option value="kg">kg</option>
-        <option value="ml">ml</option>
-        <option value="l">l</option>
-        <option value="unit">unit</option>
-        <option value="spoon">spoon</option>
-        <option value="teaspoon">teaspoon</option>
+        <option value="g" class="tag-input-measure">g</option>
+        <option value="kg" class="tag-input-measure">kg</option>
+        <option value="ml" class="tag-input-measure">ml</option>
+        <option value="l" class="tag-input-measure">l</option>
+        <option value="unit" class="tag-input-measure">unit</option>
+        <option value="spoon" class="tag-input-measure">spoon</option>
+        <option value="teaspoon" class="tag-input-measure">teaspoon</option>
       </select>
 
       <label for="">Ingredient:</label>
