@@ -6,6 +6,7 @@
 }
 .partOne{
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   width: 70%;
   margin: 0 auto;
@@ -107,4 +108,41 @@ label.input-group-text{
   justify-content: space-between;
   width: 60%;
   margin: 1rem auto;
+}
+@media screen and (min-width: 1900px) {
+  .container{
+    width: 1850px;
+  }
+.stepText{
+  margin-right: 5rem;
+}
+.ingredients-in-form{
+  /* margin: 2rem 3rem; */
+  width: 80%;
+ 
+}
+}
+@media only screen and (max-device-width: 800px){
+.container{
+  width: 28rem;
+}
+  .partOne{
+  flex-direction: column;
+}
+.partTwo{
+  flex-direction: column;
+  margin: 0 3rem;
+}
+.tagsAdd{
+  width: 21rem;
+}
+.ingredients-in-form{
+  margin: 2rem 3rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.steps{
+  flex-direction: column;
+}
 }
