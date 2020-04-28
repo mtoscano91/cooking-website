@@ -39,7 +39,7 @@
 
   <br>
   <label for="">Image:</label>
-  <input type="file" name="recipeImg">
+  <input type="file" name="recipeImg" value="{{imgPath}}">
   <br>
 
   <label for="">Short Description:</label> <br>
@@ -60,7 +60,7 @@
     {{#each ingredients}}
     <div class="ingredients-in-form">
       <label for="">Quantity:</label>
-      <input type="number" name="quantity" placeholder="20" value="{{quantity}}">
+      <input type="number" name="quantity" placeholder="20" class="quantity" value="{{quantity}}">
 
       <label for="measure">Measure:</label>
       <select name="measure" id="measure">
@@ -74,8 +74,8 @@
       </select>
 
       <label for="">Ingredient:</label>
-      <input type="text" name="name" placeholder="Carrots" value="{{name}}">
-      <button id="delete-recipie-in-form">delete</button>
+      <input type="text" name="name" placeholder="Carrots" class="name" value="{{name}}">
+      <button class="delete-recipie-in-form">delete</button>
     </div>
     {{/each}}
   </div>
@@ -105,5 +105,6 @@
 <script>
   var recipeObj = {{{ recipeSting }}}
 </script>
-<script src="/javascripts/editRecipeDom.js"> </script>
+
 <script src="/javascripts/addNewIngridient.js"> </script>
+<script src="/javascripts/editRecipeDom.js"> </script>

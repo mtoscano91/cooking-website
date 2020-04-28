@@ -159,6 +159,54 @@ router.get("/recipe/edit/:recipeId", (req, res) => {
   });
 });
 
+router.post("/recipe/edit/:recipeId", (req, res) => {
+  const {
+    title,
+    shortDescription,
+    steps,
+    preparationTime,
+    difficulty,
+    servings,
+    quantity,
+    measure,
+    name,
+    tags,
+  } = req.body;
+  let arrIngredients = [];
+  for (let i = 0; i < name.length; i++) {
+    arrIngredients.push({
+      quantity: quantity[i],
+      measure: measure[i],
+      name: name[i],
+    });
+  }
+  const imgPath = req.file.url;
+  const imgName = req.file.originalname;
+  if (typeof name === "string") {
+    arrIngredients = [{ quantity, measure, name }];
+  }
+
+  Recipe.findByIdAndUpdate(req.params.recipeId, {
+    user_id: req.user._id,
+    title,
+    steps,
+    shortDescription,
+    preparationTime,
+    difficulty,
+    servings,
+    imgPath,
+    imgName,
+    ingredients: arrIngredients,
+    tags,
+  })
+    .then((recipe) => {
+      res.redirect(`/recipes/${recipe._id}`);
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
 router.post("/recipes", (req, res, next) => {
   let filteredTags = [];
   for (let i = 0; i < req.body.tags.length; i++) {
