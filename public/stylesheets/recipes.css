@@ -144,7 +144,9 @@
   margin-top: 2rem;
   width: 60%;
 }
-
+.title{
+  text-transform: capitalize;
+}
 @media only screen and (max-device-width: 1030px) {
   .stepsInfo ul{
     width: 100%;
@@ -153,5 +155,19 @@
   }
   .stepsInfo ul li{
     width: 100%;  
+  }
+  .bodyRecipe{
+    flex-direction: column-reverse ;
+    justify-content: start;
+    width: 100%;
+  }
+  .displayTitle{
+    width: 100%;
+  }
+  .stepsInfo{
+    width: 100%;
+  }
+  .stepsInfo p{
+    width: 100%;
   }
   }
