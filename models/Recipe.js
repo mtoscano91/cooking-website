@@ -53,7 +53,7 @@ const recipeSchema = new Schema({
     enum: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     required: true,
   },
-  rating: { type: Number, enum: [0, 1, 2, 3, 4, 5] },
+  rating: { type: Number },
   reviews: [
     {
       user: {
