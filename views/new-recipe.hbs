@@ -4,11 +4,11 @@
 <form action="/recipe/add" method="POST" enctype="multipart/form-data">
 
   <label for="">Title:</label>
-  <input type="text" name="title">
+  <input type="text" name="title" placeholder="Recipe title">
   <br>
 
   <label for="">Preparation Time:</label>
-  <input id="preparationTime" type="number" name="preparationTime">
+  <input id="preparationTime" type="number" name="preparationTime" placeholder="Mins">
 
   {{!-- <label for="">Difficulty:</label>
   <input type="number" name="difficulty"> --}}
@@ -45,18 +45,22 @@
   <input type="file" name="recipeImg">
   <br>
 
-  <label for="">Short Description:</label>
-  <input type="text" name="shortDescription">
+  <label for="">Short Description:</label> <br>
+  {{!-- <input type="text" name="shortDescription" placeholder="Describe shortly your recipe"> --}}
+  <textarea rows="2" cols="50" name="shortDescription" placeholder="Describe shortly your recipe..."></textarea>
   <br>
 
-  <label for="">Steps:</label>
-  <input type="text" name="steps">
+  <label for="">Steps:</label> <br>
+  {{!-- <input type="text" name="steps"> --}}
+  <textarea rows="4" cols="50" name="steps" placeholder="Enter your full recipe, step by step...">
+</textarea>
+
   <br>
   <h3>Ingridients</h3>
   <div id="all-ingridients-form">
     <div class="ingredients-in-form">
       <label for="">Quantity:</label>
-      <input type="number" name="quantity">
+      <input type="number" name="quantity" placeholder="20">
 
       <label for="measure">Measure:</label>
       <select name="measure" id="measure">
@@ -70,11 +74,12 @@
       </select>
 
       <label for="">Ingredient:</label>
-      <input type="text" name="name">
+      <input type="text" name="name" placeholder="Carrots">
       <button id="delete-recipie-in-form">delete</button>
     </div>
   </div>
   <button id="add-recipie-in-form"> add ingridient</button>
+  <br>
   <br>
 
 
