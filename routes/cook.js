@@ -61,9 +61,9 @@ router.post("/recipe/add", uploader.single("recipeImg"), (req, res, next) => {
     name,
     tags,
   } = req.body;
-  let arrIngridients = [];
+  let arrIngredients = [];
   for (let i = 0; i < name.length; i++) {
-    arrIngridients.push({
+    arrIngredients.push({
       quantity: quantity[i],
       measure: measure[i],
       name: name[i],
@@ -72,7 +72,7 @@ router.post("/recipe/add", uploader.single("recipeImg"), (req, res, next) => {
   const imgPath = req.file.url;
   const imgName = req.file.originalname;
   if (typeof name === "string") {
-    arrIngridients = [{ quantity, measure, name }];
+    arrIngredients = [{ quantity, measure, name }];
   }
   console.log(req);
   console.log(tags);
@@ -87,7 +87,7 @@ router.post("/recipe/add", uploader.single("recipeImg"), (req, res, next) => {
     servings,
     imgPath,
     imgName,
-    ingredients: arrIngridients,
+    ingredients: arrIngredients,
     tags,
   });
   newRecipe
@@ -113,7 +113,7 @@ router.get("/my-shopping-list", (req, res, next) => {
 
 router.get("/edit/profile", (req, res, next) => {
   const user = req.user;
-  console.log(req.user);
+  //console.log(req.user);
   res.render("edit/edit-profile", { user: user });
 });
 
@@ -149,6 +149,48 @@ router.get("/user/:id", (req, res, next) => {
     .catch((err) => {
       next(err);
     });
+});
+
+router.post("/recipes", (req, res, next) => {
+  // it reaches here with req.body.tags, for
+  let filteredTags = [];
+  for (let i = 0; i < req.body.tags.length; i++) {
+    filteredTags.push(req.body.tags[i]);
+  }
+  if (typeof req.body.tags === "string") {
+    filteredTags = [req.body.tags];
+  }
+
+  let queries = [];
+  filteredTags.forEach((query) => {
+    queries.push({ tags: query });
+  });
+
+  Recipe.find({ $or: queries }).then((filteredRecipes) => {
+    console.log(filteredRecipes);
+    res.render("recipes", { recipes: filteredRecipes });
+  });
+});
+
+router.post("/users", (req, res, next) => {
+  // it reaches here with req.body.tags, for
+  let filteredTags = [];
+  for (let i = 0; i < req.body.tags.length; i++) {
+    filteredTags.push(req.body.tags[i]);
+  }
+  if (typeof req.body.tags === "string") {
+    filteredTags = [req.body.tags];
+  }
+
+  let queries = [];
+  filteredTags.forEach((query) => {
+    queries.push({ tags: query });
+  });
+
+  User.find({ $or: queries }).then((filteredUsers) => {
+    console.log(filteredUsers);
+    res.render("users", { users: filteredUsers });
+  });
 });
 
 module.exports = router;
