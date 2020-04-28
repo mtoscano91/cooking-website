@@ -98,6 +98,19 @@
     <option value="10">Ten</option>
   </select>
 </div>
+  <div class="input-group mb-3">
+  <div class="input-group-prepend">
+  <label class="input-group-text" for="difficulty">Difficulty</label>
+  </div>
+  <select name="difficulty" id="difficulty">
+    <option value="0">0</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3" selected>3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select>
+</div>
   </div>
 </div>
   
@@ -134,10 +147,10 @@
   </div>
       <input type="text" name="name" placeholder="Carrots">
       <button class="butIngred" id="delete-recipie-in-form"><i class="far fa-trash-alt"></i></button>
-      <button class="butIngred" id="add-recipie-in-form"><i class="fas fa-plus"></i></button>
   </div>
     </div>
     </div>
+      <button class="butIngred" id="add-recipie-in-form"><i class="fas fa-plus"></i></button>
   </div>
   <br>
   <div class="steps">
@@ -148,15 +161,7 @@
 </textarea>
 </div>
 <br>
-<label for="difficulty">Difficulty:</label>
-  <select name="difficulty" id="difficulty">
-    <option value="0">0</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3" selected>3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-  </select>
+
 <div class="custom-file">
   <input type="file" name="recipeImg" class="custom-file-input" id="customFile">
   <label class="custom-file-label" for="customFile">Choose image</label>
