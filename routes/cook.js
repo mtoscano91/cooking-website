@@ -48,7 +48,7 @@ router.get("/users", (req, res, next) => {
 });
 
 router.post("/recipe/add", uploader.single("recipeImg"), (req, res, next) => {
-  // console.log(req.body);
+  console.log(req.body);
   const {
     title,
     shortDescription,
