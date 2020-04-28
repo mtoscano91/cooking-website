@@ -154,7 +154,11 @@ router.get("/user/:id", (req, res, next) => {
 router.get("/recipe/edit/:recipeId", (req, res) => {
   Recipe.findById(req.params.recipeId).then((recipe) => {
     console.log("dioni", recipe);
-    res.render("recipeEdit", { recipe, recipeSting: JSON.stringify(recipe) });
+    res.render("recipeEdit", {
+      recipe,
+      recipeSting: JSON.stringify(recipe),
+      user: req.user,
+    });
   });
 });
 
