@@ -27,3 +27,15 @@
     {{/each}}
   </div>
 </div>
+
+<form action="/recipes?{{tags}}" method="POST" id="tag-filter">
+  <input type="checkbox" name="tags" value="vegan">Vegan</option>
+  <input type="checkbox" name="tags" value="vegetarian">Vegetarian</option>
+  <input type="checkbox" name="tags" value="gluten-free">Gluten Free</option>
+  <input type="checkbox" name="tags" value="dairy-free">Dairy Free</option>
+  <input type="checkbox" name="tags" value="keto">Keto</option>
+  <input type="checkbox" name="tags" value="macrobiotic">Macrobiotic</option>
+  <input type="checkbox" name="tags" value="healthy">Healthy</option>
+  <input type="checkbox" name="tags" value="low-sugar">Low sugar</option>
+  <button type="submit">Filter diets</button>
+</form>

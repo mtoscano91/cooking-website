@@ -1,37 +1,50 @@
 <div class="displayAllRecipes container">
-<h2 class="text-center title">All the users</h2>
-<div class="recipes row">
-{{#each users}}
-<div class="card mb-3 recipesDisplay users">
-  <div class="row no-gutters">
-  <div class="col-md-4">
-<img src="{{imgPath}}" alt="User Image">
-  </div>
-  <div class="col-lg-8">
-  <div class="card-body user">
-    <div class="follow">
-      <div>
- <a href="/user/{{this._id}}">
-  <h2>{{this.username}}</h2></a>
-      </div>
-      <div>
-  <i class="fas fa-user-plus"></i>
-      </div>
-    </div>
-  <div class="tag">
-          <span class="gluten-free">#GlutenFree</span>
-          <span class="vegetarian">#Veggie</span>
-          <span class="dairy-free">#DairyFree</span>
+  <h2 class="text-center title">All the users</h2>
+  <div class="recipes row">
+    {{#each users}}
+    <div class="card mb-3 recipesDisplay users">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="{{imgPath}}" alt="User Image">
         </div>
-        {{!-- <div class="prepInfo">
+        <div class="col-lg-8">
+          <div class="card-body user">
+            <div class="follow">
+              <div>
+                <a href="/user/{{this._id}}">
+                  <h2>{{this.username}}</h2>
+                </a>
+              </div>
+              <div>
+                <i class="fas fa-user-plus"></i>
+              </div>
+            </div>
+            <div class="tag">
+              <span class="gluten-free">#GlutenFree</span>
+              <span class="vegetarian">#Veggie</span>
+              <span class="dairy-free">#DairyFree</span>
+            </div>
+            {{!-- <div class="prepInfo">
   <h3>Followers {{this.followers}}</h3>
   <h3>Following {{this.following}}</h3>
                 </div> --}}
-  
+
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/each}}
   </div>
-  </div>
-  </div>
-  </div>
-{{/each}}
-  </div>
-  </div>
+</div>
+
+<form action="/users?{{tags}}" method="POST" id="tag-filter">
+  <input type="checkbox" name="tags" value="vegan">Vegan</option>
+  <input type="checkbox" name="tags" value="vegetarian">Vegetarian</option>
+  <input type="checkbox" name="tags" value="gluten-free">Gluten Free</option>
+  <input type="checkbox" name="tags" value="dairy-free">Dairy Free</option>
+  <input type="checkbox" name="tags" value="keto">Keto</option>
+  <input type="checkbox" name="tags" value="macrobiotic">Macrobiotic</option>
+  <input type="checkbox" name="tags" value="healthy">Healthy</option>
+  <input type="checkbox" name="tags" value="low-sugar">Low sugar</option>
+  <button type="submit">Filter cooks by diet</button>
+</form>
