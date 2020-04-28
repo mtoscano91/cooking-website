@@ -33,35 +33,33 @@
   </div>
   <div class="dashboard">
     <div class="tabs">
-      <input type="radio" name="tabs" id="tabone" checked="checked">
+      <input type="radio" name="tabs" id="tabone">
       <label for="tabone"><a href="/profile">My recipes</a></label>
-      <div class="tab">
-        <div class="recipesPro">
-          <div class="card-group">
-            {{#each recipes}}
-            <div class="card">
-              <img src={{this.imgPath}} class="card-img-top" alt={{this.imgName}}>
-              <div class="card-body">
-                <h5 class="card-title">{{this.title}}</h5>
-                <div class="tagPro">
-                  {{#each tags}}
-                  <span class="{{this}}">#{{this}}</span>
-                  {{/each}}
-                </div>
-              </div>
-            </div>
-            {{/each}}
 
-            <a href="/recipes"><i class="fas fa-plus-circle"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <input type="radio" name="tabs" id="tabtwo">
+      <input type="radio" name="tabs" id="tabtwo" checked="checked">
       <label for="tabtwo"><a href="/my-liked-recipes">My liked recipes</a></label>
       <div class="tab">
 
-
+        <div class="recipesPro">
+          <div class="myLikedRecipes">
+            <div class="card-group">
+              {{#each recipes}}
+              <div class="card">
+                <img src={{this.imgPath}} class="card-img-top" alt={{this.imgName}}>
+                <div class="card-body">
+                  <h5 class="card-title">{{this.title}}</h5>
+                  <div class="tagPro">
+                    {{#each tags}}
+                    <span class="{{this}}">#{{this}}</span>
+                    {{/each}}
+                  </div>
+                </div>
+              </div>
+              {{/each}}
+              <a href="/recipes"><i class="fas fa-plus-circle"></i></a>
+            </div>
+          </div>
+        </div>
       </div>
 
       <input type="radio" name="tabs" id="tabthree">

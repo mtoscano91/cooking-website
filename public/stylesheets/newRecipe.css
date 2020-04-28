@@ -42,6 +42,7 @@
   flex-direction: row;
   width: 60%;
   flex-wrap: wrap;
+  font-weight: bold;
   justify-content: space-around;
 }
 .eachTag{
@@ -59,6 +60,7 @@
   font-weight: bold;
   justify-content: space-around;
   align-items: center;
+  font-weight: bold;
 }
 .submitRecipe{
   color: rgba(59,89,152,1);
@@ -95,6 +97,9 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+label.input-group-text{
+  font-weight: bold;
 }
 .partTwo{
   display: flex;
