@@ -151,11 +151,12 @@ router.get("/user/:id", (req, res, next) => {
     });
 });
 
-
 router.get("/recipe/edit/:recipeId", (req, res) => {
   Recipe.findById(req.params.recipeId).then((recipe) => {
     console.log("dioni", recipe);
     res.render("recipeEdit", { recipe, recipeSting: JSON.stringify(recipe) });
+  });
+});
 
 router.post("/recipes", (req, res, next) => {
   // it reaches here with req.body.tags, for
@@ -196,7 +197,6 @@ router.post("/users", (req, res, next) => {
   User.find({ $or: queries }).then((filteredUsers) => {
     console.log(filteredUsers);
     res.render("users", { users: filteredUsers });
-
   });
 });
 
