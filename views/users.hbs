@@ -1,8 +1,37 @@
+<div class="displayAllRecipes container">
+<h2 class="text-center title">All the users</h2>
+<div class="recipes row">
 {{#each users}}
-<a href="/user/{{this._id}}">
-  <h2>Cook: {{this.username}}</h2>
-</a>
+<div class="card mb-3 recipesDisplay users">
+  <div class="row no-gutters">
+  <div class="col-md-4">
 <img src="{{imgPath}}" alt="User Image">
-<h3>Followers: {{this.followers}}</h3>
-<h3>Following: {{this.following}}</h3>
+  </div>
+  <div class="col-lg-8">
+  <div class="card-body user">
+    <div class="follow">
+      <div>
+ <a href="/user/{{this._id}}">
+  <h2>{{this.username}}</h2></a>
+      </div>
+      <div>
+  <i class="fas fa-user-plus"></i>
+      </div>
+    </div>
+  <div class="tag">
+          <span class="gluten-free">#GlutenFree</span>
+          <span class="vegetarian">#Veggie</span>
+          <span class="dairy-free">#DairyFree</span>
+        </div>
+        {{!-- <div class="prepInfo">
+  <h3>Followers {{this.followers}}</h3>
+  <h3>Following {{this.following}}</h3>
+                </div> --}}
+  
+  </div>
+  </div>
+  </div>
+  </div>
 {{/each}}
+  </div>
+  </div>

@@ -57,6 +57,7 @@ margin: 0.5rem;
 .personalData h1{
   font-size: 20px;
   font-weight: bold;
+  text-transform: capitalize;
 }
 
 .personalData a{
@@ -91,3 +92,8 @@ width: 70%;
 .card-img-top img{
   height: 18vh;
 }
+@media only screen and (max-device-width: 1030px) {
+.profile{
+  flex-direction: column;
+}
+  }

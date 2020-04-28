@@ -1,0 +1,28 @@
+.user h2{
+  text-transform: capitalize;
+}
+.displayAllRecipes{
+  font-family: "Open Sans",sans-serif;
+}
+.follow{
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: space-around;
+}
+.follow i{
+  color: #E82A69;
+  font-size: 30px;
+}
+.follow a{
+  text-decoration: none;
+  color: #0f4c81;
+}
+
+
+@media only screen and (max-device-width: 1030px) {
+  .recipesDisplay{
+    width: 80%;
+    margin: 0 auto;
+  }
+  }
