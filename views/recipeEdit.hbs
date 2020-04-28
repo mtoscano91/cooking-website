@@ -1,17 +1,16 @@
-<h2>New recipes page</h2>
+<h2>Edit your recipe</h2>
 
-
+{{#with recipe}}
 <form action="/recipe/add" method="POST" enctype="multipart/form-data">
 
   <label for="">Title:</label>
-  <input type="text" name="title" placeholder="Recipe title">
+  <input type="text" name="title" placeholder="Recipe title" value="{{title}}">
   <br>
 
   <label for="">Preparation Time:</label>
-  <input id="preparationTime" type="number" name="preparationTime" placeholder="Mins">
+  <input id="preparationTime" type="number" name="preparationTime" placeholder="Mins" value="{{preparationTime}}">
 
-  {{!-- <label for="">Difficulty:</label>
-  <input type="number" name="difficulty"> --}}
+
 
   <label for="difficulty">Difficulty:</label>
   <select name="difficulty" id="difficulty">
@@ -23,14 +22,12 @@
     <option value="5">5</option>
   </select>
 
-  {{!-- <label for="">Servings:</label>
-  <input type="number" name="servings"> --}}
 
   <label for="servings">Servings</label>
   <select name="servings" id="servings">
     <option value="1">1</option>
     <option value="2">2</option>
-    <option value="3" selected>3</option>
+    <option value="3">3</option>
     <option value="4">4</option>
     <option value="5">5</option>
     <option value="6">6</option>
@@ -46,18 +43,21 @@
   <br>
 
   <label for="">Short Description:</label> <br>
-  {{!-- <input type="text" name="shortDescription" placeholder="Describe shortly your recipe"> --}}
-  <textarea rows="2" cols="50" name="shortDescription" placeholder="Describe shortly your recipe..."></textarea>
+
+  <textarea rows="2" cols="50" name="shortDescription"
+    placeholder="Describe shortly your recipe...">{{shortDescription}}</textarea>
   <br>
 
   <label for="">Steps:</label> <br>
   {{!-- <input type="text" name="steps"> --}}
-  <textarea rows="4" cols="50" name="steps" placeholder="Enter your full recipe, step by step...">
+  <textarea rows="4" cols="50" name="steps" placeholder="Enter your full recipe, step by step...">{{steps}}
 </textarea>
 
   <br>
   <h3>Ingridients</h3>
+
   <div id="all-ingridients-form">
+    {{#each ingredients}}
     <div class="ingredients-in-form">
       <label for="">Quantity:</label>
       <input type="number" name="quantity" placeholder="20">
@@ -74,30 +74,36 @@
       </select>
 
       <label for="">Ingredient:</label>
-      <input type="text" name="name" placeholder="Carrots">
+      <input type="text" name="name" placeholder="Carrots" value="{{name}}">
       <button id="delete-recipie-in-form">delete</button>
     </div>
+    {{/each}}
   </div>
+
   <button id="add-recipie-in-form"> add ingridient</button>
   <br>
   <br>
 
 
+
   <h3>Tags:</h3>
-  <input type="checkbox" name="tags" value="vegan">Vegan
-  <input type="checkbox" name="tags" value="vegetarian">Vegetarian
-  <input type="checkbox" name="tags" value="gluten-free">Gluten Free
-  <input type="checkbox" name="tags" value="dairy-free">Dairy Free
-  <input type="checkbox" name="tags" value="keto">Keto
-  <input type="checkbox" name="tags" value="macrobiotic">Macrobiotic
-  <input type="checkbox" name="tags" value="healthy">Healthy
-  <input type="checkbox" name="tags" value="low-sugar">Low sugar
+  <input type="checkbox" name="tags" class="tag-input-checkbox" value="vegan">Vegan</option>
+  <input type="checkbox" name="tags" class="tag-input-checkbox" value="vegetarian">Vegetarian</option>
+  <input type="checkbox" name="tags" class="tag-input-checkbox" value="gluten-free">Gluten Free</option>
+  <input type="checkbox" name="tags" class="tag-input-checkbox" value="dairy-free">Dairy Free</option>
+  <input type="checkbox" name="tags" class="tag-input-checkbox" value="keto">Keto</option>
+  <input type="checkbox" name="tags" class="tag-input-checkbox" value="macrobiotic">Macrobiotic</option>
+  <input type="checkbox" name="tags" class="tag-input-checkbox" value="healthy">Healthy</option>
+  <input type="checkbox" name="tags" class="tag-input-checkbox" value="low-sugar">Low sugar</option>
 
   <br>
   <br>
   <button type="submit">ADD</button>
 </form>
 
-
-
-<script src="javascripts/addNewIngridient.js"> </script>
+{{/with}}
+<script>
+  var recipeObj = {{{ recipeSting }}}
+</script>
+<script src="/javascripts/editRecipeDom.js"> </script>
+<script src="/javascripts/addNewIngridient.js"> </script>
