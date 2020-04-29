@@ -41,16 +41,25 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 50%;
+  width: 26rem;
   text-align: center;
-  border: 1px solid gainsboro;
 }
-
 .eachInfo{
-  color:#E82A69;
-  font-size: 30px;
   display: flex;
-  width: 100%;
+  flex-direction: row;
+  width: 26rem;
+  justify-content: center;
+}
+.prepInfo i{
+  color: #E82A69!important;
+  margin: 0px;
+}
+.prepInfo p{
+  margin: 1rem;
+  color:#E82A69;
+  font-size: 15px;
+  font-weight: bold;
+  display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
@@ -60,11 +69,6 @@
   color:#E82A69;
 
 }
-.prepInfo p{
-  font-weight: bold;
-  font-size: 40px;
-}
-
 .imgRecipeId{
   width: 40vh;
   margin-top: 1rem;
@@ -156,7 +160,7 @@
   color: #3b5998;
   margin: 1rem;
 }
-.stepsInfo p{
+.howTo p{
   font-weight: 400;
   line-height: inherit;
   letter-spacing: 1px;

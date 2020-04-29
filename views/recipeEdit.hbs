@@ -1,31 +1,91 @@
-<h2>Edit your recipe</h2>
+<div class="container">
+<h2 class="title text-center mt-4">Edit your recipe</h2>
 
 {{#with recipe}}
 <form action="/recipe/edit/{{_id}}" method="POST" enctype="multipart/form-data">
-
-  <label for="">Title:</label>
-  <input type="text" name="title" placeholder="Recipe title" value="{{title}}">
-  <br>
-
-  <label for="">Preparation Time:</label>
-  <input id="preparationTime" type="number" name="preparationTime" placeholder="Mins" value="{{preparationTime}}">
-
-
-
-  <label for="difficulty">Difficulty:</label>
-  <select name="difficulty" id="difficulty">
-    <option value="0" class="tag-input-difficulty">0</option>
-    <option value="1" class="tag-input-difficulty">1</option>
-    <option value="2" class="tag-input-difficulty">2</option>
-    <option value="3" class="tag-input-difficulty">3</option>
-    <option value="4" class="tag-input-difficulty">4</option>
-    <option value="5" class="tag-input-difficulty">5</option>
-  </select>
-
-
-  <label for="servings">Servings</label>
-  <select name="servings" id="servings">
-    <option value="1" class="tag-input-servings">1</option>
+    <div class="partOne">
+      <div class="subPart">
+        <label for="">Name of the recipe</label>
+      <input class="addRecipeForm" type="text" name="title" placeholder="Recipe title" value="{{title}}">
+      </div>
+      {{!-- <input type="text" name="shortDescription" placeholder="Describe shortly your recipe"> --}}
+      <div class="subPart">
+        <label for="">Add a short description</label>
+     <textarea class="addRecipeForm" rows="2" cols="50" name="shortDescription"
+    placeholder="Describe shortly your recipe...">{{shortDescription}}</textarea>
+      </div>
+       </div>
+         <div class="partTwo">
+      <div class="form-check tagsAdd">
+        <div>
+        <div class="eachTag">
+          <input class="form-check-input tag-input-checkbox" name="tags" value="vegan" type="checkbox" id="defaultCheck1">
+          <label class="form-check-label vegan" for="defaultCheck1">
+            # vegan
+          </label>
+        </div>
+        <div class="eachTag">
+          <input class="form-check-input tag-input-checkbox" name="tags" value="vegetarian" type="checkbox" id="defaultCheck1">
+          <label class="form-check-label vegetarian" for="defaultCheck1">
+            # vegetarian
+          </label>
+        </div>
+        <div class="eachTag">
+          <input class="form-check-input tag-input-checkbox" name="tags" value="gluten-free" type="checkbox" id="defaultCheck1">
+          <label class="form-check-label gluten-free" for="defaultCheck1">
+            # gluten-free
+          </label>
+        </div>
+          </div>
+          <div>
+        <div class="eachTag">
+          <input class="form-check-input tag-input-checkbox" type="checkbox" name="tags" value="dairy-free">
+          <label class="form-check-label dairy-free" for="defaultCheck1">
+            # dairy-free
+          </label>
+        </div>
+        <div class="eachTag">
+          <input class="form-check-input tag-input-checkbox" type="checkbox" name="tags" value="keto">
+          <label class="form-check-label keto" for="defaultCheck1">
+            # keto
+          </label>
+        </div>
+        <div class="eachTag">
+          <input class="form-check-input tag-input-checkbox" type="checkbox" name="tags" value="macrobiotic">
+          <label class="form-check-label macrobiotic" for="defaultCheck1">
+            # macrobiotic
+          </label>
+        </div>
+        </div>
+        <div>
+        <div class="eachTag">
+          <input class="form-check-input tag-input-checkbox" type="checkbox" name="tags" value="healthy">
+          <label class="form-check-label healthy" for="defaultCheck1">
+            # healthy
+          </label>
+        </div>
+        <div class="eachTag">
+          <input class="form-check-input tag-input-checkbox" type="checkbox" name="tags" value="low-sugar">
+          <label class="form-check-label low-sugar" for="defaultCheck1">
+            # low-sugar
+          </label>
+        </div>
+      </div>
+      </div>
+    </div>
+     <div class="detailsPrep">
+        <div class="input-group mb-3 time">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="time"><i class="fas fa-clock"></i></label>
+          </div>
+          <input id="preparationTime" type="number" name="preparationTime" placeholder="Mins" value="{{preparationTime}}">
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="servings">Servings</label>
+          </div>
+          <select class="custom-select" name="servings" id="servings">
+            <option value="1" class="tag-input-servings">1</option>
     <option value="2" class="tag-input-servings">2</option>
     <option value="3" class="tag-input-servings">3</option>
     <option value="4" class="tag-input-servings">4</option>
@@ -35,75 +95,82 @@
     <option value="8" class="tag-input-servings">8</option>
     <option value="9" class="tag-input-servings">9</option>
     <option value="10" class="tag-input-servings">10</option>
-  </select>
+          </select>
+        </div>
+          <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="difficulty">Difficulty</label>
+          </div>
+          <select class="custom-select mt-2" name="difficulty" id="difficulty">
+         <option value="0" class="tag-input-difficulty">0</option>
+    <option value="1" class="tag-input-difficulty">1</option>
+    <option value="2" class="tag-input-difficulty">2</option>
+    <option value="3" class="tag-input-difficulty">3</option>
+    <option value="4" class="tag-input-difficulty">4</option>
+    <option value="5" class="tag-input-difficulty">5</option>
+      </select>
+      </div>
+        </div>
 
-  <br>
-  <label for="">Image:</label>
-  <input type="file" name="recipeImg" value="{{imgPath}}">
-  <br>
-  <input class="display-not" type="text" name="imgPath" value="{{imgPath}}">
-  <input class="display-not" type="text" name="imgName" value="{{imgName}}">
 
-  <label for="">Short Description:</label> <br>
-
-  <textarea rows="2" cols="50" name="shortDescription"
-    placeholder="Describe shortly your recipe...">{{shortDescription}}</textarea>
-  <br>
-
-  <label for="">Steps:</label> <br>
-  {{!-- <input type="text" name="steps"> --}}
-  <textarea rows="4" cols="50" name="steps" placeholder="Enter your full recipe, step by step...">{{steps}}
-</textarea>
-
-  <br>
-  <h3>Ingridients</h3>
-
+    <h3 class="ingName mt-5">Ingredients</h3>
   <div id="all-ingridients-form">
     {{#each ingredients}}
     <div class="ingredients-in-form">
-      <label for="">Quantity:</label>
-      <input type="number" name="quantity" placeholder="20" class="quantity" value="{{quantity}}">
-
-      <label for="measure">Measure:</label>
-      <select name="measure" id="measure">
-        <option value="g" class="tag-input-measure">g</option>
+      <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="quantity">Quantity</label>
+            </div>
+            <input type="number" name="quantity" placeholder="20" class="quantity" value="{{quantity}}">
+          </div>
+           <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="measure">Measure</label>
+            </div>
+            <div class="measureSize">
+              <select class="custom-select" name="measure" id="measure">
+               <option value="g" class="tag-input-measure">g</option>
         <option value="kg" class="tag-input-measure">kg</option>
         <option value="ml" class="tag-input-measure">ml</option>
         <option value="l" class="tag-input-measure">l</option>
         <option value="unit" class="tag-input-measure">unit</option>
         <option value="spoon" class="tag-input-measure">spoon</option>
         <option value="teaspoon" class="tag-input-measure">teaspoon</option>
-      </select>
-
-      <label for="">Ingredient:</label>
-      <input type="text" name="name" placeholder="Carrots" class="name" value="{{name}}">
-      <button class="delete-recipie-in-form">delete</button>
-    </div>
+              </select>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="ingredient">Name</label>
+            </div>
+            <input type="text" name="name" placeholder="Carrots" class="name" value="{{name}}">
+            <button class="butIngred delete-recipie-in-form"><i class="far fa-trash-alt"></i></button>
+          </div>
+          </div>
     {{/each}}
+     <button class="butIngred" id="add-recipie-in-form"><i class="fas fa-plus"></i></button>
+    </div>
   </div>
+   <div class="steps">
+      <div>
+        <label class="ingName" for="steps">How to do it?</label>
+        <br>
+         <textarea rows="4" cols="50" name="steps" placeholder="Enter your full recipe, step by step...">{{steps}}
+        </textarea>
+      </div>
+      <br>
+ <div class="custom-file">
+  <input type="file" name="recipeImg" class="custom-file-input" id="customFile" value="{{imgPath}}">
+  <label class="custom-file-label" for="customFile">Choose image</label>
 
-  <button id="add-recipie-in-form"> add ingridient</button>
-  <br>
-  <br>
-
-
-
-  <h3>Tags:</h3>
-  <input type="checkbox" name="tags" class="tag-input-checkbox" value="vegan">Vegan</option>
-  <input type="checkbox" name="tags" class="tag-input-checkbox" value="vegetarian">Vegetarian</option>
-  <input type="checkbox" name="tags" class="tag-input-checkbox" value="gluten-free">Gluten Free</option>
-  <input type="checkbox" name="tags" class="tag-input-checkbox" value="dairy-free">Dairy Free</option>
-  <input type="checkbox" name="tags" class="tag-input-checkbox" value="keto">Keto</option>
-  <input type="checkbox" name="tags" class="tag-input-checkbox" value="macrobiotic">Macrobiotic</option>
-  <input type="checkbox" name="tags" class="tag-input-checkbox" value="healthy">Healthy</option>
-  <input type="checkbox" name="tags" class="tag-input-checkbox" value="low-sugar">Low sugar</option>
-
-  <br>
-  <br>
-  <button type="submit">Sumbit</button>
+<input class="display-not" type="text" name="imgPath" value="{{imgPath}}">
+  <input class="display-not" type="text" name="imgName" value="{{imgName}}"></div>
+    </div>
+  <button class="submitRecipe" type="submit">Edit recipe</button>
 </form>
 
 {{/with}}
+</div>
 <script>
   var recipeObj = {{{ recipeSting }}}
 </script>

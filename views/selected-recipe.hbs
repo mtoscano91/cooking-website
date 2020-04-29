@@ -4,14 +4,29 @@
   <div class="bodyRecipe">
     <div class="stepsInfo">
       <div class="displayTitle">
-
         <h5 class="title">{{this.title}}</h5>
-        <p class="desc mt-3"> {{this.shortDescription}}</p>
-        <div class="tag here mt-3">
+      <div class="tag here mt-3">
           {{#each tags}}
           <span class="{{this}}">#{{this}}</span>
           {{/each}}
         </div>
+        <p class="desc mt-3"> {{this.shortDescription}}</p>
+
+      <div class="prepInfo">
+        <div class="eachInfo">
+          <p><i class="fas fa-clock"></i></p>
+          <p class="number"> {{this.preparationTime}}</p>
+        </div>
+        <div class="eachInfo">
+          <p>Servings</p>
+          <p class="number">{{this.servings}}</p>
+        </div>
+         <div class="eachInfo">
+          <p>Difficulty</p>
+          <p class="number">{{this.difficulty}}</p>
+        </div>
+      </div>
+        
       </div>
 
       <h4 class="subTitle mt-2">Ingredients</h4>
@@ -21,7 +36,7 @@
         {{/each}}
       </ul>
       <h4 class="subTitle mt-3">How to do it?</h4>
-      <div>
+      <div class="howTo">
         <p>{{this.steps}}</p>
       </div>
 
@@ -34,17 +49,6 @@
 
     <div class="generalInfo">
 
-
-      <div class="prepInfo">
-        <div class="eachInfo pink">
-          <i class="fas fa-clock"></i>
-          <p class="number"> {{this.preparationTime}}</p>
-        </div>
-        <div class="eachInfo">
-          <i class="fas fa-chart-pie"></i>
-          <p class="number">{{this.servings}}</p>
-        </div>
-      </div>
       <img src="{{this.imgPath}}" class="imgRecipeId img-thumbnail" alt="...">
       <p class="text-center">By <span class="userName">{{user_id.username}}</span></p>
       <div class="buttonsRecipes">
