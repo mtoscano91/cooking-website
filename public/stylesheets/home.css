@@ -1,27 +1,24 @@
-
-.jumbotron.jumbotron-fluid{
+.jumbotron.jumbotron-fluid {
   margin-top: 1rem;
- background-image: url("/images/banner.png");
- background-repeat: no-repeat;
- background-position:bottom;
-background-color:#e3e3e5;
-/* background-color: linear-gradient(180deg, rgba(246,246,247,1) 0%, rgba(201,195,199,1) 100%); */
- height: 50vh;
- -webkit-box-shadow: 7px 7px 5px 0px rgba(59,89,152,1);
--moz-box-shadow: 7px 7px 5px 0px rgba(59,89,152,1);
-box-shadow: 7px 7px 5px 0px rgba(59,89,152,1);
+  background-image: url("/images/banner.png");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-color: #e3e3e5;
+  /* background-color: linear-gradient(180deg, rgba(246,246,247,1) 0%, rgba(201,195,199,1) 100%); */
+  height: 50vh;
+  -webkit-box-shadow: 7px 7px 5px 0px rgba(59, 89, 152, 1);
+  -moz-box-shadow: 7px 7px 5px 0px rgba(59, 89, 152, 1);
+  box-shadow: 7px 7px 5px 0px rgba(59, 89, 152, 1);
 }
-.text h1{
+.text h1 {
   color: white;
   font-size: 70px;
-  
 }
-.text{
+.text {
   text-align: end;
   margin-top: 6rem;
- 
 }
-.text a{
+.text a {
   padding: 1rem;
   border-radius: 25px;
   background-color: white;
@@ -30,62 +27,58 @@ box-shadow: 7px 7px 5px 0px rgba(59,89,152,1);
   font-weight: bold;
   margin-top: 1rem;
 }
-.text a:hover{
+.text a:hover {
   background-color: #3b5998;
   border: 1px solid #3b5998;
   color: white;
   text-decoration: none;
 }
-.gallery{
-  border:2px solid #3b5998;
-  -webkit-box-shadow: 1px 5px 0px 5px rgba(59,89,152,1);
-  -moz-box-shadow: 1px 5px 0px 5px rgba(59,89,152,1);
-  box-shadow: 1px 5px 0px 5px rgba(59,89,152,1);
+.gallery {
+  border: 2px solid #3b5998;
+  -webkit-box-shadow: 1px 5px 0px 5px rgba(59, 89, 152, 1);
+  -moz-box-shadow: 1px 5px 0px 5px rgba(59, 89, 152, 1);
+  box-shadow: 1px 5px 0px 5px rgba(59, 89, 152, 1);
   margin-bottom: 3rem;
   margin-top: 3rem;
 }
-.card-title{
+.card-title {
   color: #3b5998;
-  font-family: 'Roboto', sans-serif; 
+  font-family: "Roboto", sans-serif;
   font-weight: bold;
   font-weight: 800;
   letter-spacing: 2px;
-
 }
-.card-body{
+.card-body {
   max-width: 100%;
 }
-.card-body p{
-
+.card-body p {
   color: #76879b;
   font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
   font-size: 14px;
-
 }
 
-.card-link{
+.card-link {
   text-decoration: none;
   color: #ed4c27;
   font-weight: 900;
   font-size: 18px;
   letter-spacing: 1px;
   text-align: start;
-
 }
-.recipHeader{
+.recipHeader {
   color: #3b5998;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 35px;
 }
-.recipe img{
-    height: 12rem;
-    width: 100%;
+.recipe img {
+  height: 12rem;
+  width: 100%;
 }
-.recipe{
+.recipe {
   margin: 2rem;
   width: 31rem;
 }
-.recipes{
+.recipes {
   width: 100%;
   margin: 0 auto;
   display: flex;
@@ -93,53 +86,53 @@ box-shadow: 7px 7px 5px 0px rgba(59,89,152,1);
   justify-content: space-around;
 }
 
-span{
+span {
   font-size: 16px;
 }
 .tag span {
   font-weight: bold;
   margin: 0.25rem;
 }
-.vegan{
+.vegan {
   color: green;
 }
-.vegetarian{
-  color: #50E83F;
+.vegetarian {
+  color: #50e83f;
 }
-.dairy-free{
-  color: #923FE8;
+.dairy-free {
+  color: #923fe8;
 }
-.gluten-free{
+.gluten-free {
   color: #ed4c27;
 }
-.keto{
-  color: #3F89E8;
+.keto {
+  color: #3f89e8;
 }
-.macrobiotic{
-  color: #3FE870;
+.macrobiotic {
+  color: #3fe870;
 }
-.healthy{
+.healthy {
   color: darkorange;
 }
-.low-sugar{
-  color: #FF17E7;
+.low-sugar {
+  color: #ff17e7;
 }
-.more{
+.more {
   color: #3b5998;
 }
-.fas.fa-heart{
+.fas.fa-heart {
   color: red;
 }
 @media only screen and (max-device-width: 1030px) {
-.card{
-  margin: 0.5rem;
-}
-.text a{
-  display: none;
-}
+  .card {
+    margin: 0.5rem;
+  }
+  .text a {
+    display: none;
+  }
 }
 @media screen and (min-width: 1900px) {
-  .container{
+  .container {
     width: 1850px;
   }
   /* .recipe img{

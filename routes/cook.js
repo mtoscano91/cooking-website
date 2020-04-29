@@ -190,15 +190,21 @@ router.post(
     } = req.body;
     let arrIngredients = [];
     // console.log("name", recipe.ingredients);
-    for (let i = 0; i < name.length || 0; i++) {
+    for (let i = 0; i < name.length; i++) {
       arrIngredients.push({
         quantity: quantity[i],
         measure: measure[i],
         name: name[i],
       });
     }
-    const imgPath = req.file.url;
-    const imgName = req.file.originalname;
+
+    let imgPath = req.body.imgPath;
+    let imgName = req.body.imgName;
+    if (req.file) {
+      imgPath = req.file.url;
+      imgName = req.file.originalname;
+    }
+
     if (typeof name === "string") {
       arrIngredients = [{ quantity, measure, name }];
     }
