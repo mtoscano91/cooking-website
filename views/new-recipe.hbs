@@ -2,16 +2,24 @@
   <h2 class="title text-center mt-4">Add a new recipe</h2>
   <form action="/recipe/add" method="POST" enctype="multipart/form-data">
     <div class="partOne">
+      <div class="subPart">
+        <label for="">Name of the recipe</label>
       <input class="addRecipeForm" type="text" name="title" placeholder="Recipe title">
+      </div>
       {{!-- <input type="text" name="shortDescription" placeholder="Describe shortly your recipe"> --}}
+      <div class="subPart">
+        <label for="">Add a short description</label>
       <input class="addRecipeForm" rows="2" cols="50" name="shortDescription"
-        placeholder="Describe shortly your recipe...">
-    </div>
+        placeholder="">
+   
+      </div>
+       </div>
 
     {{!-- <label for="">Difficulty:</label>
   <input type="number" name="difficulty"> --}}
     <div class="partTwo">
       <div class="form-check tagsAdd">
+        <div>
         <div class="eachTag">
           <input class="form-check-input" name="tags" value="vegan" type="checkbox" id="defaultCheck1">
           <label class="form-check-label vegan" for="defaultCheck1">
@@ -30,6 +38,8 @@
             # gluten-free
           </label>
         </div>
+          </div>
+          <div>
         <div class="eachTag">
           <input class="form-check-input" type="checkbox" name="tags" value="dairy-free">
           <label class="form-check-label dairy-free" for="defaultCheck1">
@@ -48,6 +58,8 @@
             # macrobiotic
           </label>
         </div>
+        </div>
+        <div>
         <div class="eachTag">
           <input class="form-check-input" type="checkbox" name="tags" value="healthy">
           <label class="form-check-label healthy" for="defaultCheck1">
@@ -61,30 +73,19 @@
           </label>
         </div>
       </div>
+      </div>
+      
+    </div>
       <div class="detailsPrep">
-        <div class="input-group mb-3">
+        <div class="input-group mb-3 time">
           <div class="input-group-prepend">
             <label class="input-group-text" for="time"><i class="fas fa-clock"></i></label>
           </div>
           <input id="preparationTime" type="number" name="preparationTime" placeholder="Mins">
         </div>
-
-        {{!-- <label for="difficulty">Difficulty:</label>
-  <select name="difficulty" id="difficulty">
-    <option value="0">0</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3" selected>3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-  </select> --}}
-
-        {{!-- <label for="">Servings:</label>
-  <input type="number" name="servings"> --}}
-
         <div class="input-group mb-3">
           <div class="input-group-prepend">
-            <label class="input-group-text" for="servings"><i class="fas fa-chart-pie"></i></label>
+            <label class="input-group-text" for="servings">Servings</label>
           </div>
           <select class="custom-select" name="servings" id="servings">
             <option selected>Choose...</option>
@@ -100,9 +101,22 @@
             <option value="10">Ten</option>
           </select>
         </div>
+          <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="difficulty">Difficulty</label>
+          </div>
+          <select class="custom-select mt-2" name="difficulty" id="difficulty">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3" selected>3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
       </div>
-    </div>
+        </div>
 
+      
 
     <h3 class="ingName mt-5">Ingredients</h3>
     <div class="ingredientsAdd">
@@ -136,9 +150,9 @@
             </div>
             <input type="text" name="name" placeholder="Carrots">
             <button class="butIngred delete-recipie-in-form"><i class="far fa-trash-alt"></i></button>
-            <button class="butIngred" id="add-recipie-in-form"><i class="fas fa-plus"></i></button>
           </div>
         </div>
+            <button class="butIngred" id="add-recipie-in-form"><i class="fas fa-plus"></i></button>
       </div>
     </div>
     <br>
@@ -150,43 +164,15 @@
 </textarea>
       </div>
       <br>
-      <label for="difficulty">Difficulty:</label>
-      <select name="difficulty" id="difficulty">
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3" selected>3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-
-      </select>
-    </div>
-</div>
-{{!-- <div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <label class="input-group-text" for="ingredient">Name</label>
-  </div>
-  <input type="text" name="name" placeholder="Carrots">
-  <button class="butIngred" id="delete-recipie-in-form"><i class="far fa-trash-alt"></i></button>
-</div>
-</div>
-<button class="butIngred" id="add-recipie-in-form"><i class="fas fa-plus"></i></button>
-</div>
-<br> --}}
-{{!-- <div class="steps">
-    <div class="stepText">
-  <label class="ingName" for="steps">How to do it?</label>
-  <br>
-   <textarea rows="4" cols="50" name="steps" placeholder="Enter your full recipe, step by step...">
-</textarea>
-</div>
-</div> --}}
-<br>
-
-<div class="custom-file">
+ <div class="custom-file">
   <input type="file" name="recipeImg" class="custom-file-input" id="customFile">
   <label class="custom-file-label" for="customFile">Choose image</label>
 </div>
+    </div>
+</div>
+<br>
+
+
 
 
 
