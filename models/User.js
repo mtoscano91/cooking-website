@@ -38,6 +38,14 @@ const userSchema = new Schema({
     default: 6,
   },
   facebookId: String,
+  shoppingList: [
+    {
+      recipeId: {
+        type: Schema.Types.ObjectId,
+        ref: "Recipe",
+      },
+    },
+  ],
 });
 
 const User = mongoose.model("User", userSchema);
