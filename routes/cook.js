@@ -131,24 +131,35 @@ router.get("/recipe/:id", (req, res, next) => {
     });
 });
 
-router.get("/user/:id", (req, res, next) => {
-  const userId = req.params.id;
-  Recipe.find({ user_id: userId })
-    .populate("user_id")
-    .then((recipes) => {
-      if (recipes.length > 0)
-        return res.render("selected-user", {
-          recipes: recipes,
-          user: req.user,
+router.get(
+  "/user/:id",
+  ensureLogin.ensureLoggedIn("../auth/login"),
+  (req, res, next) => {
+    let isUser = false;
+    const userId = req.params.id;
+    if (userId == req.user._id) isUser = true;
+    Recipe.find({ user_id: userId })
+      .populate("user_id")
+      .then((recipes) => {
+        if (recipes.length > 0)
+          return res.render("user-id", {
+            recipes: recipes,
+            user: req.user,
+            isUser: isUser,
+          });
+        User.findById(userId).then((user) => {
+          res.render("user-id", {
+            userNoRecipes: user,
+            user: req.user,
+            isUser,
+          });
         });
-      User.findById(userId).then((user) => {
-        res.render("selected-user", { userProfile: user, user: req.user });
+      })
+      .catch((err) => {
+        next(err);
       });
-    })
-    .catch((err) => {
-      next(err);
-    });
-});
+  }
+);
 
 router.get("/recipe/edit/:recipeId", (req, res) => {
   Recipe.findById(req.params.recipeId).then((recipe) => {
@@ -287,13 +298,29 @@ router.post("/users", (req, res, next) => {
   });
 });
 
-router.get("/my-liked-recipes", (req, res, next) => {
-  const userId = req.user._id;
+router.get("/liked-recipes/:id", (req, res, next) => {
+  let isUser = false;
+  const userId = req.params.id;
+  if (userId == req.user._id) isUser = true;
   Recipe.find({ user_id: userId })
     .populate("user_id")
-    .then((myRecipes) => {
-      console.log(myRecipes);
-      res.render("my-liked-recipes", { user: req.user, recipes: myRecipes });
+    .then((idRecipes) => {
+      if (idRecipes.length > 0)
+        return res.render("liked-recipes", {
+          recipes: idRecipes,
+          user: req.user,
+          isUser: isUser,
+        });
+      User.findById(userId).then((user) => {
+        res.render("liked-recipes", {
+          userNoRecipes: user,
+          user: req.user,
+          isUser,
+        });
+      });
+    })
+    .catch((err) => {
+      next(err);
     });
 });
 

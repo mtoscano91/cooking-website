@@ -14,7 +14,11 @@
         <h5 class="card-title">Plan your meals and buy smartly</h5>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
           content.</p>
-        <a href="/profile" class="card-link">Let´s go! <i class="fas fa-long-arrow-alt-right"></i></a>
+        {{#if req.user}}
+        <a href="/user/{{req.user._id}}" class="card-link">Let´s go! <i class="fas fa-long-arrow-alt-right"></i></a>
+        {{else}}
+        <a href="/auth/login" class="card-link">Let´s go! <i class="fas fa-long-arrow-alt-right"></i></a>
+        {{/if}}
       </div>
     </div>
     <div class="card gallery col-md-3 text-center">
