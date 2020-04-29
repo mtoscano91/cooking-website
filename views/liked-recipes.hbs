@@ -1,0 +1,127 @@
+{{#if userNoRecipes}}
+<div class="profile">
+  <div class="personalData">
+    <img src="{{userNoRecipes.imgPath}}" alt="image{{userNoRecipes.username}}">
+    {{!-- <input type="image" src="" alt="add image" onclick=""> --}}
+    <div class="name mt-5">
+      <h1>{{userNoRecipes.username}}</h1>
+      {{#if isUser}}
+      <a href="/edit/profile"><i class="fas fa-edit"></i></a>
+      {{/if}}
+    </div>
+    <br>
+    <div class="">
+      {{!-- <span>{rating}</span> --}}
+    </div>
+    {{!-- thins links to tags go to the recipes of the tag --}}
+    <div class="tagPro mt-4">
+      <span class="gluten-free">#GlutenFree</span>
+      <span class="vegetarian">#Veggie</span>
+      <br>
+      <span class="dairy-free">#DairyFree</span>
+    </div>
+    <div class="numbers mt-4">
+      <div class="follow">
+        {{!-- <span>{{this.user.followers}}</span> --}}
+        <span>{{userNoRecipes.followers}}</span>
+        <h6>Followers</h6>
+      </div>
+      <div class="follow">
+        {{!-- <span>{{this.user.following}}</span> --}}
+        <span>{{userNoRecipes.following}}</span>
+        <h6>Following</h6>
+      </div>
+    </div>
+  </div>
+  {{/if}}
+
+  {{#with recipes.0.user_id}}
+  <div class="profile">
+    <div class="personalData">
+      <img src="{{this.imgPath}}" alt="image{{this.username}}">
+      {{!-- <input type="image" src="" alt="add image" onclick=""> --}}
+      <div class="name mt-5">
+        <h1>{{this.username}}</h1>
+        {{/with}}
+        {{#if isUser}}
+        <a href="/edit/profile"><i class="fas fa-edit"></i></a>
+        {{/if}}
+      </div>
+      <br>
+      <div class="">
+        {{!-- <span>{rating}</span> --}}
+      </div>
+      {{!-- thins links to tags go to the recipes of the tag --}}
+      <div class="tagPro mt-4">
+        <span class="gluten-free">#GlutenFree</span>
+        <span class="vegetarian">#Veggie</span>
+        <br>
+        <span class="dairy-free">#DairyFree</span>
+      </div>
+      <div class="numbers mt-4">
+        <div class="follow">
+          {{!-- <span>{{this.user.followers}}</span> --}}
+          {{#with recipes.0.user_id}}
+          <span>{{this.followers}}</span>
+          <h6>Followers</h6>
+        </div>
+        <div class="follow">
+          {{!-- <span>{{this.user.following}}</span> --}}
+          <span>{{this.following}}</span>
+          <h6>Following</h6>
+        </div>
+      </div>
+    </div>
+    {{/with}}
+    <div class="dashboard">
+      <div class="tabs">
+        <input type="radio" name="tabs" id="tabone">
+        {{#if isUser}}
+        <label for="tabone"><a href="/user/{{recipes.0.user_id._id}}">My recipes</a></label>
+        {{else}}
+        <label for="tabone"><a href="/user/{{recipes.0.user_id._id}}">{{recipes.0.user_id.username}} recipes</a></label>
+        {{/if}}
+
+        <input type="radio" name="tabs" id="tabtwo" checked="checked">
+        {{#if isUser}}
+        <label for="tabtwo"><a href="/liked-recipes/{{recipes.0.user_id._id}}">My liked recipes</a></label>
+        {{else}}
+        <label for="tabtwo"><a href="/liked-recipes/{{recipes.0.user_id._id}}">{{recipes.0.user_id.username}} liked
+            recipes</a></label>
+        {{/if}}
+        <div class="tab">
+
+          <div class="recipesPro">
+            <div class="myLikedRecipes">
+              <div class="card-group">
+                {{#each recipes}}
+                <div class="card">
+                  <img src={{this.imgPath}} class="card-img-top" alt={{this.imgName}}>
+                  <div class="card-body">
+                    <h5 class="card-title">{{this.title}}</h5>
+                    <div class="tagPro">
+                      {{#each tags}}
+                      <span class="{{this}}">#{{this}}</span>
+                      {{/each}}
+                    </div>
+                  </div>
+                </div>
+                {{/each}}
+                {{#if isUser}}
+                <a href="/recipes"><i class="fas fa-plus-circle"></i></a>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <input type="radio" name="tabs" id="tabthree">
+        <label for="tabthree">Shopping List</label>
+        <div class="tab">
+          <h1>My shopping list</h1>
+          <p>COMING SOON</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
