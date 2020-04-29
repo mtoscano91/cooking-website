@@ -1,6 +1,6 @@
 .addRecipeForm{
-  border: 0px;
-  border-bottom: 2px solid rgba(59,89,152,1);
+ padding: 2rem;
+  border: 2px solid rgba(59,89,152,1);
   width: 50vh;
 }
 .partOne{
@@ -22,6 +22,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 1rem;
   flex-direction: column;
   color: rgba(59,89,152,1);
   font-weight: bold;
@@ -130,6 +131,9 @@ label.input-group-text{
   justify-content: center;
   width: 70%;
   margin: 3rem auto;
+}
+#nameIngredient{
+  margin-top: 0px;
 }
 @media screen and (min-width: 1900px) {
   .container{

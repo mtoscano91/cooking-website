@@ -72,27 +72,33 @@
 .imgRecipeId{
   width: 50vh;
   margin-top: 1rem;
-  height: 50vh;
+  height: 21rem;
   padding: 0.25rem;
 
 }
 .bodyRecipe{
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 85%;
+  padding: 2rem;
+  margin: 2rem auto;
+  -webkit-box-shadow: 27px 25px 62px 10px rgba(59,89,152,1);
+-moz-box-shadow: 27px 25px 62px 10px rgba(59,89,152,1);
+box-shadow: 27px 25px 62px 10px rgba(59,89,152,1);
   font-family: "Open Sans", sans-serif;
 }
 .generalInfo{
-  margin: 5rem auto;
+  margin: 0 auto;
   
 }
 .stepsInfo ul{
-  width: 70%;
+  width: 42rem;
   display: flex;
   flex-wrap: wrap;
 }
 .displayTitle h5{
-  font-size: 30px;
+  font-size: 4rem;
+  font-family: 'Cookie', cursive;
 }
 .subTitle{
   font-weight: bold;
@@ -156,11 +162,12 @@
 }
 .howTo p{
   font-weight: 400;
+  text-align: center;
   line-height: inherit;
   letter-spacing: 1px;
-  width: 80%;
+  width: 50rem;
   color: black;
-  text-transform: inherit;
+
 }
 .here span{
   font-size: 18px;

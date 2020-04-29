@@ -5,10 +5,13 @@
     <div class="stepsInfo">
       <div class="displayTitle">
         <h5 class="title">{{this.title}}</h5>
+       
         <div class="updateButtons">
         <a href="/recipe/edit/{{this._id}}"><i class="far fa-edit"></i></a>
       <a href="/recipe/delete/{{this._id}}"><i class="far fa-trash-alt"></i></a>
       </div>
+        
+
       <div class="tag here mt-3">
           {{#each tags}}
           <span class="{{this}}">#{{this}}</span>
