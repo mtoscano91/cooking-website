@@ -43,6 +43,7 @@
   justify-content: space-between;
   width: 50%;
   text-align: center;
+  border: 1px solid gainsboro;
 }
 
 .eachInfo{
@@ -79,6 +80,7 @@
 }
 .generalInfo{
   margin: 5rem auto;
+  
 }
 .stepsInfo ul{
   width: 70%;
@@ -115,6 +117,7 @@
   width: 30%;
   justify-content: space-between;
   align-items: center;
+  
 }
 .desc{
   font-size: 18px;
@@ -128,10 +131,10 @@
 .buttonsRecipes button{
   margin: 1rem;
   width: 115%;
-  padding: 1.5rem;
-  background-color: #3b5998;
+  padding: 1rem;
+  background-color: white;
   border: 1px solid #3b5998;
-  color: white;
+  color: #E82A69;
   font-weight: bold;
   font-size: 20px;
   border-radius: 51%;
