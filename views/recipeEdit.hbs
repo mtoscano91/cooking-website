@@ -143,7 +143,7 @@
             <div class="input-group-prepend">
               <label class="input-group-text" for="ingredient">Name</label>
             </div>
-            <input type="text" name="name" placeholder="Carrots" class="name" value="{{name}}">
+            <input type="text" name="name" placeholder="Carrots" id="nameIngredient" class="name" value="{{name}}">
             <button class="butIngred delete-recipie-in-form"><i class="far fa-trash-alt"></i></button>
           </div>
           </div>
@@ -163,7 +163,7 @@
   <input type="file" name="recipeImg" class="custom-file-input" id="customFile" value="{{imgPath}}">
   <label class="custom-file-label" for="customFile">Choose image</label>
 
-<input class="display-not" type="text" name="imgPath" value="{{imgPath}}">
+<input class="display-not"  type="text" name="imgPath" value="{{imgPath}}">
   <input class="display-not" type="text" name="imgName" value="{{imgName}}"></div>
     </div>
   <button class="submitRecipe" type="submit">Edit recipe</button>
