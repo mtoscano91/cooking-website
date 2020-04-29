@@ -19,6 +19,7 @@ mongoose
   .connect(process.env.MONGODB_URI || "mongodb://localhost/new-project", {
     useNewUrlParser: true,
   })
+
   .then((x) => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
