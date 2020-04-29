@@ -11,19 +11,23 @@ const bcryptSalt = 10;
 
 const ensureLogin = require("connect-ensure-login");
 
-router.get("/profile", ensureLogin.ensureLoggedIn("auth/login"), (req, res) => {
-  const userId = req.user._id;
-  Recipe.find({ user_id: userId })
-    .populate("user_id")
-    .then((myRecipes) => {
-      console.log(myRecipes);
-      res.render("profile", { user: req.user, recipes: myRecipes });
-    });
-});
+router.get(
+  "/profile",
+  ensureLogin.ensureLoggedIn("auth/signup"),
+  (req, res) => {
+    const userId = req.user._id;
+    Recipe.find({ user_id: userId })
+      .populate("user_id")
+      .then((myRecipes) => {
+        console.log(myRecipes);
+        res.render("profile", { user: req.user, recipes: myRecipes });
+      });
+  }
+);
 
 router.get(
   "/new-recipe",
-  ensureLogin.ensureLoggedIn("auth/login"),
+  ensureLogin.ensureLoggedIn("auth/signup"),
   (req, res) => {
     res.render("new-recipe", { user: req.user });
   }
@@ -133,7 +137,7 @@ router.get("/recipe/:id", (req, res, next) => {
 
 router.get(
   "/user/:id",
-  ensureLogin.ensureLoggedIn("../auth/login"),
+  ensureLogin.ensureLoggedIn("../auth/signup"),
   (req, res, next) => {
     let isUser = false;
     const userId = req.params.id;

@@ -172,7 +172,9 @@ const recipes = [
 // $ node bin/seeds.js
 
 mongoose
-  .connect("mongodb://localhost/new-project", { useNewUrlParser: true })
+  .connect(process.env.MONGODB_URI || "mongodb://localhost/new-project", {
+    useNewUrlParser: true,
+  })
   .then((x) => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
