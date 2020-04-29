@@ -119,9 +119,7 @@
 
 }
 #add-recipie-in-form{
-position: absolute;
-top: 37rem;
-right: 35rem;
+margin: 0 auto
 }
 label.input-group-text{
   font-weight: bold;
