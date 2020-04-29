@@ -8,7 +8,9 @@ const hbs = require("hbs");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
-
+const passport = require("passport");
+const FacebookStrategy = require("passport-facebook").Strategy;
+const User = require("./models/User");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const flash = require("connect-flash");
@@ -74,6 +76,33 @@ app.use(
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
   })
 );
+passport.use(
+  new FacebookStrategy(
+    {
+      clientID: process.env.FACEBOOK_APP_ID,
+      clientSecret: process.env.FACEBOOK_APP_SECRET,
+      callbackURL: "http://localhost:3000/auth/facebook/callback",
+    },
+    function (accessToken, refreshToken, profile, done) {
+      User.findOne({ facebookId: profile.id }).then((found) => {
+        if (found !== null) {
+          console.log(profile);
+          // user with that facebookID already exists
+          done(null, found);
+        } else {
+          // no user with that facebookID
+          return User.create({
+            facebookId: profile.id,
+            username: profile.displayName,
+          }).then((dbUser) => {
+            done(null, dbUser);
+          });
+        }
+      });
+    }
+  )
+);
+
 app.use(flash());
 require("./passport")(app);
 
