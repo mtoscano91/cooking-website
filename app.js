@@ -16,7 +16,10 @@ const MongoStore = require("connect-mongo")(session);
 const flash = require("connect-flash");
 
 mongoose
-  .connect("mongodb://localhost/new-project", { useNewUrlParser: true })
+  .connect(process.env.MONGODB_URI || "mongodb://localhost/new-project", {
+    useNewUrlParser: true,
+  })
+
   .then((x) => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
@@ -65,7 +68,7 @@ hbs.registerHelper("ifUndefined", (value, options) => {
 });
 
 // default value for title local
-app.locals.title = "Express - Generated with IronGenerator";
+app.locals.title = "Ironcooking";
 
 // Enable authentication using session + passport
 app.use(
@@ -81,7 +84,7 @@ passport.use(
     {
       clientID: process.env.FACEBOOK_APP_ID,
       clientSecret: process.env.FACEBOOK_APP_SECRET,
-      callbackURL: "http://localhost:3000/auth/facebook/callback",
+      callbackURL: "/auth/facebook/callback",
     },
     function (accessToken, refreshToken, profile, done) {
       User.findOne({ facebookId: profile.id }).then((found) => {
