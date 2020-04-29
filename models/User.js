@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   username: {
     type: String,
-    required: true,
+    // required: true,
   },
   password: {
     type: String,
-    required: true,
+    // required: true,
   },
   imgName: String,
   imgPath: {
@@ -37,6 +37,7 @@ const userSchema = new Schema({
     type: Number,
     default: 6,
   },
+  facebookId: String,
 });
 
 const User = mongoose.model("User", userSchema);
