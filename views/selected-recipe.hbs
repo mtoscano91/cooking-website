@@ -5,6 +5,10 @@
     <div class="stepsInfo">
       <div class="displayTitle">
         <h5 class="title">{{this.title}}</h5>
+        <div class="updateButtons">
+        <a href="/recipe/edit/{{this._id}}"><i class="far fa-edit"></i></a>
+      <a href="/recipe/delete/{{this._id}}"><i class="far fa-trash-alt"></i></a>
+      </div>
       <div class="tag here mt-3">
           {{#each tags}}
           <span class="{{this}}">#{{this}}</span>
@@ -41,21 +45,19 @@
       </div>
 
       <br>
-      <a href="/recipe/edit/{{this._id}}">Edit...</a>
-      <a href="/recipe/delete/{{this._id}}">...Delete</a>
+      
+      
 
 
     </div>
 
     <div class="generalInfo">
-
       <img src="{{this.imgPath}}" class="imgRecipeId img-thumbnail" alt="...">
-      <p class="text-center">By <span class="userName">{{user_id.username}}</span></p>
       <div class="buttonsRecipes">
+      <p class="text-center">By <span class="userName">{{user_id.username}}</span></p>
         <button><i class="fas fa-heart"></i></button>
         <button> <i class="fas fa-shopping-cart"></i></button>
       </div>
-
     </div>
     {{/with}}
   </div>

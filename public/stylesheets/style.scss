@@ -206,6 +206,7 @@ body {
     cursor: pointer;
     border: 1px solid rgb(15,76,129);
     font-weight: bold;
+    text-transform: capitalize;
     transition: background ease 0.2s;
   }
   .tabs .tab {

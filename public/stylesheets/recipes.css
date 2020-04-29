@@ -70,9 +70,9 @@
 
 }
 .imgRecipeId{
-  width: 40vh;
+  width: 50vh;
   margin-top: 1rem;
-  height: 40vh;
+  height: 50vh;
   padding: 0.25rem;
 
 }
@@ -118,8 +118,8 @@
 .buttonsRecipes{
   display: flex;
   flex-direction: row;
-  width: 30%;
-  justify-content: space-between;
+  width: 12rem;
+  justify-content: space-around;
   align-items: center;
   
 }
@@ -133,19 +133,13 @@
   width: 70%;
 }
 .buttonsRecipes button{
-  margin: 1rem;
-  width: 115%;
-  padding: 1rem;
-  background-color: white;
-  border: 1px solid #3b5998;
-  color: #E82A69;
-  font-weight: bold;
-  font-size: 20px;
-  border-radius: 51%;
-  text-align: center;
+ background-color: white;
+ border: 0px;
 }
 .buttonsRecipes i{
   margin: 0.5rem;
+  font-size: 1.5rem;
+  color: #E82A69;
 }
 .buttonsRecipes button:hover{
   background-color: white;
