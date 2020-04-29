@@ -6,7 +6,12 @@
     <div class="name mt-5">
       <h1>{{userNoRecipes.username}}</h1>
       {{#if isUser}}
-      <a href="/edit/profile"><i class="fas fa-edit"></i></a>
+      <form>
+        <input type="file" name="imgPath">
+        <button>Update Image</button>
+        {{!-- <a href="/edit/profile"><i class="fas fa-edit"></i></a> --}}
+      </form>
+      {{!-- <a href="/edit/profile"><i class="fas fa-edit"></i></a> --}}
       {{/if}}
     </div>
     <br>
@@ -20,21 +25,21 @@
       <br>
       <span class="dairy-free">#DairyFree</span>
     </div>
-     <div class="numbers">
-      <div class="follow"> 
+    <div class="numbers">
+      <div class="follow">
         <h6>Followers</h6>
         {{!-- <span>{{this.user.followers}}</span>  --}}
         <span>{{userNoRecipes.followers}}</span>
       </div>
-      <div class="follow"> 
+      <div class="follow">
         <h6>Following</h6>
         {{!-- <span>{{this.user.following}}</span>  --}}
         <span>{{userNoRecipes.following}}</span>
       </div>
-    </div> 
+    </div>
   </div>
   {{/if}}
-  
+
 
   {{#with recipes.0.user_id}}
   <div class="profile">
@@ -45,7 +50,12 @@
         <h1>{{this.username}}</h1>
         {{/with}}
         {{#if isUser}}
-        <a href="/edit/profile"><i class="fas fa-edit"></i></a>
+        <form>
+          <input type="file" name="imgPath">
+          <button>Update Image</button>
+          {{!-- <a href="/edit/profile"><i class="fas fa-edit"></i></a> --}}
+        </form>
+        {{!-- <a href="/edit/profile"><i class="fas fa-edit"></i></a> --}}
         {{/if}}
       </div>
       <br>
@@ -60,17 +70,17 @@
       </div>
       <div class="numbers">
         <div class="follow">
-           {{!-- <span>{{this.user.followers}}</span>  --}}
-           {{#with recipes.0.user_id}}
-          <h6>Followers   </h6>
+          {{!-- <span>{{this.user.followers}}</span>  --}}
+          {{#with recipes.0.user_id}}
+          <h6>Followers </h6>
           <span>{{this.followers}}</span>
         </div>
-        <div class="follow"> 
-           {{!-- <span>{{this.user.following}}</span>  --}}
-           <h6>Following   </h6>
+        <div class="follow">
+          {{!-- <span>{{this.user.following}}</span>  --}}
+          <h6>Following </h6>
           <span>{{this.following}}</span>
         </div>
-       </div> 
+      </div>
     </div>
     {{/with}}
     <div class="dashboard">
