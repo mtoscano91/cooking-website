@@ -99,15 +99,17 @@ router.post("/recipe/add", uploader.single("recipeImg"), (req, res, next) => {
   newRecipe
     .save()
     .then((recipe) => {
+      User.findById(req.user._id).then((userId) => {
+        res.redirect("/recipes");
+      });
       // console.log(recipe.ingredients);
-      res.redirect("/recipes");
     })
     .catch((error) => {
       console.log(error);
     });
 });
 
-router.get("/my-shopping-list", (req, res, next) => {
+router.get("/shopping-list", (req, res, next) => {
   User.find()
     .then((usersFromDB) => {
       res.render("shopping-list", { users: usersFromDB, user: req.user });
@@ -128,7 +130,11 @@ router.get("/recipe/:id", (req, res, next) => {
   Recipe.findById(recipeId)
     .populate("user_id")
     .then((recipe) => {
-      res.render("selected-recipe", { recipe: recipe, user: req.user });
+      res.render("selected-recipe", {
+        recipe: recipe,
+        user: req.user,
+        id: JSON.stringify(recipe),
+      });
     })
     .catch((err) => {
       next(err);
@@ -325,6 +331,28 @@ router.get("/liked-recipes/:id", (req, res, next) => {
     })
     .catch((err) => {
       next(err);
+    });
+});
+
+router.get("/shopping-list/:id", (req, res, next) => {
+  //console.log(req.params.id, req.user);
+  const recipeId = req.params.id;
+  const userId = req.user._id;
+  User.findById(userId)
+    .then((userFound) => {
+      console.log(userFound.shoppingList);
+      userFound.shoppingList.forEach((el, i) => {
+        if (el.recipeId == recipeId) {
+        }
+      });
+      console.log(userFound.shoppingList);
+    })
+    //User.findByIdAndUpdate(userId, {
+    // $push: { shoppingList: { recipeId: recipeId } },
+    //})
+    .then((recipeUpdated) => {
+      //console.log(recipeUpdated);
+      res.json({ message: "Dioni Has Severe issues" });
     });
 });
 
