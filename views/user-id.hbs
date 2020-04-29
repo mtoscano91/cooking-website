@@ -14,7 +14,7 @@
       {{!-- <span>{rating}</span> --}}
     </div>
     {{!-- thins links to tags go to the recipes of the tag --}}
-    <div class="tagPro mt-4">
+    <div class="tagPro">
       <span class="gluten-free">#GlutenFree</span>
       <span class="vegetarian">#Veggie</span>
       <br>
@@ -34,13 +34,14 @@
     </div>
   </div>
   {{/if}}
+  {{#if !userNoRecipes}}
 
   {{#with recipes.0.user_id}}
   <div class="profile">
     <div class="personalData">
       <img src="{{this.imgPath}}" alt="image{{this.username}}">
       {{!-- <input type="image" src="" alt="add image" onclick=""> --}}
-      <div class="name mt-5">
+      <div class="name">
         <h1>{{this.username}}</h1>
         {{/with}}
         {{#if isUser}}
@@ -52,23 +53,22 @@
         {{!-- <span>{rating}</span> --}}
       </div>
       {{!-- thins links to tags go to the recipes of the tag --}}
-      <div class="tagPro mt-4">
+      <div class="tagPro">
         <span class="gluten-free">#GlutenFree</span>
         <span class="vegetarian">#Veggie</span>
-        <br>
         <span class="dairy-free">#DairyFree</span>
       </div>
-      <div class="numbers mt-4">
+      <div class="numbers">
         <div class="follow">
           {{!-- <span>{{this.user.followers}}</span> --}}
           {{#with recipes.0.user_id}}
+          <h6>Followers   </h6>
           <span>{{this.followers}}</span>
-          <h6>Followers</h6>
         </div>
         <div class="follow">
           {{!-- <span>{{this.user.following}}</span> --}}
+          <h6>Following   </h6>
           <span>{{this.following}}</span>
-          <h6>Following</h6>
         </div>
       </div>
     </div>
@@ -87,8 +87,8 @@
             <div class="card-group">
               {{#each recipes}}
               <div class="card">
-                <img src={{this.imgPath}} class="card-img-top" alt={{this.imgName}}>
-                <div class="card-body">
+                <img src={{this.imgPath}} id="imageRecipePro" class="card-img-top" alt={{this.imgName}}>
+                <div class="card-body text-center">
                   <h5 class="card-title">{{this.title}}</h5>
                   <div class="tagPro">
                     {{#each tags}}
@@ -127,3 +127,4 @@
 
     </div>
   </div>
+  {{/if}}
