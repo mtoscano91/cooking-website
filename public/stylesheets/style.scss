@@ -1,7 +1,9 @@
 body {
   font-family: 'Roboto', sans-serif;
      }
-   
+   .navbar img{
+     width: 6rem;
+   }
   .title{
     font-size : 30px;
     font-weight: 700; 
@@ -224,7 +226,20 @@ body {
   .tabs input[type="radio"]:checked + label + .tab {
     display: block;
   }
-  
+  footer{
+    display: flex;
+    justify-content: flex-end;
+  }
+  footer h3{
+    font-size: 16px;
+    font-weight: bold;
+    color: #E82A69;
+
+  }
+  footer i{
+    color: #E82A69!important;
+
+  }
   @media (max-width: 45em) {
     .tabs .tab,
     .tabs label {
