@@ -34,6 +34,7 @@ router.get(
 );
 
 router.get("/recipes", (req, res, next) => {
+  console.log("get");
   Recipe.find()
     .then((recipesFromDB) => {
       // console.log(recipesFromDB);
@@ -253,38 +254,49 @@ router.post(
 );
 
 router.post("/recipes", (req, res, next) => {
-  let filteredTags = [];
-  for (let i = 0; i < req.body.tags.length; i++) {
-    filteredTags.push(req.body.tags[i]);
-  }
-  if (typeof req.body.tags === "string") {
-    filteredTags = [req.body.tags];
-  }
-
-  let queries = [];
-  filteredTags.forEach((query) => {
-    queries.push({ tags: query });
-  });
-
-  Recipe.find({ $or: queries })
-    .then((filteredRecipes) => {
-      console.log(filteredRecipes);
-      if (filteredRecipes == "") {
-        ////This is not working
-        Recipe.find().then((recipes) => {
-          res.json({
-            message: "Oops! No recipes were found",
-            recipes: recipes,
-          });
-          res.redirect("/recipes");
-          return;
-        });
-      }
-      res.render("recipes", { recipes: filteredRecipes });
-    })
-    .catch((err) => {
-      next(err);
+  console.log("console log de", req.body.text, "hast aqui");
+  if (req.body.text) {
+    let dioni = req.body.text;
+    console.log("buscando");
+    Recipe.find(dioni).then((text) => {
+      res.render("recipes", { recipes: text });
     });
+  }
+
+  if (req.body.tags) {
+    let filteredTags = [];
+    for (let i = 0; i < req.body.tags.length; i++) {
+      filteredTags.push(req.body.tags[i]);
+    }
+    if (typeof req.body.tags === "string") {
+      filteredTags = [req.body.tags];
+    }
+
+    let queries = [];
+    filteredTags.forEach((query) => {
+      queries.push({ tags: query });
+    });
+
+    Recipe.find({ $or: queries })
+      .then((filteredRecipes) => {
+        // console.log(filteredRecipes);
+        if (filteredRecipes == "") {
+          ////This is not working
+          Recipe.find().then((recipes) => {
+            res.json({
+              message: "Oops! No recipes were found",
+              recipes: recipes,
+            });
+            res.redirect("/recipes");
+            return;
+          });
+        }
+        res.render("recipes", { recipes: filteredRecipes });
+      })
+      .catch((err) => {
+        next(err);
+      });
+  }
 });
 
 router.post("/users", (req, res, next) => {
