@@ -197,6 +197,7 @@ i.fas.fa-lock {
   cursor: pointer;
   border: 1px solid #0f4c81;
   font-weight: bold;
+  text-transform: capitalize;
   transition: background ease 0.2s; }
 
 .tabs .tab {

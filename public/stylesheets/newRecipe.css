@@ -143,7 +143,15 @@ label.input-group-text{
 .ingredients-in-form{
   /* margin: 2rem 3rem; */
   width: 80%;
- 
+}
+.subPart{
+  width: 11rem;
+}
+.partOne{
+  margin-top: 3rem;
+}
+.steps{
+  width: 86%;
 }
 }
 @media only screen and (max-device-width: 800px){
