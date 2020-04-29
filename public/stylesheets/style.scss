@@ -253,7 +253,9 @@ body {
     }
   }
   @media only screen and (max-device-width: 1030px){
- 
+ #exampleModal{
+   width: 23rem!important;
+ }
   .formLogin{
     height: 100vh;
   }

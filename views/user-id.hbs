@@ -20,21 +20,21 @@
       <br>
       <span class="dairy-free">#DairyFree</span>
     </div>
-    <div class="numbers mt-4">
-      <div class="follow">
-        {{!-- <span>{{this.user.followers}}</span> --}}
-        <span>{{userNoRecipes.followers}}</span>
+     <div class="numbers">
+      <div class="follow"> 
         <h6>Followers</h6>
+        {{!-- <span>{{this.user.followers}}</span>  --}}
+        <span>{{userNoRecipes.followers}}</span>
       </div>
-      <div class="follow">
-        {{!-- <span>{{this.user.following}}</span> --}}
-        <span>{{userNoRecipes.following}}</span>
+      <div class="follow"> 
         <h6>Following</h6>
+        {{!-- <span>{{this.user.following}}</span>  --}}
+        <span>{{userNoRecipes.following}}</span>
       </div>
-    </div>
+    </div> 
   </div>
   {{/if}}
-  {{#if !userNoRecipes}}
+  
 
   {{#with recipes.0.user_id}}
   <div class="profile">
@@ -60,17 +60,17 @@
       </div>
       <div class="numbers">
         <div class="follow">
-          {{!-- <span>{{this.user.followers}}</span> --}}
-          {{#with recipes.0.user_id}}
+           {{!-- <span>{{this.user.followers}}</span>  --}}
+           {{#with recipes.0.user_id}}
           <h6>Followers   </h6>
           <span>{{this.followers}}</span>
         </div>
-        <div class="follow">
-          {{!-- <span>{{this.user.following}}</span> --}}
-          <h6>Following   </h6>
+        <div class="follow"> 
+           {{!-- <span>{{this.user.following}}</span>  --}}
+           <h6>Following   </h6>
           <span>{{this.following}}</span>
         </div>
-      </div>
+       </div> 
     </div>
     {{/with}}
     <div class="dashboard">
@@ -90,6 +90,7 @@
                 <img src={{this.imgPath}} id="imageRecipePro" class="card-img-top" alt={{this.imgName}}>
                 <div class="card-body text-center">
                   <h5 class="card-title">{{this.title}}</h5>
+                  <p>{{this.shortDescription}}</p>
                   <div class="tagPro">
                     {{#each tags}}
                     <span class="{{this}}">#{{this}}</span>
@@ -127,4 +128,3 @@
 
     </div>
   </div>
-  {{/if}}

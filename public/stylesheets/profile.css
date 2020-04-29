@@ -88,15 +88,16 @@ width: 70%;
 }
 .recipesPro .card{
   margin: 1.5rem;
-  height: 25rem;
   border: 0px;
+  border:1px solid #3b5998;
 }
 .recipesPro{
   padding: 0px;
 }
-.recipesPro.card-img-top img{
-  height: 10rem;
+img#imageRecipePro.card-img-top{
+  height: 8rem!important;
 }
+
 @media only screen and (max-device-width: 1030px) {
 .profile{
   flex-direction: column;
