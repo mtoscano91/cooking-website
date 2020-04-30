@@ -459,4 +459,48 @@ router.get("/update-list/:id", (req, res, next) => {
 //     });
 // });
 
+router.get("/like-list/:id", (req, res, next) => {
+  //console.log(req.params.id, req.user);
+  const recipeId = req.params.id;
+  const userId = req.user._id;
+  let isLiked = false;
+  User.findById(userId).then((userFound) => {
+    console.log("user found", userFound);
+    //Check if recipe is in list already and filter it
+    let auxLikedList = userFound.likes;
+    auxLikedList = auxLikedList.filter((el) => {
+      return el.recipeId != recipeId;
+    });
+    let returnedLikedList = userFound.likes;
+    // If it wasnt the length are the same, so add it to the list. And set isSaved to true
+    if (auxLikedList.length === userFound.likes.length) {
+      returnedLikedList.push({ recipeId: recipeId });
+      isLiked = true;
+    } else {
+      //If it was the same, then it was filtered
+      returnedLikedList = auxLikedList;
+    }
+    //Update with new values
+    User.findByIdAndUpdate(
+      userId,
+      {
+        likes: returnedLikedList,
+      },
+      { new: true }
+    )
+      .then((userUpdated) => {
+        console.log(userUpdated, isSaved);
+        console.log("userUpdated:", userUpdated.likes);
+        res.json(
+          { userUpdated },
+          { isSaved },
+          { message: "Dioni Has Severe issues" }
+        );
+      })
+      .catch((err) => {
+        next(err);
+      });
+  });
+});
+
 module.exports = router;
