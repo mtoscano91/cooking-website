@@ -57,7 +57,7 @@ router.get("/users", (req, res, next) => {
 });
 
 router.post("/recipe/add", uploader.single("recipeImg"), (req, res, next) => {
-  console.log(req.body);
+  // console.log(req.body);
   const {
     title,
     shortDescription,
@@ -97,14 +97,50 @@ router.post("/recipe/add", uploader.single("recipeImg"), (req, res, next) => {
     ingredients: arrIngredients,
     tags,
   });
-  newRecipe
-    .save()
-    .then((recipe) => {
-      User.findById(req.user._id).then((userId) => {
-        res.redirect("/recipes");
-      });
-      // console.log(recipe.ingredients);
+  // add a recipe
+  // take the tags from the current recipe
+  // we check if they are in the users tags
+  // add the ones that are not there.
+  let newRecipeSaved = newRecipe.save();
+  let myUser = User.findById(req.user._id);
+  Promise.all([newRecipeSaved, myUser])
+    .then((response) => {
+      // the response is an array with both promises. respose[0] => newRecipe.save(); response[1] => User.findById(req.user._id)
+      console.log(response[0].tags);
+      const recipeTags = response[0].tags;
+      const userTags = response[1].tags; // this is an array
+      const newTags = [
+        ...userTags,
+        ...recipeTags,
+        ...recipeTags,
+        ...recipeTags,
+      ];
+      const set = [...new Set(newTags)];
+      // console.log("NEW  AND IMPROVED DIONI NOW GETS SPREAD OPERATOR", set);
+      User.findByIdAndUpdate(req.user._id, { tags: set }, { new: true }).then(
+        (updateUser) => {
+          console.log(updateUser);
+          res.redirect("/recipes");
+        }
+      );
+      /*  req.user.tags.push(response[0].tags[0]);
+      console.log(
+        req.user.tags,
+        //myUser.tags,
+        //myUser.Query,
+        response[0].tags,
+        //User.findByIdAndUpdate(req.user._id)
+        response[1].tags
+      ); // IUpdate the user with the relevant tags -> missing one query => User.findByIdAndUpdate */
     })
+    // newRecipe
+    //   .save()
+    //   .then((recipe) => {
+    //     User.findById(req.user._id).then((userId) => {
+    //       res.redirect("/recipes");
+    //     });
+    //     // console.log(recipe.ingredients);
+    //   })
     .catch((error) => {
       console.log(error);
     });
