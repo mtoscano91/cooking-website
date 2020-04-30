@@ -495,4 +495,52 @@ router.get("/update-list/:id", (req, res, next) => {
 //     });
 // });
 
+router.get("/like-list/:id", (req, res, next) => {
+  //console.log(req.params.id, req.user);
+  const recipeId = req.params.id;
+  const userId = req.user._id;
+  let isLiked = false;
+  Recipe.findById(recipeId).then((recipeFound) => {
+    //console.log("recipe found", recipeFound);
+    //Check if recipe is in list already and filter it
+    let auxLikedList = recipeFound.likes;
+    auxLikedList = auxLikedList.filter((el) => {
+      console.log(
+        "match",
+        Object.toString(el.user_id) == Object.toString(userId)
+      );
+      return Object.toString(el.user_id) != Object.toString(userId);
+    });
+    let returnedLikedList = recipeFound.likes;
+    // If it wasnt the length are the same, so add it to the list. And set isSaved to true
+    if (auxLikedList.length === recipeFound.likes.length) {
+      returnedLikedList.push({ user_id: userId });
+      isLiked = true;
+    } else {
+      //If it was the same, then it was filtered
+      returnedLikedList = auxLikedList;
+    }
+    //Update with new values
+    Recipe.findByIdAndUpdate(
+      recipeId,
+      {
+        likes: returnedLikedList,
+      },
+      { new: true }
+    )
+      .then((recipeUpdated) => {
+        console.log(isLiked);
+        console.log("recipeUpdated:", recipeUpdated.likes);
+        res.json(
+          { recipeUpdated },
+          { isLiked },
+          { message: "Dioni Has Severe issues" }
+        );
+      })
+      .catch((err) => {
+        next(err);
+      });
+  });
+});
+
 module.exports = router;
