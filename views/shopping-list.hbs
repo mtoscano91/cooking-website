@@ -1,13 +1,23 @@
-{{#each shoppingList}}
-<h2>
+<div class="container">
+  <div class="backgroundList">
+    {{!-- <div> --}}
+  {{!-- <h2 class="title">Your recipes</h2>
+  {{#each shoppingList}}
+<h4><i class="fab fa-slack-hash"></i>
   {{this.title}}
-</h2>
-{{/each}}
-<ul>
-  {{#each ingredients}}
-  <li>{{this.quantity}} {{this.measure}} {{this.name}}</li>
+</h4>
+{{/each}} --}}
+{{!-- </div> --}}
+<div>
+  <h1 class="title">Your shopping list</h1>
+<ul class="list-group shopList mt-5">
+{{#each ingredients}}
+  <li class="list-group-item"><i class="fab fa-slack-hash"></i>{{this.quantity}} {{this.measure}} {{this.name}}</li>
   {{#if this.quantity2}}
-  <li>{{this.quantity2}} {{this.measure2}} {{this.name}}</li>
-  {{/if}}
-  {{/each}}
-</ul>
+  <li class="list-group-item"><i class="fab fa-slack-hash"></i>{{this.quantity2}} {{this.measure2}} {{this.name}}</li>
+   {{/if}}
+    {{/each}}
+<ul>
+</div>
+</div>
+</div>
