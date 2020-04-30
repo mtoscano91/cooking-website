@@ -118,11 +118,48 @@ router.get(
     const userId = req.params.id;
     if (userId == req.user._id) isUser = true;
     User.findById(userId)
-      //Populate not working
-      //.populate("shoppingList")
+      .populate("shoppingList.recipeId")
       .then((userFound) => {
-        res.send(userFound);
-        //res.render("shopping-list", { userFound: userFound, user: req.user });
+        const shoppingList = userFound.shoppingList.map(({ recipeId }) => ({
+          ...recipeId["_doc"],
+        }));
+        /// For each ingr, get name and quantity.
+        // List of ingredients with their respetive measures (all added up -> if possible)
+        const allIngredients = shoppingList
+          .map(({ ingredients }) => ingredients)
+          .flat()
+          .reduce((acc, ingr) => {
+            const currentIngr = acc[ingr.name];
+
+            if (currentIngr) {
+              if (currentIngr.measure === ingr.measure) {
+                currentIngr.quantity += ingr.quantity;
+                return { ...acc };
+              } else {
+                currentIngr.quantity2 = ingr.quantity;
+                currentIngr.measure2 = ingr.measure;
+                return { ...acc };
+              }
+            } else {
+              return {
+                ...acc,
+                [ingr.name]: {
+                  quantity: ingr.quantity,
+                  measure: ingr.measure,
+                  name: ingr.name,
+                },
+              };
+            }
+          }, {});
+
+        //res.send(Object.values(allIngredients));
+        //res.send(shoppingList);
+        res.render("shopping-list", {
+          userFound: userFound,
+          user: req.user,
+          shoppingList: shoppingList,
+          ingredients: Object.values(allIngredients),
+        });
       })
       .catch((err) => {
         next(err);
@@ -379,42 +416,47 @@ router.get("/update-list/:id", (req, res, next) => {
   const recipeId = req.params.id;
   const userId = req.user._id;
   let isSaved = false;
-  User.findById(userId)
-    .then((userFound) => {
-      console.log("user found", userFound);
-      //Check if recipe is in list already and filter it
-      let auxShoppingList = userFound.shoppingList;
-      auxShoppingList = auxShoppingList.filter((el) => {
-        el.recipeId !== recipeId;
-      });
-      let returnedShoppingList = userFound.shoppingList;
-      // If it wasnt the length are the same, so add it to the list. And set isSaved to true
-      if (auxShoppingList.length === userFound.shoppingList.length) {
-        returnedShoppingList.push({ recipeId: recipeId });
-        isSaved = true;
-      } else {
-        //If it was the same, then it was filtered
-        returnedShoppingList = auxShoppingList;
-      }
-      //Update with new values
-      User.findByIdAndUpdate(userId, {
-        shoppingList: returnedShoppingList,
-      })
-        .then((userUpdated) => {
-          console.log(userUpdated, isSaved);
-          res.json(
-            { userUpdated },
-            { isSaved },
-            { message: "Dioni Has Severe issues" }
-          );
-        })
-        .catch((err) => {
-          next(err);
-        });
-    })
-    .catch((err) => {
-      next(err);
+  User.findById(userId).then((userFound) => {
+    console.log("user found", userFound);
+    //Check if recipe is in list already and filter it
+    let auxShoppingList = userFound.shoppingList;
+    auxShoppingList = auxShoppingList.filter((el) => {
+      return el.recipeId != recipeId;
     });
+    let returnedShoppingList = userFound.shoppingList;
+    // If it wasnt the length are the same, so add it to the list. And set isSaved to true
+    if (auxShoppingList.length === userFound.shoppingList.length) {
+      returnedShoppingList.push({ recipeId: recipeId });
+      isSaved = true;
+    } else {
+      //If it was the same, then it was filtered
+      returnedShoppingList = auxShoppingList;
+    }
+    //Update with new values
+    User.findByIdAndUpdate(
+      userId,
+      {
+        shoppingList: returnedShoppingList,
+      },
+      { new: true }
+    )
+      .then((userUpdated) => {
+        console.log(userUpdated, isSaved);
+        console.log("userUpdated:", userUpdated.shoppingList);
+        res.json(
+          { userUpdated },
+          { isSaved },
+          { message: "Dioni Has Severe issues" }
+        );
+      })
+      .catch((err) => {
+        next(err);
+      });
+  });
 });
+//     .catch((err) => {
+//       next(err);
+//     });
+// });
 
 module.exports = router;
