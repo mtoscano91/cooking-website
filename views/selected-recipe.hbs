@@ -47,14 +47,14 @@
           <p class="text-center">By <a href="/user/{{user_id._id}}"><span
                 class="userName">{{user_id.username}}</span></a></p>
           {{#if isLiked}}
-          <button><i class="fas fa-heart hvr-bounce-in"></i></button>
+          <button id="buttonShop"><i class="fas fa-heart"></i></button>
           {{else}}
-          <button><i class="fas fa-heart hvr-bounce-in"></i></button>
+          <button id="buttonShop"><i class="fas fa-heart"></i></button>
           {{/if}}
           {{#if isSaved}}
-          <button id="buttonShop" class="shopping-btn hvr-bounce-in"> <i class="fas fa-shopping-cart"></i></button>
+          <button id="buttonShop" class="shopping-btn"> <i class="fas fa-shopping-cart"></i></button>
           {{else}}
-          <button id="buttonShop" class="shopping-btn hvr-bounce-in"> <i class="fas fa-shopping-cart"></i></button>
+          <button id="buttonShop"  class="shopping-btn"> <i class="fas fa-shopping-cart"></i></button>
 
           {{/if}}
           
@@ -94,6 +94,7 @@
       .then((res) => res.json())
       .then((response) => {
         console.log(response)
+      
       });
   };
   
