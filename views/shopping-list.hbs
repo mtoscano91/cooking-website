@@ -1,19 +1,6 @@
-{{#each shoppingList}}
-<h2>
-  {{this.title}}
-</h2>
-{{/each}}
-<ul>
-  {{#each ingredients}}
-  <li>{{this.quantity}} {{this.measure}} {{this.name}}</li>
-  {{#if this.quantity2}}
-  <li>{{this.quantity2}} {{this.measure2}} {{this.name}}</li>
-  {{/if}}
-  <h4><i class="fab fa-slack-hash"></i>
-    {{this.title}}
-  </h4>
-  {{/each}} --}}
-  {{!-- </div> --}}
+<div class="container">
+<div class="backgroundList">
+
   <div>
     <h1 class="title">Your shopping list</h1>
     <ul class="list-group shopList mt-5">

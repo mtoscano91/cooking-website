@@ -9,6 +9,7 @@
   justify-content: center;
   font-weight: bold;
 }
+
 .recipesDisplay{
   width: 45%;
   margin: 1rem;
@@ -26,7 +27,20 @@
 .displayAllRecipes{
   margin: 2rem auto;
 }
-
+#buttonShop i{
+  color: #E82A69;
+}
+.fas.fa-heart{
+  color: red;
+}
+#buttonShop:focus {  
+  margin: 0.25rem;   
+  border-radius: 51%;
+  padding: 0.5rem;
+  border: 0px;
+  outline: none;
+  background-color: darkgrey;
+}
 .tagsFilter button{
   background-color: white;
   border: 2px solid rgba(59,89,152,1);
