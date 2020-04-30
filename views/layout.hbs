@@ -23,7 +23,7 @@
 <body>
   <div class="container">
     <nav class="navbar navbar-expand-lg mt-3">
-      <a class = "hvr-bounce-in" href="/"><img src="/images/logoIron.png" alt=""></a>
+      <a class="hvr-bounce-in" href="/"><img src="/images/logoIron.png" alt=""></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -38,7 +38,7 @@
           </li>
           <form action="/recipes?{{text}}" class="search" method="POST">
             <input type="text" name="text">
-            <button class = "lupa" type="submit"><i class="fas fa-search"></i></button>
+            <button class="lupa" type="submit"><i class="fas fa-search"></i></button>
           </form>
           {{#if user}}
           <li class="nav-item dropdown active">
@@ -49,7 +49,7 @@
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item" href="/user/{{user._id}}">My profile</a>
               <a class="dropdown-item" href="/new-recipe">Add recipe</a>
-              <a class="dropdown-item" href="/shopping-list">Shopping List</a>
+              <a class="dropdown-item" href="/shopping-list/{{user._id}}">Shopping List</a>
               <a class="dropdown-item" href="/auth/logout">Log Out</a>
             </div>
       </div>

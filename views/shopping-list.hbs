@@ -1,4 +1,13 @@
-Hello desde shopping list
-
-{{#each userFound.shoppingList}}
-{{/each }}
+{{#each shoppingList}}
+<h2>
+  {{this.title}}
+</h2>
+{{/each}}
+<ul>
+  {{#each ingredients}}
+  <li>{{this.quantity}} {{this.measure}} {{this.name}}</li>
+  {{#if this.quantity2}}
+  <li>{{this.quantity2}} {{this.measure2}} {{this.name}}</li>
+  {{/if}}
+  {{/each}}
+</ul>
