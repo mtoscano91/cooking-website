@@ -9,7 +9,7 @@
   </div>
   <hr>
   <div class="section row d-flex justify-content-around">
-    <div class="card gallery col-md-3 text-center hvr-bounce-in">
+    <div class="card gallery col-md-3 text-center">
       <div class="card-body">
         <h5 class="card-title">Plan your meals and buy smartly</h5>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
@@ -51,7 +51,7 @@
         {{/if}}
       </div>
     </div>
-    <div class="card gallery col-md-3 text-center hvr-bounce-in">
+    <div class="card gallery col-md-3 text-center">
       <div class="card-body">
         <h5 class="card-title">Share your recipes and get inspired by your friends</h5>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
@@ -59,7 +59,7 @@
         <a href="/users" class="card-link">Find you friends <i class="fas fa-long-arrow-alt-right"></i></a>
       </div>
     </div>
-    <div class="card gallery col-md-3 text-center hvr-bounce-in">
+    <div class="card gallery col-md-3 text-center">
       <div class="card-body">
         <h5 class="card-title">Find alternatives for your special diets</h5>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
@@ -72,7 +72,7 @@
   <h1 class="recipHeader mb-4">All time best rated recipes</h1>
   {{#with recipes}}
   <div class="recipes">
-    <div class="card recipe mb-4 hvr-skew">
+    <div class="card recipe mb-4 ">
       <div class="row no-gutters">
         <div class="col-md-4">
           <img src={{this.0.imgPath}} class="card-img" alt={{this.0.imgName}}>
@@ -80,7 +80,7 @@
         <div class="col-lg-8">
           <div class="card-body">
             <a href="/recipe/{{this.0._id}}">
-              <h5 class="card-title">{{this.0.title}}</h5>
+              <h5 class="card-title hvr-skew">{{this.0.title}}</h5>
             </a>
             <p class="card-text">{{this.0.shortDescription}}<span class="more">See more...</span></p>
             <div class="tag">
@@ -94,7 +94,7 @@
         </div>
       </div>
     </div>
-    <div class="card recipe mb-4 hvr-skew">
+    <div class="card recipe mb-4 ">
       <div class="row no-gutters">
         <div class="col-md-4">
           <img src={{this.1.imgPath}} class="card-img" alt={{this.1.imgName}}>
@@ -102,7 +102,7 @@
         <div class="col-md-8">
           <div class="card-body">
             <a href="/recipe/{{this.0._id}}">
-              <h5 class="card-title">{{this.1.title}}</h5>
+              <h5 class="card-title hvr-skew">{{this.1.title}}</h5>
             </a>
             <p class="card-text">{{this.1.shortDescription}} <span class="more">See more...</span> </p>
             <div class="tag">

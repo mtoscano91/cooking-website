@@ -1,5 +1,6 @@
 .user h2{
   text-transform: capitalize;
+  font-size: 3rem!important;
 }
 .displayAllRecipes{
   font-family: "Open Sans",sans-serif;
@@ -10,6 +11,7 @@
   text-align: center;
   justify-content: space-around;
 }
+
 .follow i{
   color: #E82A69;
   font-size: 30px;

@@ -1,4 +1,5 @@
 <div class="container">
+  <div class="selected">
   {{#with recipe}}
 
   <div class="bodyRecipe">
@@ -36,22 +37,6 @@
 
       </div>
 
-      <h4 class="subTitle mt-4">Ingredients</h4>
-      <ul class="list">
-        {{#each ingredients}}
-        <li class=""><i class="far fa-check-square"></i>{{this.quantity}} {{this.measure}} {{this.name}}</li>
-        {{/each}}
-      </ul>
-      <h4 class="subTitle mt-3">How to do it?</h4>
-      <div class="howTo">
-        <p>{{this.steps}}</p>
-      </div>
-
-      <br>
-
-
-
-
     </div>
 
     <div class="generalInfo">
@@ -63,10 +48,25 @@
         <button id = "share" class="hvr-bounce-in"> <i class="fas fa-share-alt"></i></i></button>
       </div>
     </div>
-    {{/with}}
+     </div>
+    
+ 
+  <div class="processInfo">
+      <ul class="list">
+<h4 class="subTitle mt-4">Ingredients</h4>
+        {{#each ingredients}}
+        <li class=""><i class="far fa-check-square"></i>{{this.quantity}} {{this.measure}} {{this.name}}</li>
+        {{/each}}
+      </ul>
+      <div class="howTo">
+      <h4 class="subTitle mt-3">How to do it?</h4>
+        <p>{{this.steps}}</p>
   </div>
+      
 </div>
-
+    {{/with}}
+ </div>
+ </div>
 <script>
   
   let shoppingCart = document.querySelector(".shopping-btn"); 
