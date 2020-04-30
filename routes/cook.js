@@ -57,7 +57,7 @@ router.get("/users", (req, res, next) => {
 });
 
 router.post("/recipe/add", uploader.single("recipeImg"), (req, res, next) => {
-  console.log(req.body);
+  // console.log(req.body);
   const {
     title,
     shortDescription,
@@ -97,28 +97,111 @@ router.post("/recipe/add", uploader.single("recipeImg"), (req, res, next) => {
     ingredients: arrIngredients,
     tags,
   });
-  newRecipe
-    .save()
-    .then((recipe) => {
-      User.findById(req.user._id).then((userId) => {
-        res.redirect("/recipes");
-      });
-      // console.log(recipe.ingredients);
+  // add a recipe
+  // take the tags from the current recipe
+  // we check if they are in the users tags
+  // add the ones that are not there.
+  let newRecipeSaved = newRecipe.save();
+  let myUser = User.findById(req.user._id);
+  Promise.all([newRecipeSaved, myUser])
+    .then((response) => {
+      // the response is an array with both promises. respose[0] => newRecipe.save(); response[1] => User.findById(req.user._id)
+      console.log(response[0].tags);
+      const recipeTags = response[0].tags;
+      const userTags = response[1].tags; // this is an array
+      const newTags = [
+        ...userTags,
+        ...recipeTags,
+        ...recipeTags,
+        ...recipeTags,
+      ];
+      const set = [...new Set(newTags)];
+      // console.log("NEW  AND IMPROVED DIONI NOW GETS SPREAD OPERATOR", set);
+      User.findByIdAndUpdate(req.user._id, { tags: set }, { new: true }).then(
+        (updateUser) => {
+          console.log(updateUser);
+          res.redirect("/recipes");
+        }
+      );
+      /*  req.user.tags.push(response[0].tags[0]);
+      console.log(
+        req.user.tags,
+        //myUser.tags,
+        //myUser.Query,
+        response[0].tags,
+        //User.findByIdAndUpdate(req.user._id)
+        response[1].tags
+      ); // IUpdate the user with the relevant tags -> missing one query => User.findByIdAndUpdate */
     })
+    // newRecipe
+    //   .save()
+    //   .then((recipe) => {
+    //     User.findById(req.user._id).then((userId) => {
+    //       res.redirect("/recipes");
+    //     });
+    //     // console.log(recipe.ingredients);
+    //   })
     .catch((error) => {
       console.log(error);
     });
 });
 
-router.get("/shopping-list", (req, res, next) => {
-  User.find()
-    .then((usersFromDB) => {
-      res.render("shopping-list", { users: usersFromDB, user: req.user });
-    })
-    .catch((err) => {
-      next(err);
-    });
-});
+router.get(
+  "/shopping-list/:id",
+  ensureLogin.ensureLoggedIn("../auth/signup"),
+  (req, res, next) => {
+    let isUser = false;
+    const userId = req.params.id;
+    if (userId == req.user._id) isUser = true;
+    User.findById(userId)
+      .populate("shoppingList.recipeId")
+      .then((userFound) => {
+        const shoppingList = userFound.shoppingList.map(({ recipeId }) => ({
+          ...recipeId["_doc"],
+        }));
+        /// For each ingr, get name and quantity.
+        // List of ingredients with their respetive measures (all added up -> if possible)
+        const allIngredients = shoppingList
+          .map(({ ingredients }) => ingredients)
+          .flat()
+          .reduce((acc, ingr) => {
+            const currentIngr = acc[ingr.name];
+
+            if (currentIngr) {
+              if (currentIngr.measure === ingr.measure) {
+                currentIngr.quantity += ingr.quantity;
+                return { ...acc };
+              } else {
+                currentIngr.quantity2 = ingr.quantity;
+                currentIngr.measure2 = ingr.measure;
+                return { ...acc };
+              }
+            } else {
+              return {
+                ...acc,
+                [ingr.name]: {
+                  quantity: ingr.quantity,
+                  measure: ingr.measure,
+                  name: ingr.name,
+                },
+              };
+            }
+          }, {});
+
+        //res.send(Object.values(allIngredients));
+        //res.send(shoppingList);
+        res.render("shopping-list", {
+          userFound: userFound,
+          user: req.user,
+          shoppingList: shoppingList,
+          ingredients: Object.values(allIngredients),
+        });
+      })
+      .catch((err) => {
+        next(err);
+      });
+  }
+);
 
 router.get("/edit/profile", (req, res, next) => {
   const user = req.user;
@@ -364,26 +447,52 @@ router.get("/liked-recipes/:id", (req, res, next) => {
     });
 });
 
-router.get("/shopping-list/:id", (req, res, next) => {
+router.get("/update-list/:id", (req, res, next) => {
   //console.log(req.params.id, req.user);
   const recipeId = req.params.id;
   const userId = req.user._id;
-  User.findById(userId)
-    .then((userFound) => {
-      console.log(userFound.shoppingList);
-      userFound.shoppingList.forEach((el, i) => {
-        if (el.recipeId == recipeId) {
-        }
-      });
-      console.log(userFound.shoppingList);
-    })
-    //User.findByIdAndUpdate(userId, {
-    // $push: { shoppingList: { recipeId: recipeId } },
-    //})
-    .then((recipeUpdated) => {
-      //console.log(recipeUpdated);
-      res.json({ message: "Dioni Has Severe issues" });
+  let isSaved = false;
+  User.findById(userId).then((userFound) => {
+    console.log("user found", userFound);
+    //Check if recipe is in list already and filter it
+    let auxShoppingList = userFound.shoppingList;
+    auxShoppingList = auxShoppingList.filter((el) => {
+      return el.recipeId != recipeId;
     });
+    let returnedShoppingList = userFound.shoppingList;
+    // If it wasnt the length are the same, so add it to the list. And set isSaved to true
+    if (auxShoppingList.length === userFound.shoppingList.length) {
+      returnedShoppingList.push({ recipeId: recipeId });
+      isSaved = true;
+    } else {
+      //If it was the same, then it was filtered
+      returnedShoppingList = auxShoppingList;
+    }
+    //Update with new values
+    User.findByIdAndUpdate(
+      userId,
+      {
+        shoppingList: returnedShoppingList,
+      },
+      { new: true }
+    )
+      .then((userUpdated) => {
+        console.log(userUpdated, isSaved);
+        console.log("userUpdated:", userUpdated.shoppingList);
+        res.json(
+          { userUpdated },
+          { isSaved },
+          { message: "Dioni Has Severe issues" }
+        );
+      })
+      .catch((err) => {
+        next(err);
+      });
+  });
 });
+//     .catch((err) => {
+//       next(err);
+//     });
+// });
 
 module.exports = router;

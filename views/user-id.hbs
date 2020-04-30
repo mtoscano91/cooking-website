@@ -35,10 +35,13 @@
     </div>
     {{!-- thins links to tags go to the recipes of the tag --}}
     <div class="tagPro">
-      <span class="gluten-free">#GlutenFree</span>
+      {{!-- <span class="gluten-free">#GlutenFree</span>
       <span class="vegetarian">#Veggie</span>
       <br>
-      <span class="dairy-free">#DairyFree</span>
+      <span class="dairy-free">#DairyFree</span> --}}
+      {{#each tags}}
+      <span class="{{this}}">#{{this}}</span>
+      {{/each}}
     </div>
     <div class="numbers">
       <div class="follow">
@@ -97,9 +100,13 @@
       </div>
       {{!-- thins links to tags go to the recipes of the tag --}}
       <div class="tagPro">
-        <span class="gluten-free">#GlutenFree</span>
+        {{!-- <span class="gluten-free">#GlutenFree</span>
         <span class="vegetarian">#Veggie</span>
-        <span class="dairy-free">#DairyFree</span>
+        <span class="dairy-free">#DairyFree</span> --}}
+        {{#each user.tags}}
+        <span class="{{this}}">#{{this}}</span>
+        {{/each}}
+
       </div>
       <div class="numbers">
         <div class="follow">
@@ -162,7 +169,7 @@
         </div>
 
         <input type="radio" name="tabs" id="tabthree">
-        <label for="tabthree"><a href="/shopping-list">Shopping List</a></label>
+        <label for="tabthree"><a href="/shopping-list/{{recipes.0.user_id._id}}">Shopping List</a></label>
         <div class="tab">
           <h1>My shopping list</h1>
           <p>COMING SOON</p>

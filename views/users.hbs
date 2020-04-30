@@ -1,58 +1,58 @@
 <div class="displayAllRecipes container">
   <h2 class="text-center title">All the users</h2>
   <form action="/recipes?{{tags}}" method="POST" id="tag-filter">
-<div class="tagsFilter">
-<div class="eachTag">
-    <input class="form-check-input" name="tags" value="vegan" type="checkbox" id="defaultCheck1">
-    <label class="form-check-label vegan" for="defaultCheck1">
-    # vegan
-    </label>
-     </div>
-    <div class="eachTag">
-    <input class="form-check-input" name="tags" value="vegetarian" type="checkbox" id="defaultCheck1">
-    <label class="form-check-label vegetarian" for="defaultCheck1">
-    # vegetarian
-    </label>
+    <div class="tagsFilter">
+      <div class="eachTag">
+        <input class="form-check-input" name="tags" value="vegan" type="checkbox" id="defaultCheck1">
+        <label class="form-check-label vegan" for="defaultCheck1">
+          # vegan
+        </label>
+      </div>
+      <div class="eachTag">
+        <input class="form-check-input" name="tags" value="vegetarian" type="checkbox" id="defaultCheck1">
+        <label class="form-check-label vegetarian" for="defaultCheck1">
+          # vegetarian
+        </label>
+      </div>
+      <div class="eachTag">
+        <input class="form-check-input" name="tags" value="gluten-free" type="checkbox" id="defaultCheck1">
+        <label class="form-check-label gluten-free" for="defaultCheck1">
+          # gluten-free
+        </label>
+      </div>
+      <div class="eachTag">
+        <input class="form-check-input" type="checkbox" name="tags" value="dairy-free">
+        <label class="form-check-label dairy-free" for="defaultCheck1">
+          # dairy-free
+        </label>
+      </div>
+      <div class="eachTag">
+        <input class="form-check-input" type="checkbox" name="tags" value="keto">
+        <label class="form-check-label keto" for="defaultCheck1">
+          # keto
+        </label>
+      </div>
+      <div class="eachTag">
+        <input class="form-check-input" type="checkbox" name="tags" value="macrobiotic">
+        <label class="form-check-label macrobiotic" for="defaultCheck1">
+          # macrobiotic
+        </label>
+      </div>
+      <div class="eachTag">
+        <input class="form-check-input" type="checkbox" name="tags" value="healthy">
+        <label class="form-check-label healthy" for="defaultCheck1">
+          # healthy
+        </label>
+      </div>
+      <div class="eachTag">
+        <input class="form-check-input" type="checkbox" name="tags" value="low-sugar">
+        <label class="form-check-label low-sugar" for="defaultCheck1">
+          # low-sugar
+        </label>
+      </div>
+      <button type="submit"><i id="iconSearch" class="fas fa-search"></i></button>
     </div>
-   <div class="eachTag">
-    <input class="form-check-input" name="tags" value="gluten-free" type="checkbox" id="defaultCheck1">
-   <label class="form-check-label gluten-free" for="defaultCheck1">
-    # gluten-free
-  </label>
-  </div>
-  <div class="eachTag">
-  <input class="form-check-input" type="checkbox" name="tags" value="dairy-free">
-  <label class="form-check-label dairy-free" for="defaultCheck1">
-    # dairy-free
-  </label>
-  </div>
-  <div class="eachTag">
-  <input class="form-check-input" type="checkbox" name="tags" value="keto">
-  <label class="form-check-label keto" for="defaultCheck1">
-    # keto
-  </label>
-  </div>
-  <div class="eachTag">
-  <input class="form-check-input" type="checkbox" name="tags" value="macrobiotic">
-   <label class="form-check-label macrobiotic" for="defaultCheck1">
-    # macrobiotic
-  </label>
-  </div>
-  <div class="eachTag">
-  <input class="form-check-input" type="checkbox" name="tags" value="healthy">
- <label class="form-check-label healthy" for="defaultCheck1">
-    # healthy
-  </label>
-  </div>
-  <div class="eachTag">
-  <input class="form-check-input" type="checkbox" name="tags" value="low-sugar">
- <label class="form-check-label low-sugar" for="defaultCheck1">
-    # low-sugar
-  </label>
-  </div>
-  <button type="submit"><i id="iconSearch" class="fas fa-search"></i></button>
-  </div>
-</form>
+  </form>
 
   <div class="recipes row">
     {{#each users}}
@@ -73,11 +73,13 @@
                 <i class="fas fa-user-plus"></i>
               </div>
             </div>
+
             <div class="tag mt-4">
-              <span class="gluten-free">#GlutenFree</span>
-              <span class="vegetarian">#Veggie</span>
-              <span class="dairy-free">#DairyFree</span>
-            </div>
+
+            {{#each tags}}
+            <span class="{{this}}">#{{this}}</span>
+            {{/each}}
+        
             {{!-- <div class="prepInfo">
   <h3>Followers {{this.followers}}</h3>
   <h3>Following {{this.following}}</h3>
