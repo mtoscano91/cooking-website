@@ -79,12 +79,13 @@
 .bodyRecipe{
   display: flex;
   justify-content: space-between;
-  width: 85%;
+  width: 90%;
   padding: 2rem;
   margin: 2rem auto;
-  -webkit-box-shadow: 27px 25px 62px 10px rgba(59,89,152,1);
--moz-box-shadow: 27px 25px 62px 10px rgba(59,89,152,1);
-box-shadow: 27px 25px 62px 10px rgba(59,89,152,1);
+  border:1px solid #3b5998;
+  -webkit-box-shadow: 7px 7px 5px 0px rgba(59, 89, 152, 1);
+  -moz-box-shadow: 7px 7px 5px 0px rgba(59, 89, 152, 1);
+  box-shadow: 7px 7px 5px 0px rgba(59, 89, 152, 1);
   font-family: "Open Sans", sans-serif;
 }
 .generalInfo{
@@ -97,7 +98,8 @@ box-shadow: 27px 25px 62px 10px rgba(59,89,152,1);
   flex-wrap: wrap;
 }
 .displayTitle h5{
-  font-size: 4rem;
+  font-size: 3rem;
+  width: 100%;
   font-family: 'Cookie', cursive;
 }
 .subTitle{
@@ -124,8 +126,8 @@ box-shadow: 27px 25px 62px 10px rgba(59,89,152,1);
 .buttonsRecipes{
   display: flex;
   flex-direction: row;
-  width: 12rem;
-  justify-content: space-around;
+  width: 17rem;
+  justify-content: flex-end;
   align-items: center;
   
 }
@@ -151,6 +153,7 @@ box-shadow: 27px 25px 62px 10px rgba(59,89,152,1);
   background-color: white;
   color: #3b5998;
 }
+
 .userName{
   color: #FF5C45;
   text-transform: uppercase;
@@ -165,9 +168,12 @@ box-shadow: 27px 25px 62px 10px rgba(59,89,152,1);
   text-align: center;
   line-height: inherit;
   letter-spacing: 1px;
-  width: 50rem;
+  width: 40rem;
   color: black;
 
+}
+#share i{
+  color: #FF5C45;
 }
 .here span{
   font-size: 18px;
@@ -181,12 +187,20 @@ box-shadow: 27px 25px 62px 10px rgba(59,89,152,1);
 }
 @media only screen and (max-device-width: 1030px) {
   .container{
-    width: 23rem;
+    width: 100%;
+    margin: 0px;
+    padding: 3px;
+  }
+  .prepInfo{
+    display: none;
   }
   .stepsInfo ul{
     width: 100%;
     display: block;
     
+  }
+  .eachInfo{
+    width: 12rem;
   }
   .stepsInfo ul li{
     width: 100%;  
@@ -196,6 +210,7 @@ box-shadow: 27px 25px 62px 10px rgba(59,89,152,1);
     justify-content: start;
     width: 100%;
   }
+ 
   .displayTitle{
     width: 100%;
   }
@@ -216,6 +231,7 @@ box-shadow: 27px 25px 62px 10px rgba(59,89,152,1);
   }
   .recipesDisplay{
     width: 26rem;
+    height: 24rem;
   }
   }
   @media screen and (min-width: 1900px) {
