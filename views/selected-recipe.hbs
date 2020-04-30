@@ -55,8 +55,11 @@
           <button id="buttonShop" class="shopping-btn hvr-bounce-in"> <i class="fas fa-shopping-cart"></i></button>
           {{else}}
           <button id="buttonShop" class="shopping-btn hvr-bounce-in"> <i class="fas fa-shopping-cart"></i></button>
+
           {{/if}}
-          <button id="share" class="hvr-bounce-in"> <i class="fas fa-share-alt"></i></i></button>
+          
+          <a class="copi" href="javascript:getlink();"><button id="share" class="hvr-bounce-in"> <i
+                class="fas fa-share-alt"></i></i></button></a>
         </div>
       </div>
     </div>
@@ -78,6 +81,7 @@
     {{/with}}
   </div>
 </div>
+
 <script>
 
   let shoppingCart = document.querySelector(".shopping-btn");
@@ -92,7 +96,8 @@
         console.log(response)
       });
   };
-
+  
+  
   let recipeLike = document.querySelector(".fa-heart")
   recipeLike.onclick = function () {
     console.log("click!");
@@ -104,3 +109,17 @@
   };
 
 </script>
+
+
+
+<script>//<![CDATA[
+  function getlink() {
+    var aux = document.createElement("input");
+    aux.setAttribute("value", window.location.href);
+    document.body.appendChild(aux);
+    aux.select();
+    document.execCommand("copy");
+    document.body.removeChild(aux);
+  }
+//]]></script>
+

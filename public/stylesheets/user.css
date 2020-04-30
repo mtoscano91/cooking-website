@@ -11,7 +11,49 @@
   text-align: center;
   justify-content: space-around;
 }
+.shopList{
+margin: 0 auto;
+  width: 15rem;
+  text-align: center;
+}
+.backgroundList h1{
+  font-family: "Cookie", cursive;
+  font-size: 3rem;
+}
+.backgroundList ul li{
+  background-color: transparent;
+  border: 1px solid #0f4c81;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+}
+.backgroundList{
+  padding: 3rem;
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 auto;
+  background-image: url(/images/groceryList1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    min-height: 30rem;
+    min-width: 35rem;
+    border:1px solid #3b5998;
+    -webkit-box-shadow: 7px 7px 5px 0px rgba(59, 89, 152, 1);
+    -moz-box-shadow: 7px 7px 5px 0px rgba(59, 89, 152, 1);
+    box-shadow: 7px 7px 5px 0px rgba(59, 89, 152, 1);
+}
+.backgroundList h4{
+  color: #0f4c81;
+  font-size: 1rem;
+  font-weight: bold;
+  width: 15rem;
+}
+  
 
+.backgroundList i{
+  color: #E82A69;
+  margin-right: 1rem;
+}
 .follow i{
   color: #E82A69;
   font-size: 30px;
