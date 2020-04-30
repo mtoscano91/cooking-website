@@ -219,13 +219,16 @@ router.get("/recipe/:id", (req, res, next) => {
     .then((recipe) => {
       const userId = recipe.user_id._id;
       const reqUserId = req.user._id;
-      if (userId == reqUserId) isUser = true;
-      console.log(recipe.user_id._id);
-      console.log(req.user._id);
-      console.log(userId == reqUserId);
-      console.log(isUser);
-      if (recipe.likes.includes(reqUserId)) isLiked = true;
-      if (recipe.user_id.shoppingList.includes(recipeId)) isSaved = true;
+      if (userId.equals(reqUserId)) isUser = true;
+      console.log(recipe.user_id.shoppingList);
+      for (let i = 0; i < recipe.likes.length; i++) {
+        if (recipe.likes[i].user_id.equals(reqUserId)) isLiked = true;
+      }
+      for (let i = 0; i < recipe.user_id.shoppingList.length; i++) {
+        if (recipe.user_id.shoppingList[i].recipeId.equals(recipeId))
+          isSaved = true;
+      }
+      console.log(isLiked, isSaved);
       res.render("selected-recipe", {
         recipe: recipe,
         user: req.user,
@@ -495,7 +498,7 @@ router.get("/update-list/:id", (req, res, next) => {
       .then((userUpdated) => {
         console.log(userUpdated, isSaved);
         console.log("userUpdated:", userUpdated.shoppingList);
-        res.json({ userUpdated }, { isSaved });
+        res.json({ userUpdated, isSaved });
       })
       .catch((err) => {
         next(err);
@@ -540,7 +543,7 @@ router.get("/like-list/:id", (req, res, next) => {
       .then((recipeUpdated) => {
         console.log(isLiked);
         console.log("recipeUpdated:", recipeUpdated.likes);
-        res.json({ recipeUpdated }, { isLiked });
+        res.status(200).json({ recipeUpdated, isLiked });
       })
       .catch((err) => {
         next(err);
