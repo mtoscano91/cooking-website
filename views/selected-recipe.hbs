@@ -88,4 +88,21 @@
         }
       });
   };
+
+  let recipeLike = document.querySelector(".fa-heart")
+  recipeLike.onclick = function () {
+    console.log("click!");
+    fetch(`/like-list/${recipe._id}`)
+      .then((res) => res.json())
+      .then((response) => {
+        console.log(response)
+        //Insert new class to button
+        if (isSaved) {
+          recipeLike.setAttribute("class", "recipe-liked");
+        } else {
+          recipeLike.classList.remove("recipe-liked")
+        }
+      });
+  };
+
 </script>
