@@ -65,8 +65,10 @@ const recipeSchema = new Schema({
   ],
   likes: [
     {
-      type: Schema.Types.ObjectId,
-      ref: "User",
+      user_id: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
     },
   ],
 });

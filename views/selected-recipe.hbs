@@ -1,73 +1,73 @@
 <div class="container">
   <div class="selected">
-  {{#with recipe}}
+    {{#with recipe}}
 
-  <div class="bodyRecipe">
-    <div class="stepsInfo">
-      <div class="displayTitle">
-        <h5 class="title">{{this.title}}</h5>
+    <div class="bodyRecipe">
+      <div class="stepsInfo">
+        <div class="displayTitle">
+          <h5 class="title">{{this.title}}</h5>
 
-        <div class="updateButtons">
-          <a href="/recipe/edit/{{this._id}}"><i class="far fa-edit hvr-bounce-in"></i></a>
-          <a href="/recipe/delete/{{this._id}}"><i class="far fa-trash-alt hvr-bounce-in"></i></a>
-        </div>
-
-
-
-        <div class="tag here mt-3">
-          {{#each tags}}
-          <span class="{{this}}">#{{this}}</span>
-          {{/each}}
-        </div>
-        <p class="desc mt-3"> {{this.shortDescription}}</p>
-
-        <div class="prepInfo">
-          <div class="eachInfo">
-            <p><i class="fas fa-clock"></i></p>
-            <p class="number"> {{this.preparationTime}}</p>
+          <div class="updateButtons">
+            <a href="/recipe/edit/{{this._id}}"><i class="far fa-edit hvr-bounce-in"></i></a>
+            <a href="/recipe/delete/{{this._id}}"><i class="far fa-trash-alt hvr-bounce-in"></i></a>
           </div>
-          <div class="eachInfo">
-            <p>Servings</p>
-            <p class="number">{{this.servings}}</p>
+
+
+
+          <div class="tag here mt-3">
+            {{#each tags}}
+            <span class="{{this}}">#{{this}}</span>
+            {{/each}}
           </div>
-          <div class="eachInfo">
-            <p>Difficulty</p>
-            <p class="number">{{this.difficulty}}</p>
+          <p class="desc mt-3"> {{this.shortDescription}}</p>
+
+          <div class="prepInfo">
+            <div class="eachInfo">
+              <p><i class="fas fa-clock"></i></p>
+              <p class="number"> {{this.preparationTime}}</p>
+            </div>
+            <div class="eachInfo">
+              <p>Servings</p>
+              <p class="number">{{this.servings}}</p>
+            </div>
+            <div class="eachInfo">
+              <p>Difficulty</p>
+              <p class="number">{{this.difficulty}}</p>
+            </div>
           </div>
+
         </div>
 
       </div>
 
-    </div>
-
-    <div class="generalInfo">
-      <img src="{{this.imgPath}}" class="imgRecipeId img-thumbnail" alt="...">
-      <div class="buttonsRecipes">
-        <p class="text-center">By <span class="userName">{{user_id.username}}</span></p>
-        <button><i class="fas fa-heart hvr-bounce-in"></i></button>
-        <button id="buttonShop" class="shopping-btn hvr-bounce-in"> <i class="fas fa-shopping-cart"></i></button>
-        <button id="share" class="hvr-bounce-in"> <i class="fas fa-share-alt"></i></i></button>
+      <div class="generalInfo">
+        <img src="{{this.imgPath}}" class="imgRecipeId img-thumbnail" alt="...">
+        <div class="buttonsRecipes">
+          <p class="text-center">By <span class="userName">{{user_id.username}}</span></p>
+          <button><i class="fas fa-heart hvr-bounce-in"></i></button>
+          <button id="buttonShop" class="shopping-btn hvr-bounce-in"> <i class="fas fa-shopping-cart"></i></button>
+          <button id="share" class="hvr-bounce-in"> <i class="fas fa-share-alt"></i></i></button>
+        </div>
       </div>
     </div>
-     </div>
-    
- 
-  <div class="processInfo">
+
+
+    <div class="processInfo">
       <ul class="list">
-<h4 class="subTitle mt-4">Ingredients</h4>
+        <h4 class="subTitle mt-4">Ingredients</h4>
         {{#each ingredients}}
         <li class=""><i class="far fa-check-square"></i>{{this.quantity}} {{this.measure}} {{this.name}}</li>
         {{/each}}
       </ul>
       <div class="howTo">
-      <h4 class="subTitle mt-3">How to do it?</h4>
+        <h4 class="subTitle mt-3">How to do it?</h4>
         <p>{{this.steps}}</p>
-  </div>
-      
-</div>
+      </div>
+
+    </div>
     {{/with}}
- </div>
- </div>
+  </div>
+</div>
 <script>
 
   let shoppingCart = document.querySelector(".shopping-btn");
@@ -97,7 +97,7 @@
       .then((response) => {
         console.log(response)
         //Insert new class to button
-        if (isSaved) {
+        if (isLiked) {
           recipeLike.setAttribute("class", "recipe-liked");
         } else {
           recipeLike.classList.remove("recipe-liked")
