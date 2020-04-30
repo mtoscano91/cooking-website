@@ -1,18 +1,19 @@
 <div class="container">
   <div class="selected">
-    {{#with recipe}}
+
 
     <div class="bodyRecipe">
       <div class="stepsInfo">
         <div class="displayTitle">
-          <h5 class="title">{{this.title}}</h5>
-
+          <h5 class="title">{{recipe.title}}</h5>
+          {{#if isUser}}
           <div class="updateButtons">
-            <a href="/recipe/edit/{{this._id}}"><i class="far fa-edit hvr-bounce-in"></i></a>
-            <a href="/recipe/delete/{{this._id}}"><i class="far fa-trash-alt hvr-bounce-in"></i></a>
+            <a href="/recipe/edit/{{recipe._id}}"><i class="far fa-edit hvr-bounce-in"></i></a>
+            <a href="/recipe/delete/{{recipe._id}}"><i class="far fa-trash-alt hvr-bounce-in"></i></a>
           </div>
+          {{/if}}
 
-
+          {{#with recipe}}
 
           <div class="tag here mt-3">
             {{#each tags}}
@@ -43,9 +44,18 @@
       <div class="generalInfo">
         <img src="{{this.imgPath}}" class="imgRecipeId img-thumbnail" alt="...">
         <div class="buttonsRecipes">
-          <p class="text-center">By <span class="userName">{{user_id.username}}</span></p>
+          <p class="text-center">By <a href="/user/{{user_id._id}}"><span
+                class="userName">{{user_id.username}}</span></a></p>
+          {{#if isLiked}}
           <button><i class="fas fa-heart hvr-bounce-in"></i></button>
+          {{else}}
+          <button><i class="fas fa-heart hvr-bounce-in"></i></button>
+          {{/if}}
+          {{#if isSaved}}
           <button id="buttonShop" class="shopping-btn hvr-bounce-in"> <i class="fas fa-shopping-cart"></i></button>
+          {{else}}
+          <button id="buttonShop" class="shopping-btn hvr-bounce-in"> <i class="fas fa-shopping-cart"></i></button>
+          {{/if}}
           <button id="share" class="hvr-bounce-in"> <i class="fas fa-share-alt"></i></i></button>
         </div>
       </div>
@@ -80,12 +90,6 @@
       .then((res) => res.json())
       .then((response) => {
         console.log(response)
-        //Insert new class to button
-        if (isSaved) {
-          shoppingCart.setAttribute("class", "recipe-saved");
-        } else {
-          shoppingCart.classList.remove("recipe-saved")
-        }
       });
   };
 
@@ -96,12 +100,6 @@
       .then((res) => res.json())
       .then((response) => {
         console.log(response)
-        //Insert new class to button
-        if (isLiked) {
-          recipeLike.setAttribute("class", "recipe-liked");
-        } else {
-          recipeLike.classList.remove("recipe-liked")
-        }
       });
   };
 
