@@ -5,15 +5,30 @@
     {{!-- <input type="image" src="" alt="add image" onclick=""> --}}
     <div class="name mt-5">
       <h1>{{userNoRecipes.username}}</h1>
+      </div>
       {{#if isUser}}
-      <form action="/userphoto/edit/{{user._id}}" method="POST" enctype="multipart/form-data">
-        <input type="file" name="userImg">
-        <button type="submit">Update Image</button>
-        {{!-- <a href="/edit/profile"><i class="fas fa-edit"></i></a> --}}
-      </form>
-      {{!-- <a href="/edit/profile"><i class="fas fa-edit"></i></a> --}}
-      {{/if}}
+        <div class="updateImage">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+ <i class="far fa-edit"></i> Add an image
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+<form id="formUpdateImg" action="/userphoto/edit/{{user._id}}" method="POST" enctype="multipart/form-data">
+          <input id="inputImg" type="file" name="userImg">
+          <br>
+          <button type="submit">Edit</button>
+          {{!-- <a href="/edit/profile"><i class="fas fa-edit"></i></a> --}}
+        </form>
     </div>
+  </div>
+</div>
+        
+        </div>
+      {{/if}}
+    
     <br>
     <div class="">
       {{!-- <span>{rating}</span> --}}
@@ -51,16 +66,34 @@
       {{!-- <input type="image" src="" alt="add image" onclick=""> --}}
       <div class="name">
         <h1>{{this.username}}</h1>
+        <br>
+         </div>
         {{/with}}
         {{#if isUser}}
-        <form action="/userphoto/edit/{{user._id}}" method="POST" enctype="multipart/form-data">
-          <input type="file" name="userImg">
-          <button type="submit">Update Image</button>
+        <div class="updateImage">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+ <i class="far fa-edit"></i> Add an image
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+<form id="formUpdateImg" action="/userphoto/edit/{{user._id}}" method="POST" enctype="multipart/form-data">
+          <input id="inputImg" type="file" name="userImg">
+          <br>
+          <button type="submit">Edit</button>
           {{!-- <a href="/edit/profile"><i class="fas fa-edit"></i></a> --}}
         </form>
+    </div>
+  </div>
+</div>
+        
+        </div>
+     
         {{!-- <a href="/edit/profile"><i class="fas fa-edit"></i></a> --}}
         {{/if}}
-      </div>
+     
       <br>
       <div class="">
         {{!-- <span>{rating}</span> --}}

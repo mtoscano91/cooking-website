@@ -56,7 +56,7 @@
 
   <div class="recipes row">
     {{#each recipes}}
-    <div class="card mb-3 recipesDisplay  hvr-skew">
+    <div class="card mb-3 recipesDisplay ">
       <div class="row no-gutters">
         <div class="col-md-4">
           <img src="{{this.imgPath}}" class="card-img " alt="...">
@@ -64,7 +64,7 @@
         <div class="col-lg-8">
           <div class="card-body">
             <a href="/recipe/{{this._id}}">
-              <h5 class="card-title">{{this.title}}</h5>
+              <h5 class="card-title hvr-bounce-in" id="titleCards">{{this.title}}</h5>
             </a>
             <p class="card-text">{{this.shortDescription}}</p>
             <div class="tag">

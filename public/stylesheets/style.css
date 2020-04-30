@@ -5,7 +5,7 @@ body {
   width: 6rem; }
 
 .title {
-  font-size: 30px;
+  font-size: 2rem;
   font-weight: 700;
   color: #0f4c81; }
 
@@ -75,7 +75,7 @@ ul.navbar-nav {
   border: 1px solid black;
   height: 4vh;
   background-color: rgba(255, 255, 255, 0.3);
-  color: white; }
+  color: black; }
 
 .formLogin {
   text-align: center;

@@ -26,6 +26,16 @@
  justify-content:center;
 
 }
+.updateImage button{
+  background-color: white;
+  border: 1px solid #3b5998;
+  color: #3b5998;
+  font-size: 14px;
+}
+#formUpdateImg{
+  
+  height: 10rem;
+}
 .fas.fa-edit{
   color: #3b5998;
   font-size: 20px;

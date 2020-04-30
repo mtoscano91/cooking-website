@@ -66,21 +66,20 @@
             <div class="follow">
               <div>
                 <a href="/user/{{this._id}}">
-                  <h2>{{this.username}}</h2>
+                  <h2 id="titleCards">{{this.username}}</h2>
                 </a>
               </div>
               <div>
                 <i class="fas fa-user-plus"></i>
               </div>
             </div>
+
+            <div class="tag mt-4">
+
             {{#each tags}}
             <span class="{{this}}">#{{this}}</span>
             {{/each}}
-            {{!-- <div class="tag">
-              <span class="gluten-free">#GlutenFree</span>
-              <span class="vegetarian">#Veggie</span>
-              <span class="dairy-free">#DairyFree</span>
-            </div> --}}
+        
             {{!-- <div class="prepInfo">
   <h3>Followers {{this.followers}}</h3>
   <h3>Following {{this.following}}</h3>

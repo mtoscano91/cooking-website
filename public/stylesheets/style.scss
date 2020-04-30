@@ -5,9 +5,11 @@ body {
      width: 6rem;
    }
   .title{
-    font-size : 30px;
+    font-size : 2rem;
     font-weight: 700; 
     color: rgb(15,76,129);
+  
+
   }
   nav a, .account {
     color: #000000; 
@@ -80,7 +82,7 @@ body {
       border: 1px solid black;
       height: 4vh;
       background-color : rgba(255,255,255,0.3);
-      color: white;
+      color: black;
   }
   //MODAL LOGIN
   .formLogin{
