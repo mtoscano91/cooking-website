@@ -172,6 +172,22 @@ router.get(
   }
 );
 
+router.post("/userphoto/edit/:id", uploader.single("userImg"), (req, res) => {
+  console.log(req.file.url);
+  let imgPath = req.file.url;
+  let imgName = req.file.originalname;
+  User.findByIdAndUpdate(req.user._id, {
+    imgPath,
+    imgName,
+  })
+    .then(() => {
+      res.redirect("/user/" + req.params.id);
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
 router.get("/recipe/edit/:recipeId", (req, res) => {
   Recipe.findById(req.params.recipeId).then((recipe) => {
     // console.log("dioni", recipe);
@@ -254,12 +270,13 @@ router.post(
 );
 
 router.post("/recipes", (req, res, next) => {
-  console.log("console log de", req.body.text, "hast aqui");
+  console.log("console log de", req.body.text, "tillhere");
   if (req.body.text) {
     let dioni = req.body.text;
     console.log("buscando");
-    Recipe.find(dioni).then((text) => {
-      res.render("recipes", { recipes: text });
+    Recipe.find({ title: { $regex: dioni, $options: "i" } }).then((text) => {
+      console.log(text);
+      res.render("recipes", { recipes: text, user: req.user });
     });
   }
 
@@ -286,12 +303,13 @@ router.post("/recipes", (req, res, next) => {
             res.json({
               message: "Oops! No recipes were found",
               recipes: recipes,
+              user: req.user,
             });
             res.redirect("/recipes");
             return;
           });
         }
-        res.render("recipes", { recipes: filteredRecipes });
+        res.render("recipes", { recipes: filteredRecipes, user: req.user });
       })
       .catch((err) => {
         next(err);
