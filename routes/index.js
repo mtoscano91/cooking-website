@@ -9,7 +9,7 @@ router.get("/", (req, res, next) => {
     .then((recipes) => {
       let sortedRecipes = recipes
         .sort(function (a, b) {
-          return b.rating - a.rating;
+          return b.likes.length - a.likes.length;
         })
         .splice(0, 2);
       res.render("index", { recipes: sortedRecipes, user: req.user });

@@ -1,6 +1,6 @@
 <div class="displayAllRecipes container">
   <h2 class="text-center title">All the users</h2>
-  <form action="/recipes?{{tags}}" method="POST" id="tag-filter">
+  <form action="/users?{{tags}}" method="POST" id="tag-filter">
     <div class="tagsFilter">
       <div class="eachTag">
         <input class="form-check-input" name="tags" value="vegan" type="checkbox" id="defaultCheck1">
@@ -76,19 +76,19 @@
 
             <div class="tag mt-4">
 
-            {{#each tags}}
-            <span class="{{this}}">#{{this}}</span>
-            {{/each}}
-        
-            {{!-- <div class="prepInfo">
+              {{#each tags}}
+              <span class="{{this}}">#{{this}}</span>
+              {{/each}}
+
+              {{!-- <div class="prepInfo">
   <h3>Followers {{this.followers}}</h3>
   <h3>Following {{this.following}}</h3>
                 </div> --}}
 
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
     {{/each}}
-</div>
+  </div>

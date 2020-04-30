@@ -33,15 +33,14 @@
     </div>
   </div>
   {{/if}}
-
-  {{#with recipes.0.user_id}}
+  {{#if foundUser}}
   <div class="profile">
     <div class="personalData">
-      <img src="{{this.imgPath}}" alt="image{{this.username}}">
+      <img src="{{foundUser.imgPath}}" alt="image{{foundUser.username}}">
       {{!-- <input type="image" src="" alt="add image" onclick=""> --}}
       <div class="name mt-5">
-        <h1>{{this.username}}</h1>
-        {{/with}}
+        <h1>{{foundUser.username}}</h1>
+        {{/if}}
         {{#if isUser}}
         <a href="/edit/profile"><i class="fas fa-edit"></i></a>
         {{/if}}
@@ -51,40 +50,41 @@
         {{!-- <span>{rating}</span> --}}
       </div>
       {{!-- thins links to tags go to the recipes of the tag --}}
+      {{#with userFound}}
       <div class="tagPro">
-        <span class="gluten-free">#GlutenFree</span>
-        <span class="vegetarian">#Veggie</span>
-        <span class="dairy-free">#DairyFree</span>
+        {{#each this.tags}}
+        <span class="{{this}}">#{{this}}</span>
+        {{/each}}
       </div>
+      {{/with}}
       <div class="numbers mt-4">
-        <div class="follow"> --}}
-          {{!-- <span>{{this.user.followers}}</span>  --}}
-          {{#with recipes.0.user_id}}
+        {{#if foundUser}}
+        <div class="follow">
           <h6>Followers</h6>
-          <span>{{this.followers}}</span>
+          <span>{{foundUser.followers}}</span>
         </div>
         <div class="follow">
           {{!-- <span>{{this.user.following}}</span>  --}}
           <h6>Following</h6>
-          <span>{{this.following}}</span>
+          <span>{{foundUser.following}}</span>
         </div>
+        {{/if}}
       </div>
     </div>
-    {{/with}}
     <div class="dashboard">
       <div class="tabs">
         <input type="radio" name="tabs" id="tabone">
         {{#if isUser}}
-        <label for="tabone"><a href="/user/{{recipes.0.user_id._id}}">My recipes</a></label>
+        <label for="tabone"><a href="/user/{{foundUser._id}}">My recipes</a></label>
         {{else}}
-        <label for="tabone"><a href="/user/{{recipes.0.user_id._id}}">{{recipes.0.user_id.username}} recipes</a></label>
+        <label for="tabone"><a href="/user/{{foundUser._id}}">{{foundUser.username}} recipes</a></label>
         {{/if}}
 
         <input type="radio" name="tabs" id="tabtwo" checked="checked">
         {{#if isUser}}
-        <label for="tabtwo"><a href="/liked-recipes/{{recipes.0.user_id._id}}">My liked recipes</a></label>
+        <label for="tabtwo"><a href="/liked-recipes/{{foundUser._id}}">My liked recipes</a></label>
         {{else}}
-        <label for="tabtwo"><a href="/liked-recipes/{{recipes.0.user_id._id}}">{{recipes.0.user_id.username}} liked
+        <label for="tabtwo"><a href="/liked-recipes/{{userId._id}}">{{userId.username}} liked
             recipes</a></label>
         {{/if}}
         <div class="tab">

@@ -3,7 +3,11 @@
     <div class="container">
       <div class="text">
         <h1 class="">Eat better!</h1>
+        {{#if req.user}}
+        <a class="hvr-wobble-vertical" href="/user/{{req.user._id}}">Get Started</a>
+        {{else}}
         <a class="hvr-wobble-vertical" href="/auth/signup">Get Started</a>
+        {{/if}}
       </div>
     </div>
   </div>
@@ -17,7 +21,8 @@
         {{#if req.user}}
         <a href="/user/{{req.user._id}}" class="card-link">Let´s go! <i class="fas fa-long-arrow-alt-right"></i></a>
         {{else}}
-        <a href="/auth/login" class="card-link" data-toggle="modal" data-target="#exampleModal">Let´s go! <i class="fas fa-long-arrow-alt-right card-link"></i></a>
+        <a href="/auth/login" class="card-link" data-toggle="modal" data-target="#exampleModal">Let´s go! <i
+            class="fas fa-long-arrow-alt-right card-link"></i></a>
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
           aria-hidden="true">
           <div class="modal-dialog" role="document">
@@ -69,7 +74,7 @@
     </div>
   </div>
   <hr>
-  <h1 class="recipHeader mb-4">All time best rated recipes</h1>
+  <h1 class="recipHeader mb-4">All time best liked recipes</h1>
   {{#with recipes}}
   <div class="recipes">
     <div class="card recipe mb-4 ">
