@@ -19,18 +19,18 @@
       <span class="vegetarian">#Veggie</span>
       <span class="dairy-free">#DairyFree</span>
     </div>
- <div class="numbers">
+    <div class="numbers">
       <div class="follow">
-         {{!-- <span>{{this.user.followers}}</span>  --}}
+        {{!-- <span>{{this.user.followers}}</span>  --}}
         <h6>Followers</h6>
         <span>{{userNoRecipes.followers}}</span>
-      </div> 
-       <div class="follow"> 
-         {{!-- <span>{{this.user.following}}</span> --}}
-         <h6>Following</h6>
+      </div>
+      <div class="follow">
+        {{!-- <span>{{this.user.following}}</span> --}}
+        <h6>Following</h6>
         <span>{{userNoRecipes.following}}</span>
-      </div> 
-     </div> 
+      </div>
+    </div>
   </div>
   {{/if}}
 
@@ -56,19 +56,19 @@
         <span class="vegetarian">#Veggie</span>
         <span class="dairy-free">#DairyFree</span>
       </div>
-       <div class="numbers mt-4">
+      <div class="numbers mt-4">
         <div class="follow"> --}}
-           {{!-- <span>{{this.user.followers}}</span>  --}}
-           {{#with recipes.0.user_id}} 
-           <h6>Followers</h6>
+          {{!-- <span>{{this.user.followers}}</span>  --}}
+          {{#with recipes.0.user_id}}
+          <h6>Followers</h6>
           <span>{{this.followers}}</span>
         </div>
-        <div class="follow"> 
-           {{!-- <span>{{this.user.following}}</span>  --}}
-           <h6>Following</h6>
+        <div class="follow">
+          {{!-- <span>{{this.user.following}}</span>  --}}
+          <h6>Following</h6>
           <span>{{this.following}}</span>
         </div>
-      </div> 
+      </div>
     </div>
     {{/with}}
     <div class="dashboard">
@@ -115,7 +115,7 @@
         </div>
 
         <input type="radio" name="tabs" id="tabthree">
-        <label for="tabthree"><a href="/shopping-list">Shopping List</a></label>
+        <label for="tabthree"><a href="/shopping-list/{{recipes.0.user_id._id}}">Shopping List</a></label>
         <div class="tab">
           <h1>My shopping list</h1>
           <p>COMING SOON</p>

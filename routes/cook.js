@@ -110,15 +110,25 @@ router.post("/recipe/add", uploader.single("recipeImg"), (req, res, next) => {
     });
 });
 
-router.get("/shopping-list", (req, res, next) => {
-  User.find()
-    .then((usersFromDB) => {
-      res.render("shopping-list", { users: usersFromDB, user: req.user });
-    })
-    .catch((err) => {
-      next(err);
-    });
-});
+router.get(
+  "/shopping-list/:id",
+  ensureLogin.ensureLoggedIn("../auth/signup"),
+  (req, res, next) => {
+    let isUser = false;
+    const userId = req.params.id;
+    if (userId == req.user._id) isUser = true;
+    User.findById(userId)
+      //Populate not working
+      //.populate("shoppingList")
+      .then((userFound) => {
+        res.send(userFound);
+        //res.render("shopping-list", { userFound: userFound, user: req.user });
+      })
+      .catch((err) => {
+        next(err);
+      });
+  }
+);
 
 router.get("/edit/profile", (req, res, next) => {
   const user = req.user;
@@ -346,25 +356,46 @@ router.get("/liked-recipes/:id", (req, res, next) => {
     });
 });
 
-router.get("/shopping-list/:id", (req, res, next) => {
+router.get("/update-list/:id", (req, res, next) => {
   //console.log(req.params.id, req.user);
   const recipeId = req.params.id;
   const userId = req.user._id;
+  let isSaved = false;
   User.findById(userId)
     .then((userFound) => {
-      console.log(userFound.shoppingList);
-      userFound.shoppingList.forEach((el, i) => {
-        if (el.recipeId == recipeId) {
-        }
+      console.log("user found", userFound);
+      //Check if recipe is in list already and filter it
+      let auxShoppingList = userFound.shoppingList;
+      auxShoppingList = auxShoppingList.filter((el) => {
+        el.recipeId !== recipeId;
       });
-      console.log(userFound.shoppingList);
+      let returnedShoppingList = userFound.shoppingList;
+      // If it wasnt the length are the same, so add it to the list. And set isSaved to true
+      if (auxShoppingList.length === userFound.shoppingList.length) {
+        returnedShoppingList.push({ recipeId: recipeId });
+        isSaved = true;
+      } else {
+        //If it was the same, then it was filtered
+        returnedShoppingList = auxShoppingList;
+      }
+      //Update with new values
+      User.findByIdAndUpdate(userId, {
+        shoppingList: returnedShoppingList,
+      })
+        .then((userUpdated) => {
+          console.log(userUpdated, isSaved);
+          res.json(
+            { userUpdated },
+            { isSaved },
+            { message: "Dioni Has Severe issues" }
+          );
+        })
+        .catch((err) => {
+          next(err);
+        });
     })
-    //User.findByIdAndUpdate(userId, {
-    // $push: { shoppingList: { recipeId: recipeId } },
-    //})
-    .then((recipeUpdated) => {
-      //console.log(recipeUpdated);
-      res.json({ message: "Dioni Has Severe issues" });
+    .catch((err) => {
+      next(err);
     });
 });
 
