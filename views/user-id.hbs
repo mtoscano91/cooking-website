@@ -112,9 +112,9 @@
 
       </div>
       <div class="numbers">
+        {{#with recipes.0.user_id}}
         <div class="follow">
           {{!-- <span>{{this.user.followers}}</span>  --}}
-          {{#with recipes.0.user_id}}
           <h6>Followers </h6>
           <span>{{this.followers}}</span>
         </div>
@@ -123,9 +123,9 @@
           <h6>Following </h6>
           <span>{{this.following}}</span>
         </div>
+        {{/with}}
       </div>
     </div>
-    {{/with}}
     <div class="dashboard">
       <div class="tabs">
         <input type="radio" name="tabs" id="tabone" checked="checked">

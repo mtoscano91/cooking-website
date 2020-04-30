@@ -4,6 +4,7 @@ const router = express.Router();
 const User = require("../models/User");
 const Recipe = require("../models/Recipe");
 const uploader = require("../config/cloudinary.js");
+const mongoose = require("mongoose");
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -219,13 +220,16 @@ router.get("/recipe/:id", (req, res, next) => {
     .then((recipe) => {
       const userId = recipe.user_id._id;
       const reqUserId = req.user._id;
-      if (userId == reqUserId) isUser = true;
-      console.log(recipe.user_id._id);
-      console.log(req.user._id);
-      console.log(userId == reqUserId);
-      console.log(isUser);
-      if (recipe.likes.includes(reqUserId)) isLiked = true;
-      if (recipe.user_id.shoppingList.includes(recipeId)) isSaved = true;
+      if (userId.equals(reqUserId)) isUser = true;
+      console.log(recipe.user_id.shoppingList);
+      for (let i = 0; i < recipe.likes.length; i++) {
+        if (recipe.likes[i].user_id.equals(reqUserId)) isLiked = true;
+      }
+      for (let i = 0; i < recipe.user_id.shoppingList.length; i++) {
+        if (recipe.user_id.shoppingList[i].recipeId.equals(recipeId))
+          isSaved = true;
+      }
+      console.log(isLiked, isSaved);
       res.render("selected-recipe", {
         recipe: recipe,
         user: req.user,
@@ -440,19 +444,33 @@ router.get("/liked-recipes/:id", (req, res, next) => {
   let isUser = false;
   const userId = req.params.id;
   if (userId == req.user._id) isUser = true;
-  Recipe.find({ likes: { $in: { user_id: userId } } })
-    .populate("user_id")
+  // Recipe.find({ likes: { $in: { user_id: mongoose.Types.ObjectId(userId) } } })
+  Recipe.find({})
+    .populate("likes.user_id")
     .then((idRecipes) => {
-      console.log(idRecipes);
-      if (idRecipes.length > 0)
-        return res.render("liked-recipes", {
-          recipes: idRecipes,
-          user: req.user,
-          isUser: isUser,
+      // console.log("idRecipes:", idRecipes);
+      const myLikesRecipes = idRecipes.filter((el) => el.likes.length);
+      const likesByMe = [];
+
+      myLikesRecipes.forEach((recipe) => {
+        recipe.likes.forEach((like) => {
+          if (like.user_id.equals(userId)) {
+            likesByMe.push(recipe);
+          }
         });
-      User.findById(userId).then((user) => {
+      });
+      User.findById(userId).then((foundUser) => {
+        if (likesByMe.length > 0) {
+          console.log(foundUser);
+          return res.render("liked-recipes", {
+            recipes: likesByMe,
+            foundUser: foundUser,
+            user: req.user,
+            isUser: isUser,
+          });
+        }
         res.render("liked-recipes", {
-          userNoRecipes: user,
+          userNoRecipes: foundUser,
           user: req.user,
           isUser,
         });
@@ -495,7 +513,100 @@ router.get("/update-list/:id", (req, res, next) => {
       .then((userUpdated) => {
         console.log(userUpdated, isSaved);
         console.log("userUpdated:", userUpdated.shoppingList);
-        res.json({ userUpdated }, { isSaved });
+        res.json({ userUpdated, isSaved });
+      })
+      .catch((err) => {
+        next(err);
+      });
+  });
+});
+//     .catch((err) => {
+//       next(err);
+//     });
+// });
+
+router.get("/like-list/:id", (req, res, next) => {
+  //console.log(req.params.id, req.user);
+  const recipeId = req.params.id;
+  const userId = req.user._id;
+  let isLiked = false;
+  Recipe.findById(recipeId).then((recipeFound) => {
+    //console.log("recipe found", recipeFound);
+    //Check if recipe is in list already and filter it
+    let auxLikedList = recipeFound.likes;
+    auxLikedList = auxLikedList.filter((el) => {
+      console.log("match", el.user_id, userId);
+      return !el.user_id.equals(userId);
+    });
+    let returnedLikedList = recipeFound.likes;
+    // If it wasnt the length are the same, so add it to the list. And set isSaved to true
+    if (auxLikedList.length === recipeFound.likes.length) {
+      returnedLikedList.push({ user_id: userId });
+      isLiked = true;
+    } else {
+      //If it was the same, then it was filtered
+      returnedLikedList = auxLikedList;
+    }
+    //Update with new values
+    Recipe.findByIdAndUpdate(
+      recipeId,
+      {
+        likes: returnedLikedList,
+      },
+      { new: true }
+    )
+      .then((recipeUpdated) => {
+        console.log(isLiked);
+        console.log("recipeUpdated:", recipeUpdated.likes);
+        res.status(200).json({ recipeUpdated, isLiked });
+      })
+      .catch((err) => {
+        next(err);
+      });
+  });
+});
+//       user: req.user,
+//       isUser,
+//     });
+//   });
+// })
+// .catch((err) => {
+//   next(err);
+// });
+
+router.get("/update-list/:id", (req, res, next) => {
+  //console.log(req.params.id, req.user);
+  const recipeId = req.params.id;
+  const userId = req.user._id;
+  let isSaved = false;
+  User.findById(userId).then((userFound) => {
+    console.log("user found", userFound);
+    //Check if recipe is in list already and filter it
+    let auxShoppingList = userFound.shoppingList;
+    auxShoppingList = auxShoppingList.filter((el) => {
+      return el.recipeId != recipeId;
+    });
+    let returnedShoppingList = userFound.shoppingList;
+    // If it wasnt the length are the same, so add it to the list. And set isSaved to true
+    if (auxShoppingList.length === userFound.shoppingList.length) {
+      returnedShoppingList.push({ recipeId: recipeId });
+      isSaved = true;
+    } else {
+      //If it was the same, then it was filtered
+      returnedShoppingList = auxShoppingList;
+    }
+    //Update with new values
+    User.findByIdAndUpdate(
+      userId,
+      {
+        shoppingList: returnedShoppingList,
+      },
+      { new: true }
+    )
+      .then((userUpdated) => {
+        console.log(userUpdated, isSaved);
+        console.log("userUpdated:", userUpdated.shoppingList);
+        res.json({ userUpdated, isSaved });
       })
       .catch((err) => {
         next(err);
@@ -540,7 +651,195 @@ router.get("/like-list/:id", (req, res, next) => {
       .then((recipeUpdated) => {
         console.log(isLiked);
         console.log("recipeUpdated:", recipeUpdated.likes);
-        res.json({ recipeUpdated }, { isLiked });
+        res.status(200).json({ recipeUpdated, isLiked });
+      })
+      .catch((err) => {
+        next(err);
+      });
+  });
+});
+//           user: req.user,
+//           isUser,
+//         });
+//       });
+//     })
+//     .catch((err) => {
+//       next(err);
+//     });
+// });
+
+router.get("/update-list/:id", (req, res, next) => {
+  //console.log(req.params.id, req.user);
+  const recipeId = req.params.id;
+  const userId = req.user._id;
+  let isSaved = false;
+  User.findById(userId).then((userFound) => {
+    console.log("user found", userFound);
+    //Check if recipe is in list already and filter it
+    let auxShoppingList = userFound.shoppingList;
+    auxShoppingList = auxShoppingList.filter((el) => {
+      return el.recipeId != recipeId;
+    });
+    let returnedShoppingList = userFound.shoppingList;
+    // If it wasnt the length are the same, so add it to the list. And set isSaved to true
+    if (auxShoppingList.length === userFound.shoppingList.length) {
+      returnedShoppingList.push({ recipeId: recipeId });
+      isSaved = true;
+    } else {
+      //If it was the same, then it was filtered
+      returnedShoppingList = auxShoppingList;
+    }
+    //Update with new values
+    User.findByIdAndUpdate(
+      userId,
+      {
+        shoppingList: returnedShoppingList,
+      },
+      { new: true }
+    )
+      .then((userUpdated) => {
+        console.log(userUpdated, isSaved);
+        console.log("userUpdated:", userUpdated.shoppingList);
+        res.json({ userUpdated, isSaved });
+      })
+      .catch((err) => {
+        next(err);
+      });
+  });
+});
+//     .catch((err) => {
+//       next(err);
+//     });
+// });
+
+router.get("/like-list/:id", (req, res, next) => {
+  //console.log(req.params.id, req.user);
+  const recipeId = req.params.id;
+  const userId = req.user._id;
+  let isLiked = false;
+  Recipe.findById(recipeId).then((recipeFound) => {
+    //console.log("recipe found", recipeFound);
+    //Check if recipe is in list already and filter it
+    let auxLikedList = recipeFound.likes;
+    auxLikedList = auxLikedList.filter((el) => {
+      console.log("match", el.user_id, userId);
+      return Object.toString(el.user_id) != Object.toString(userId);
+    });
+    let returnedLikedList = recipeFound.likes;
+    // If it wasnt the length are the same, so add it to the list. And set isSaved to true
+    if (auxLikedList.length === recipeFound.likes.length) {
+      returnedLikedList.push({ user_id: userId });
+      isLiked = true;
+    } else {
+      //If it was the same, then it was filtered
+      returnedLikedList = auxLikedList;
+    }
+    //Update with new values
+    Recipe.findByIdAndUpdate(
+      recipeId,
+      {
+        likes: returnedLikedList,
+      },
+      { new: true }
+    )
+      .then((recipeUpdated) => {
+        console.log(isLiked);
+        console.log("recipeUpdated:", recipeUpdated.likes);
+        res.status(200).json({ recipeUpdated, isLiked });
+      })
+      .catch((err) => {
+        next(err);
+      });
+  });
+});
+//           user: req.user,
+//           isUser,
+//         });
+//       });
+//     })
+//     .catch((err) => {
+//       next(err);
+//     });
+// });
+
+router.get("/update-list/:id", (req, res, next) => {
+  //console.log(req.params.id, req.user);
+  const recipeId = req.params.id;
+  const userId = req.user._id;
+  let isSaved = false;
+  User.findById(userId).then((userFound) => {
+    console.log("user found", userFound);
+    //Check if recipe is in list already and filter it
+    let auxShoppingList = userFound.shoppingList;
+    auxShoppingList = auxShoppingList.filter((el) => {
+      return el.recipeId != recipeId;
+    });
+    let returnedShoppingList = userFound.shoppingList;
+    // If it wasnt the length are the same, so add it to the list. And set isSaved to true
+    if (auxShoppingList.length === userFound.shoppingList.length) {
+      returnedShoppingList.push({ recipeId: recipeId });
+      isSaved = true;
+    } else {
+      //If it was the same, then it was filtered
+      returnedShoppingList = auxShoppingList;
+    }
+    //Update with new values
+    User.findByIdAndUpdate(
+      userId,
+      {
+        shoppingList: returnedShoppingList,
+      },
+      { new: true }
+    )
+      .then((userUpdated) => {
+        console.log(userUpdated, isSaved);
+        console.log("userUpdated:", userUpdated.shoppingList);
+        res.json({ userUpdated, isSaved });
+      })
+      .catch((err) => {
+        next(err);
+      });
+  });
+});
+//     .catch((err) => {
+//       next(err);
+//     });
+// });
+
+router.get("/like-list/:id", (req, res, next) => {
+  //console.log(req.params.id, req.user);
+  const recipeId = req.params.id;
+  const userId = req.user._id;
+  let isLiked = false;
+  Recipe.findById(recipeId).then((recipeFound) => {
+    //console.log("recipe found", recipeFound);
+    //Check if recipe is in list already and filter it
+    let auxLikedList = recipeFound.likes;
+    auxLikedList = auxLikedList.filter((el) => {
+      console.log("match", el.user_id, userId);
+      return Object.toString(el.user_id) != Object.toString(userId);
+    });
+    let returnedLikedList = recipeFound.likes;
+    // If it wasnt the length are the same, so add it to the list. And set isSaved to true
+    if (auxLikedList.length === recipeFound.likes.length) {
+      returnedLikedList.push({ user_id: userId });
+      isLiked = true;
+    } else {
+      //If it was the same, then it was filtered
+      returnedLikedList = auxLikedList;
+    }
+    //Update with new values
+    Recipe.findByIdAndUpdate(
+      recipeId,
+      {
+        likes: returnedLikedList,
+      },
+      { new: true }
+    )
+      .then((recipeUpdated) => {
+        console.log(isLiked);
+        console.log("recipeUpdated:", recipeUpdated.likes);
+        res.status(200).json({ recipeUpdated, isLiked });
       })
       .catch((err) => {
         next(err);
