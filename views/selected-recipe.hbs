@@ -7,9 +7,10 @@
         <h5 class="title">{{this.title}}</h5>
 
         <div class="updateButtons">
-          <a href="/recipe/edit/{{this._id}}"><i class="far fa-edit"></i></a>
-          <a href="/recipe/delete/{{this._id}}"><i class="far fa-trash-alt"></i></a>
+          <a href="/recipe/edit/{{this._id}}"><i class="far fa-edit hvr-bounce-in"></i></a>
+          <a href="/recipe/delete/{{this._id}}"><i class="far fa-trash-alt hvr-bounce-in"></i></a>
         </div>
+
 
 
         <div class="tag here mt-3">
@@ -36,7 +37,7 @@
 
       </div>
 
-      <h4 class="subTitle mt-2">Ingredients</h4>
+      <h4 class="subTitle mt-4">Ingredients</h4>
       <ul class="list">
         {{#each ingredients}}
         <li class=""><i class="far fa-check-square"></i>{{this.quantity}} {{this.measure}} {{this.name}}</li>
@@ -58,8 +59,9 @@
       <img src="{{this.imgPath}}" class="imgRecipeId img-thumbnail" alt="...">
       <div class="buttonsRecipes">
         <p class="text-center">By <span class="userName">{{user_id.username}}</span></p>
-        <button><i class="fas fa-heart"></i></button>
-        <button class="shopping-btn"> <i class="fas fa-shopping-cart"></i></button>
+        <button><i class="fas fa-heart hvr-bounce-in"></i></button>
+        <button id="buttonShop" class="shopping-btn hvr-bounce-in"> <i class="fas fa-shopping-cart"></i></button>
+        <button id="share" class="hvr-bounce-in"> <i class="fas fa-share-alt"></i></i></button>
       </div>
     </div>
     {{/with}}
@@ -67,6 +69,7 @@
 </div>
 
 <script>
+
   let shoppingCart = document.querySelector(".shopping-btn");
 
   const recipe = JSON.parse('{{{id}}}');

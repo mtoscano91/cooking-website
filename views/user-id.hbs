@@ -6,9 +6,9 @@
     <div class="name mt-5">
       <h1>{{userNoRecipes.username}}</h1>
       {{#if isUser}}
-      <form>
-        <input type="file" name="imgPath">
-        <button>Update Image</button>
+      <form action="/userphoto/edit/{{user._id}}" method="POST" enctype="multipart/form-data">
+        <input type="file" name="userImg">
+        <button type="submit">Update Image</button>
         {{!-- <a href="/edit/profile"><i class="fas fa-edit"></i></a> --}}
       </form>
       {{!-- <a href="/edit/profile"><i class="fas fa-edit"></i></a> --}}
@@ -50,9 +50,9 @@
         <h1>{{this.username}}</h1>
         {{/with}}
         {{#if isUser}}
-        <form>
-          <input type="file" name="imgPath">
-          <button>Update Image</button>
+        <form action="/userphoto/edit/{{user._id}}" method="POST" enctype="multipart/form-data">
+          <input type="file" name="userImg">
+          <button type="submit">Update Image</button>
           {{!-- <a href="/edit/profile"><i class="fas fa-edit"></i></a> --}}
         </form>
         {{!-- <a href="/edit/profile"><i class="fas fa-edit"></i></a> --}}

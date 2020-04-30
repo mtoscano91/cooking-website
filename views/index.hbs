@@ -3,13 +3,13 @@
     <div class="container">
       <div class="text">
         <h1 class="">Eat better!</h1>
-        <a href="/auth/signup">Get Started</a>
+        <a class="hvr-wobble-vertical" href="/auth/signup">Get Started</a>
       </div>
     </div>
   </div>
   <hr>
   <div class="section row d-flex justify-content-around">
-    <div class="card gallery col-md-3 text-center">
+    <div class="card gallery col-md-3 text-center hvr-bounce-in">
       <div class="card-body">
         <h5 class="card-title">Plan your meals and buy smartly</h5>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
@@ -51,7 +51,7 @@
         {{/if}}
       </div>
     </div>
-    <div class="card gallery col-md-3 text-center">
+    <div class="card gallery col-md-3 text-center hvr-bounce-in">
       <div class="card-body">
         <h5 class="card-title">Share your recipes and get inspired by your friends</h5>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
@@ -59,7 +59,7 @@
         <a href="/users" class="card-link">Find you friends <i class="fas fa-long-arrow-alt-right"></i></a>
       </div>
     </div>
-    <div class="card gallery col-md-3 text-center">
+    <div class="card gallery col-md-3 text-center hvr-bounce-in">
       <div class="card-body">
         <h5 class="card-title">Find alternatives for your special diets</h5>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
@@ -72,7 +72,7 @@
   <h1 class="recipHeader mb-4">All time best rated recipes</h1>
   {{#with recipes}}
   <div class="recipes">
-    <div class="card recipe mb-4">
+    <div class="card recipe mb-4 hvr-skew">
       <div class="row no-gutters">
         <div class="col-md-4">
           <img src={{this.0.imgPath}} class="card-img" alt={{this.0.imgName}}>
@@ -94,7 +94,7 @@
         </div>
       </div>
     </div>
-    <div class="card recipe mb-4">
+    <div class="card recipe mb-4 hvr-skew">
       <div class="row no-gutters">
         <div class="col-md-4">
           <img src={{this.1.imgPath}} class="card-img" alt={{this.1.imgName}}>
