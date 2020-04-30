@@ -211,12 +211,27 @@ router.get("/edit/profile", (req, res, next) => {
 
 router.get("/recipe/:id", (req, res, next) => {
   const recipeId = req.params.id;
+  let isUser = false;
+  let isLiked = false;
+  let isSaved = false;
   Recipe.findById(recipeId)
     .populate("user_id")
     .then((recipe) => {
+      const userId = recipe.user_id._id;
+      const reqUserId = req.user._id;
+      if (userId == reqUserId) isUser = true;
+      console.log(recipe.user_id._id);
+      console.log(req.user._id);
+      console.log(userId == reqUserId);
+      console.log(isUser);
+      if (recipe.likes.includes(reqUserId)) isLiked = true;
+      if (recipe.user_id.shoppingList.includes(recipeId)) isSaved = true;
       res.render("selected-recipe", {
         recipe: recipe,
         user: req.user,
+        isUser,
+        isSaved,
+        isLiked,
         id: JSON.stringify(recipe),
       });
     })
@@ -425,9 +440,10 @@ router.get("/liked-recipes/:id", (req, res, next) => {
   let isUser = false;
   const userId = req.params.id;
   if (userId == req.user._id) isUser = true;
-  Recipe.find({ user_id: userId })
+  Recipe.find({ likes: { $in: { user_id: userId } } })
     .populate("user_id")
     .then((idRecipes) => {
+      console.log(idRecipes);
       if (idRecipes.length > 0)
         return res.render("liked-recipes", {
           recipes: idRecipes,
@@ -479,11 +495,7 @@ router.get("/update-list/:id", (req, res, next) => {
       .then((userUpdated) => {
         console.log(userUpdated, isSaved);
         console.log("userUpdated:", userUpdated.shoppingList);
-        res.json(
-          { userUpdated },
-          { isSaved },
-          { message: "Dioni Has Severe issues" }
-        );
+        res.json({ userUpdated }, { isSaved });
       })
       .catch((err) => {
         next(err);
@@ -505,10 +517,7 @@ router.get("/like-list/:id", (req, res, next) => {
     //Check if recipe is in list already and filter it
     let auxLikedList = recipeFound.likes;
     auxLikedList = auxLikedList.filter((el) => {
-      console.log(
-        "match",
-        Object.toString(el.user_id) == Object.toString(userId)
-      );
+      console.log("match", el.user_id, userId);
       return Object.toString(el.user_id) != Object.toString(userId);
     });
     let returnedLikedList = recipeFound.likes;
@@ -531,11 +540,7 @@ router.get("/like-list/:id", (req, res, next) => {
       .then((recipeUpdated) => {
         console.log(isLiked);
         console.log("recipeUpdated:", recipeUpdated.likes);
-        res.json(
-          { recipeUpdated },
-          { isLiked },
-          { message: "Dioni Has Severe issues" }
-        );
+        res.json({ recipeUpdated }, { isLiked });
       })
       .catch((err) => {
         next(err);
