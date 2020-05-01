@@ -229,6 +229,7 @@ router.get("/recipe/:id", (req, res, next) => {
         if (recipe.user_id.shoppingList[i].recipeId.equals(recipeId))
           isSaved = true;
       }
+
       console.log(isLiked, isSaved);
       res.render("selected-recipe", {
         recipe: recipe,
@@ -527,6 +528,7 @@ router.get("/update-list/:id", (req, res, next) => {
 
 router.get("/like-list/:id", (req, res, next) => {
   //console.log(req.params.id, req.user);
+  console.log("LIIIIIIIIIIIIIIIIIIKED MOTHAFUCKA");
   const recipeId = req.params.id;
   const userId = req.user._id;
   let isLiked = false;
