@@ -7,7 +7,7 @@ const uploader = require("../config/cloudinary.js");
 const mongoose = require("mongoose");
 
 // Bcrypt to encrypt passwords
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const bcryptSalt = 10;
 
 const ensureLogin = require("connect-ensure-login");
@@ -210,40 +210,44 @@ router.get("/edit/profile", (req, res, next) => {
   res.render("edit/edit-profile", { user: user });
 });
 
-router.get("/recipe/:id", (req, res, next) => {
-  const recipeId = req.params.id;
-  let isUser = false;
-  let isLiked = false;
-  let isSaved = false;
-  Recipe.findById(recipeId)
-    .populate("user_id")
-    .then((recipe) => {
-      const userId = recipe.user_id._id;
-      const reqUserId = req.user._id;
-      if (userId.equals(reqUserId)) isUser = true;
-      console.log(recipe.user_id.shoppingList);
-      for (let i = 0; i < recipe.likes.length; i++) {
-        if (recipe.likes[i].user_id.equals(reqUserId)) isLiked = true;
-      }
-      for (let i = 0; i < recipe.user_id.shoppingList.length; i++) {
-        if (recipe.user_id.shoppingList[i].recipeId.equals(recipeId))
-          isSaved = true;
-      }
+router.get(
+  "/recipe/:id",
+  ensureLogin.ensureLoggedIn("../auth/signup"),
+  (req, res, next) => {
+    const recipeId = req.params.id;
+    let isUser = false;
+    let isLiked = false;
+    let isSaved = false;
+    Recipe.findById(recipeId)
+      .populate("user_id")
+      .then((recipe) => {
+        const userId = recipe.user_id._id;
+        const reqUserId = req.user._id;
+        if (userId.equals(reqUserId)) isUser = true;
+        console.log(recipe.user_id.shoppingList);
+        for (let i = 0; i < recipe.likes.length; i++) {
+          if (recipe.likes[i].user_id.equals(reqUserId)) isLiked = true;
+        }
+        for (let i = 0; i < recipe.user_id.shoppingList.length; i++) {
+          if (recipe.user_id.shoppingList[i].recipeId.equals(recipeId))
+            isSaved = true;
+        }
 
-      console.log(isLiked, isSaved);
-      res.render("selected-recipe", {
-        recipe: recipe,
-        user: req.user,
-        isUser,
-        isSaved,
-        isLiked,
-        id: JSON.stringify(recipe),
+        console.log(isLiked, isSaved);
+        res.render("selected-recipe", {
+          recipe: recipe,
+          user: req.user,
+          isUser,
+          isSaved,
+          isLiked,
+          id: JSON.stringify(recipe),
+        });
+      })
+      .catch((err) => {
+        next(err);
       });
-    })
-    .catch((err) => {
-      next(err);
-    });
-});
+  }
+);
 
 router.get(
   "/user/:id",
