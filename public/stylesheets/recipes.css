@@ -1,84 +1,91 @@
-
-.recipesDisplay img{
+.recipesDisplay img {
   width: 100%;
   height: 10rem;
 }
-.tagsFilter{
+.tagsFilter {
   display: flex;
   margin: 0 auto;
   justify-content: center;
   font-weight: bold;
 }
 
-.recipesDisplay{
+.recipesDisplay {
   width: 45%;
   margin: 1rem;
   height: 12rem;
-  border:1px solid #3b5998;
+  border: 1px solid #3b5998;
   -webkit-box-shadow: 7px 7px 5px 0px rgba(59, 89, 152, 1);
   -moz-box-shadow: 7px 7px 5px 0px rgba(59, 89, 152, 1);
   box-shadow: 7px 7px 5px 0px rgba(59, 89, 152, 1);
   font-family: "Open Sans", sans-serif;
 }
-#titleCards{
+#titleCards {
   font-family: "Cookie", cursive;
   font-size: 1.5rem;
 }
-.displayAllRecipes{
+.displayAllRecipes {
   margin: 2rem auto;
 }
-#buttonShop i{
-  color: #E82A69;
+#buttonShop i {
+  color: #e82a69;
 }
-.fas.fa-heart{
+.fas.fa-heart {
   color: red;
 }
-#buttonShop:focus {  
-  margin: 0.25rem;   
+#buttonShop:focus {
+  margin: 0.25rem;
   border-radius: 51%;
   padding: 0.5rem;
   border: 0px;
   outline: none;
   background-color: darkgrey;
 }
-.tagsFilter button{
+#buttonShopClicked {
+  margin: 0.25rem;
+  border-radius: 51%;
+  padding: 0.5rem;
+  border: 0px;
+  outline: none;
+  background-color: darkgrey;
+}
+.tagsFilter button {
   background-color: white;
-  border: 2px solid rgba(59,89,152,1);
+  border: 2px solid rgba(59, 89, 152, 1);
   color: #3b5998;
   font-size: 16px;
   font-weight: bold;
   border-radius: 51%;
   width: 5%;
 }
-.tagsFilter button:hover{
+.tagsFilter button:hover {
   background-color: #3b5998;
 }
-#iconSearch{
-  color: #E82A69;
+#iconSearch {
+  color: #e82a69;
 }
-.card-body a{
+.card-body a {
   text-decoration: none;
 }
-.prepInfo{
+.prepInfo {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 26rem;
   text-align: center;
 }
-.eachInfo{
+.eachInfo {
   display: flex;
   flex-direction: row;
   width: 26rem;
   justify-content: center;
 }
-.prepInfo i{
-  color: #E82A69!important;
+.prepInfo i {
+  color: #e82a69 !important;
   margin: 0px;
 }
-.prepInfo p{
+.prepInfo p {
   margin: 1rem;
-  color:#E82A69;
+  color: #e82a69;
   font-size: 15px;
   font-weight: bold;
   display: flex;
@@ -86,194 +93,184 @@
   justify-content: space-around;
   align-items: center;
 }
-.number p{
+.number p {
   font-size: 30px;
-  color:#E82A69;
-
+  color: #e82a69;
 }
-.imgRecipeId{
+.imgRecipeId {
   width: 50vh;
   margin-top: 1rem;
   height: 15rem;
   padding: 0.25rem;
-
 }
-.bodyRecipe{
+.bodyRecipe {
   display: flex;
   justify-content: space-around;
   width: 90%;
-  
 }
-.generalInfo{
+.generalInfo {
   margin: 0 auto;
-  
 }
-.stepsInfo ul{
+.stepsInfo ul {
   width: 42rem;
   display: flex;
   flex-wrap: wrap;
 }
-.displayTitle h5{
+.displayTitle h5 {
   font-size: 3rem;
   width: 100%;
-  font-family: 'Cookie', cursive;
+  font-family: "Cookie", cursive;
 }
-.subTitle{
+.subTitle {
   font-weight: bold;
   font-size: 17px;
   color: #3b5998;
 }
-.processInfo ul li{
+.processInfo ul li {
   list-style: none;
   width: 100%;
   font-weight: 700;
   text-transform: inherit;
   letter-spacing: 1px;
-
 }
-.generalInfo p{
+.generalInfo p {
   margin-top: 1rem;
   font-size: 16px;
   font-weight: bold;
   text-transform: capitalize;
   width: 70%;
-  
 }
-.buttonsRecipes{
+.buttonsRecipes {
   display: flex;
   flex-direction: row;
   width: 17rem;
   justify-content: flex-end;
   align-items: center;
-  
 }
-.desc{
+.desc {
   font-size: 18px;
   font-weight: bold;
   margin: 0px;
   padding: 0px;
 }
-.displayTitle{
+.displayTitle {
   width: 70%;
 }
-.buttonsRecipes button{
- background-color: white;
- border: 0px;
+.buttonsRecipes button {
+  background-color: white;
+  border: 0px;
 }
-.buttonsRecipes i{
+.buttonsRecipes i {
   margin: 0.5rem;
   font-size: 1.5rem;
-  color: #E82A69;
+  color: #e82a69;
 }
-.buttonsRecipes button:hover{
+.buttonsRecipes button:hover {
   background-color: white;
   color: #3b5998;
 }
 
-.userName{
-  color: #FF5C45;
+.userName {
+  color: #ff5c45;
   text-transform: uppercase;
 }
-.stepsInfo i{
+.stepsInfo i {
   margin-right: 0.25rem;
   color: #3b5998;
   margin: 1rem;
 }
-.howTo{
+.howTo {
   margin: 0 auto;
 }
-.howTo p{
+.howTo p {
   font-weight: 400;
   /* text-align: center; */
   line-height: inherit;
   letter-spacing: 1px;
   width: 40rem;
   color: black;
-margin: 0 auto;
+  margin: 0 auto;
 }
-#share i{
-  color: #FF5C45;
+#share i {
+  color: #ff5c45;
 }
-.here span{
+.here span {
   font-size: 18px;
 }
-.stepsInfo{
+.stepsInfo {
   margin-top: 2rem;
   width: 60%;
 }
-.title{
+.title {
   text-transform: capitalize;
 }
-.processInfo{
-display: flex;
-justify-content: space-between;
-width: 95%;
-
+.processInfo {
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
 }
-.selected{
+.selected {
   display: flex;
   align-items: center;
   flex-direction: column;
   padding: 2rem;
   margin: 2rem auto;
-  border:1px solid #3b5998;
+  border: 1px solid #3b5998;
   -webkit-box-shadow: 7px 7px 5px 0px rgba(59, 89, 152, 1);
   -moz-box-shadow: 7px 7px 5px 0px rgba(59, 89, 152, 1);
   box-shadow: 7px 7px 5px 0px rgba(59, 89, 152, 1);
   font-family: "Open Sans", sans-serif;
 }
 @media only screen and (max-device-width: 1030px) {
-  .container{
+  .container {
     width: 100%;
     margin: 0px;
     padding: 3px;
   }
-  .prepInfo{
+  .prepInfo {
     display: none;
   }
-  .processInfo ul{
+  .processInfo ul {
     width: 100%;
     display: block;
-    
   }
-  .eachInfo{
+  .eachInfo {
     width: 12rem;
   }
-  .processInfo ul li{
-    width: 100%;  
+  .processInfo ul li {
+    width: 100%;
   }
-  .bodyRecipe{
+  .bodyRecipe {
     display: flex;
     justify-content: space-around;
-    width: 100%; 
-  }
- 
-  .displayTitle{
     width: 100%;
   }
-  .stepsInfo{
+
+  .displayTitle {
     width: 100%;
   }
-  .stepsInfo p{
+  .stepsInfo {
     width: 100%;
   }
-  .tagsFilter{
+  .stepsInfo p {
+    width: 100%;
+  }
+  .tagsFilter {
     flex-direction: row;
     width: 100%;
     flex-wrap: wrap;
   }
-  .tagsFilter button{
+  .tagsFilter button {
     border: 0px;
     font-size: 30px;
   }
-  .recipesDisplay{
+  .recipesDisplay {
     width: 26rem;
     height: 24rem;
   }
+}
+@media screen and (min-width: 1900px) {
+  .container {
+    width: 1850px;
   }
-  @media screen and (min-width: 1900px) {
-    .container{
-      width: 1850px;
-    }
-  
-  }
+}
