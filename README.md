@@ -1,6 +1,6 @@
 # Ironcook
 
-Cooking website done in group of 3 (@agusgutierrezz && @dionifss) in Week 6 of Ironhack's Full Stack Web Development Bootcamp. Link: http://ironcook.herokuapp.com/
+Cooking website done in group of 3 (@agusgutierrezz && @dionifss) in Week 6 of Ironhack's Full Stack Web Development Bootcamp. [Link](http://ironcook.herokuapp.com/ "Ironcook Website")
 
 ## Goal
 
